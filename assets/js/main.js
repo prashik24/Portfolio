@@ -1,28 +1,33 @@
 /**
  * =========================================================================
- * PRASHIK HUMANE - MAIN JAVASCRIPT CONTROLLER
+ * PRASHIK HUMANE - ADVANCED UI/UX CONTROLLER
  * =========================================================================
  * 
- * Handles dynamic content population from data.js, category filtering,
- * interactive modals, contact form triggers, theme switching, and animations.
+ * Features:
+ * - Real-time IST Digital Clock in Bento Header
+ * - Command Palette (Ctrl+K / ⌘K) with keyboard search & navigation
+ * - Realistic Browser Mockup Frames with Live URL & Status
+ * - Category Filter Engine with count pills
+ * - Dynamic Modals (Project Architecture & Printable PDF Resume)
+ * - Copy to Clipboard with animated toast notifications
+ * - Theme Switcher (Dark / Light) with localStorage persistence
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Ensure portfolioData is loaded
   const data = window.portfolioData;
   if (!data) {
-    console.error("Portfolio data not found. Please ensure data.js is included before main.js.");
+    console.error("Portfolio data not found. Ensure data.js is loaded.");
     return;
   }
 
-  // 1. Theme Management (Dark / Light)
+  // 1. Theme Management
   initTheme();
 
-  // 2. Render Hero & Personal Info
-  renderHero(data.personal);
+  // 2. Real-time Digital Clock (Bento Card)
+  initLiveClock();
 
-  // 3. Render Metrics & Stats
-  renderMetrics(data.stats);
+  // 3. Render Hero & Socials
+  renderHero(data.personal);
 
   // 4. Render Projects & Filter Mechanism
   renderProjects(data.projects);
@@ -33,19 +38,22 @@ document.addEventListener('DOMContentLoaded', () => {
   // 6. Render Technical Skills
   renderSkills(data.skills);
 
-  // 7. Render Education & Leadership Timeline
+  // 7. Render Timelines
   renderTimelines(data.education, data.responsibilities);
 
-  // 8. Render Contact Section & Copy To Clipboard
+  // 8. Render Contact Section
   renderContact(data.personal);
 
-  // 9. Interactive Modals (Project Deep-Dive & Resume)
+  // 9. Interactive Modals
   setupModals(data);
 
-  // 10. Navigation & Scroll Interactions
+  // 10. Command Palette (Ctrl+K / ⌘K)
+  setupCommandPalette(data);
+
+  // 11. Navigation & Scroll Interactions
   setupNavigation();
 
-  // 11. Contact Form Handling
+  // 12. Contact Form
   setupContactForm(data.personal.email);
 });
 
@@ -78,43 +86,45 @@ function updateThemeIcon(theme) {
 }
 
 /* -------------------------------------------------------------------------
- * 2. HERO & PERSONAL INFO
+ * 2. LIVE CLOCK (Bento Grid)
+ * ------------------------------------------------------------------------- */
+function initLiveClock() {
+  const clockEl = document.getElementById('live-clock');
+  if (!clockEl) return;
+
+  function update() {
+    const options = { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+    const istTime = new Intl.DateTimeFormat('en-US', options).format(new Date());
+    clockEl.innerHTML = `<i class="ri-time-line"></i> ${istTime} IST (UTC+05:30)`;
+  }
+
+  update();
+  setInterval(update, 1000);
+}
+
+/* -------------------------------------------------------------------------
+ * 3. HERO & PERSONAL INFO
  * ------------------------------------------------------------------------- */
 function renderHero(personal) {
-  const nameEl = document.getElementById('hero-name');
-  const roleEl = document.getElementById('hero-role');
-  const bioEl = document.getElementById('hero-bio');
-  const statusEl = document.getElementById('hero-status-text');
-
-  if (nameEl) nameEl.textContent = personal.name;
-  if (roleEl) {
-    roleEl.innerHTML = `Full-Stack Software Engineer &amp; <strong>Competitive Programmer</strong>`;
-  }
-  if (bioEl) {
-    bioEl.innerHTML = `Final year Computer Science &amp; Business student at <strong>IIIT Lucknow</strong> (CGPA: ${personal.cgpa}). Proven builder of resilient distributed web systems, real-time architectures, and ML microservices. CodeChef <strong>4★ (1800)</strong> &amp; Codeforces <strong>Specialist (1572)</strong>.`;
-  }
-  if (statusEl) statusEl.textContent = personal.statusText;
-
-  // Social Links in Hero
   const heroSocialsContainer = document.getElementById('hero-socials');
   if (heroSocialsContainer) {
     heroSocialsContainer.innerHTML = `
-      <a href="${personal.socials.github}" target="_blank" rel="noopener noreferrer" class="social-pill" title="GitHub Profile">
+      <a href="${personal.socials.github}" target="_blank" rel="noopener noreferrer" class="social-pill" title="GitHub Profile (2,000+ Contributions)">
         <i class="ri-github-fill"></i>
       </a>
       <a href="${personal.socials.linkedin}" target="_blank" rel="noopener noreferrer" class="social-pill" title="LinkedIn Profile">
         <i class="ri-linkedin-fill"></i>
       </a>
-      <a href="${personal.socials.codechef}" target="_blank" rel="noopener noreferrer" class="social-pill" title="CodeChef 4★ (1800)">
+      <a href="${personal.socials.codechef}" target="_blank" rel="noopener noreferrer" class="social-pill" title="CodeChef 4★ (Peak 1800)">
         <i class="ri-star-line"></i>
       </a>
-      <a href="${personal.socials.codeforces}" target="_blank" rel="noopener noreferrer" class="social-pill" title="Codeforces Specialist">
+      <a href="${personal.socials.codeforces}" target="_blank" rel="noopener noreferrer" class="social-pill" title="Codeforces Specialist (Peak 1572)">
         <i class="ri-flashlight-line"></i>
       </a>
-      <a href="${personal.socials.leetcode}" target="_blank" rel="noopener noreferrer" class="social-pill" title="LeetCode Profile">
+      <a href="${personal.socials.leetcode}" target="_blank" rel="noopener noreferrer" class="social-pill" title="LeetCode Contest Profile">
         <i class="ri-code-s-slash-line"></i>
       </a>
-      <a href="${personal.socials.email}" class="social-pill" title="Send Email">
+      <a href="${personal.socials.email}" class="social-pill" title="Send Direct Email">
         <i class="ri-mail-line"></i>
       </a>
     `;
@@ -122,23 +132,7 @@ function renderHero(personal) {
 }
 
 /* -------------------------------------------------------------------------
- * 3. METRICS BANNER
- * ------------------------------------------------------------------------- */
-function renderMetrics(stats) {
-  const container = document.getElementById('metrics-grid');
-  if (!container) return;
-
-  container.innerHTML = stats.map(stat => `
-    <div class="metric-card ${stat.highlight ? 'highlight' : ''}">
-      <div class="metric-val ${stat.highlight ? 'highlight-text' : ''}">${stat.value}</div>
-      <div class="metric-label">${stat.label}</div>
-      <div class="metric-sub">${stat.subtitle}</div>
-    </div>
-  `).join('');
-}
-
-/* -------------------------------------------------------------------------
- * 4. PROJECTS & FILTER MECHANISM
+ * 4. PROJECTS SHOWCASE (Realistic Browser Mockups)
  * ------------------------------------------------------------------------- */
 let allProjects = [];
 
@@ -169,60 +163,76 @@ function displayFilteredProjects(category) {
     ? allProjects 
     : allProjects.filter(p => p.category === category);
 
-  container.innerHTML = filtered.map(project => `
-    <article class="project-card" data-id="${project.id}">
-      <div class="project-preview">
-        <div class="mockup-header-bar">
-          <div class="mockup-dots">
-            <span class="mockup-dot"></span>
-            <span class="mockup-dot"></span>
-            <span class="mockup-dot"></span>
+  container.innerHTML = filtered.map(project => {
+    const rawUrl = project.deployment?.liveUrl || '';
+    const cleanUrl = rawUrl.replace(/^https?:\/\//, '').replace(/\/$/, '') || `github.com/prashik24/${project.id}`;
+
+    return `
+      <article class="project-card" data-id="${project.id}">
+        <!-- Realistic Browser Window Frame -->
+        <div class="project-preview">
+          <div class="mockup-header-bar">
+            <div class="mockup-dots">
+              <span class="mockup-dot dot-red"></span>
+              <span class="mockup-dot dot-yellow"></span>
+              <span class="mockup-dot dot-green"></span>
+            </div>
+            <div class="mockup-address-bar" title="${rawUrl}">
+              <i class="ri-lock-line"></i> ${cleanUrl}
+            </div>
+            <div style="width: 36px;"></div>
           </div>
-          <div class="mockup-url">${(project.deployment && project.deployment.liveUrl) ? project.deployment.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '') : 'github.com/prashik24/' + project.id}</div>
-          <div></div>
-        </div>
-        <div class="project-img-holder">
-          <img src="${project.image}" alt="${project.title} Screenshot" loading="lazy" />
-        </div>
-        ${project.deployment ? `
-          <a href="${project.deployment.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-deploy-badge" title="Live on ${project.deployment.platform}">
-            <span class="live-dot"></span> Live • ${project.deployment.platform}
-          </a>
-        ` : ''}
-      </div>
-      <div class="project-body">
-        <div class="project-header-row">
-          <div class="project-title">
-            <h3>${project.title}</h3>
-          </div>
-          <span class="project-category-pill">${project.categoryLabel}</span>
-        </div>
-        <p class="project-desc">${project.shortDescription}</p>
 
-        <div class="tech-stack-chips">
-          ${project.technologies.map(t => `<span class="tech-chip">${t}</span>`).join('')}
-        </div>
-
-        <ul class="project-bullets">
-          ${project.highlights.slice(0, 3).map(h => `<li>${h}</li>`).join('')}
-        </ul>
-
-        <div class="project-footer">
-          <div class="project-links">
-            <a href="${project.links.demo}" target="_blank" rel="noopener noreferrer" class="project-link-btn primary" title="View Live Deployment">
-              <i class="ri-external-link-line"></i> Live Demo
-            </a>
-            <a href="${project.links.github}" target="_blank" rel="noopener noreferrer" class="project-link-btn" title="View Source on GitHub">
-              <i class="ri-github-line"></i> GitHub Repo
+          <div class="project-img-holder">
+            <img src="${project.image}" alt="${project.title} Screenshot" loading="lazy" />
+            <a href="${project.links.demo}" target="_blank" rel="noopener noreferrer" class="img-hover-overlay" title="Open live deployment">
+              <span class="btn btn-primary btn-sm"><i class="ri-external-link-line"></i> Visit Live App</span>
             </a>
           </div>
-          <button class="project-deep-dive-btn" onclick="openProjectModal('${project.id}')">
-            Details <i class="ri-arrow-right-line"></i>
-          </button>
+
+          ${project.deployment ? `
+            <a href="${project.deployment.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-deploy-badge" title="Live on ${project.deployment.platform}">
+              <span class="live-dot"></span> Live • ${project.deployment.platform}
+            </a>
+          ` : ''}
         </div>
-      </div>
-    </article>
-  `).join('');
+
+        <!-- Project Content Body -->
+        <div class="project-body">
+          <div class="project-header-row">
+            <div class="project-title">
+              <h3>${project.title}</h3>
+            </div>
+            <span class="project-category-pill">${project.categoryLabel}</span>
+          </div>
+
+          <p class="project-desc">${project.shortDescription}</p>
+
+          <div class="tech-stack-chips">
+            ${project.technologies.map(t => `<span class="tech-chip">${t}</span>`).join('')}
+          </div>
+
+          <ul class="project-bullets">
+            ${project.highlights.slice(0, 3).map(h => `<li>${h}</li>`).join('')}
+          </ul>
+
+          <div class="project-footer">
+            <div class="project-links">
+              <a href="${project.links.demo}" target="_blank" rel="noopener noreferrer" class="project-link-btn primary" title="Open Live Application">
+                <i class="ri-external-link-line"></i> Live Demo
+              </a>
+              <a href="${project.links.github}" target="_blank" rel="noopener noreferrer" class="project-link-btn" title="View Source Code on GitHub">
+                <i class="ri-github-line"></i> GitHub Repo
+              </a>
+            </div>
+            <button class="project-deep-dive-btn" onclick="openProjectModal('${project.id}')" title="View Architecture Details">
+              Architecture Details <i class="ri-arrow-right-line"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
 }
 
 /* -------------------------------------------------------------------------
@@ -286,7 +296,7 @@ function renderSkills(skillsData) {
  * 7. EDUCATION & LEADERSHIP TIMELINE
  * ------------------------------------------------------------------------- */
 function renderTimelines(education, responsibilities) {
-  // Education Timeline
+  // Education
   const eduContainer = document.getElementById('education-timeline');
   if (eduContainer) {
     eduContainer.innerHTML = education.map(item => `
@@ -307,7 +317,7 @@ function renderTimelines(education, responsibilities) {
     `).join('');
   }
 
-  // Leadership & Responsibilities Timeline
+  // Leadership
   const respContainer = document.getElementById('leadership-timeline');
   if (respContainer) {
     respContainer.innerHTML = responsibilities.map(item => `
@@ -393,7 +403,6 @@ window.copyToClipboard = function(text, successMsg) {
   navigator.clipboard.writeText(text).then(() => {
     showToast(successMsg);
   }).catch(() => {
-    // Fallback for older browsers
     const textarea = document.createElement('textarea');
     textarea.value = text;
     document.body.appendChild(textarea);
@@ -405,10 +414,9 @@ window.copyToClipboard = function(text, successMsg) {
 };
 
 /* -------------------------------------------------------------------------
- * 9. INTERACTIVE MODALS (Deep-Dive & Resume)
+ * 9. INTERACTIVE MODALS
  * ------------------------------------------------------------------------- */
 function setupModals(data) {
-  // Close Modals on backdrop click or close button
   document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
     backdrop.addEventListener('click', (e) => {
       if (e.target === backdrop) {
@@ -421,12 +429,10 @@ function setupModals(data) {
     btn.addEventListener('click', closeAllModals);
   });
 
-  // ESC key listener to close modals
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeAllModals();
   });
 
-  // Resume Modal Trigger
   const resumeBtns = document.querySelectorAll('.resume-trigger-btn');
   resumeBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -448,9 +454,9 @@ window.openProjectModal = function(projectId) {
   body.innerHTML = `
     <div style="margin-bottom: 1.5rem;">
       <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.8rem; flex-wrap: wrap;">
-        <span class="project-category-tag" style="position: static; margin-bottom: 0;">${project.categoryLabel}</span>
+        <span class="project-category-pill">${project.categoryLabel}</span>
         ${project.deployment ? `
-          <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-emerald); background: rgba(16, 185, 129, 0.15); padding: 0.3rem 0.75rem; border-radius: var(--radius-full); border: 1px solid rgba(16, 185, 129, 0.3);">
+          <span style="font-size: 0.78rem; font-weight: 700; color: var(--accent-emerald); background: rgba(16, 185, 129, 0.12); padding: 0.25rem 0.7rem; border-radius: var(--radius-full); border: 1px solid rgba(16, 185, 129, 0.3);">
             🟢 Deployed on ${project.deployment.platform}
           </span>
         ` : ''}
@@ -465,8 +471,8 @@ window.openProjectModal = function(projectId) {
       </ul>
     </div>
 
-    <div style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); margin-bottom: 1.5rem;">
-      <h4 style="font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--accent-cyan);">Key Engineering Metrics &amp; Stack</h4>
+    <div style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-card); margin-bottom: 1.5rem;">
+      <h4 style="font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--accent-primary);">Key Engineering Metrics &amp; Stack</h4>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; font-size: 0.85rem;">
         ${Object.entries(project.stats || {}).map(([k, v]) => `
           <div>
@@ -477,7 +483,7 @@ window.openProjectModal = function(projectId) {
       </div>
     </div>
 
-    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+    <div style="display: flex; gap: 0.85rem; flex-wrap: wrap;">
       ${project.links.demo ? `
         <a href="${project.links.demo}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
           <i class="ri-external-link-line"></i> Open Live Deployment
@@ -503,11 +509,150 @@ window.closeAllModals = function() {
   document.querySelectorAll('.modal-backdrop').forEach(modal => {
     modal.classList.remove('open');
   });
+  const cmdPalette = document.getElementById('cmd-palette');
+  if (cmdPalette) cmdPalette.classList.remove('open');
   document.body.style.overflow = '';
 };
 
 /* -------------------------------------------------------------------------
- * 10. NAVIGATION & SCROLL INTERACTIONS
+ * 10. COMMAND PALETTE (Ctrl+K / ⌘K)
+ * ------------------------------------------------------------------------- */
+function setupCommandPalette(data) {
+  const cmdPalette = document.getElementById('cmd-palette');
+  const cmdInput = document.getElementById('cmd-palette-input');
+  const cmdList = document.getElementById('cmd-palette-list');
+  const cmdTrigger = document.getElementById('cmd-k-open');
+
+  if (!cmdPalette || !cmdInput || !cmdList) return;
+
+  const commands = [
+    // Projects
+    { title: "OnTrip – AI Travel Planning Platform", category: "Projects", icon: "ri-plane-line", action: () => { window.location.hash = "#projects"; openProjectModal("ontrip"); } },
+    { title: "ShopKart – Full-Stack E-Commerce", category: "Projects", icon: "ri-shopping-cart-line", action: () => { window.location.hash = "#projects"; openProjectModal("shopkart"); } },
+    { title: "Interactive Wall Calendar Component", category: "Projects", icon: "ri-calendar-line", action: () => { window.location.hash = "#projects"; openProjectModal("calendar"); } },
+    { title: "Amazon Homepage Clone", category: "Projects", icon: "ri-amazon-line", action: () => { window.location.hash = "#projects"; openProjectModal("amazon"); } },
+
+    // Resume & Contact
+    { title: "Download Resume (Original PDF)", category: "Actions", icon: "ri-download-2-line", action: () => { window.location.href = data.personal.resumePdfPath; } },
+    { title: "View Formatted Resume", category: "Actions", icon: "ri-file-text-line", action: () => openResumeModal() },
+    { title: "Copy Email Address", category: "Actions", icon: "ri-mail-line", action: () => copyToClipboard(data.personal.email, "Email copied!") },
+    { title: "Copy Phone Number", category: "Actions", icon: "ri-phone-line", action: () => copyToClipboard(data.personal.phone, "Phone copied!") },
+
+    // Competitive Programming
+    { title: "CodeChef Profile (1800 4★)", category: "Profiles", icon: "ri-star-line", action: () => window.open(data.personal.socials.codechef, "_blank") },
+    { title: "Codeforces Profile (1572 Specialist)", category: "Profiles", icon: "ri-flashlight-line", action: () => window.open(data.personal.socials.codeforces, "_blank") },
+    { title: "LeetCode Profile", category: "Profiles", icon: "ri-code-s-slash-line", action: () => window.open(data.personal.socials.leetcode, "_blank") },
+    { title: "GitHub Profile (2,000+ Contributions)", category: "Profiles", icon: "ri-github-fill", action: () => window.open(data.personal.socials.github, "_blank") },
+    { title: "LinkedIn Profile", category: "Profiles", icon: "ri-linkedin-fill", action: () => window.open(data.personal.socials.linkedin, "_blank") }
+  ];
+
+  let selectedIdx = 0;
+  let currentFiltered = [...commands];
+
+  function renderList(items) {
+    if (items.length === 0) {
+      cmdList.innerHTML = `<div style="padding: 1.5rem; text-align: center; color: var(--text-muted); font-size: 0.9rem;">No matching commands found.</div>`;
+      return;
+    }
+
+    let groups = {};
+    items.forEach((item, idx) => {
+      if (!groups[item.category]) groups[item.category] = [];
+      groups[item.category].push({ ...item, globalIdx: idx });
+    });
+
+    let html = '';
+    Object.keys(groups).forEach(category => {
+      html += `<div class="cmd-group-label">${category}</div>`;
+      groups[category].forEach(item => {
+        const isSelected = item.globalIdx === selectedIdx;
+        html += `
+          <li class="cmd-item ${isSelected ? 'selected' : ''}" data-idx="${item.globalIdx}">
+            <div class="cmd-item-left">
+              <i class="${item.icon}"></i>
+              <span>${item.title}</span>
+            </div>
+            <span class="cmd-item-tag">${item.category}</span>
+          </li>
+        `;
+      });
+    });
+
+    cmdList.innerHTML = html;
+
+    // Click handler for items
+    cmdList.querySelectorAll('.cmd-item').forEach(el => {
+      el.addEventListener('click', () => {
+        const idx = parseInt(el.getAttribute('data-idx'), 10);
+        executeCommand(idx);
+      });
+    });
+  }
+
+  function executeCommand(idx) {
+    if (currentFiltered[idx]) {
+      closePalette();
+      currentFiltered[idx].action();
+    }
+  }
+
+  function openPalette() {
+    cmdPalette.classList.add('open');
+    cmdInput.value = '';
+    currentFiltered = [...commands];
+    selectedIdx = 0;
+    renderList(currentFiltered);
+    setTimeout(() => cmdInput.focus(), 50);
+  }
+
+  function closePalette() {
+    cmdPalette.classList.remove('open');
+  }
+
+  if (cmdTrigger) cmdTrigger.addEventListener('click', openPalette);
+
+  // Keyboard shortcut listener (Ctrl+K / Cmd+K)
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      if (cmdPalette.classList.contains('open')) {
+        closePalette();
+      } else {
+        openPalette();
+      }
+    } else if (e.key === 'Escape' && cmdPalette.classList.contains('open')) {
+      closePalette();
+    } else if (cmdPalette.classList.contains('open')) {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        selectedIdx = (selectedIdx + 1) % currentFiltered.length;
+        renderList(currentFiltered);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        selectedIdx = (selectedIdx - 1 + currentFiltered.length) % currentFiltered.length;
+        renderList(currentFiltered);
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        executeCommand(selectedIdx);
+      }
+    }
+  });
+
+  // Search input filtering
+  cmdInput.addEventListener('input', (e) => {
+    const q = e.target.value.toLowerCase().trim();
+    currentFiltered = commands.filter(c => c.title.toLowerCase().includes(q) || c.category.toLowerCase().includes(q));
+    selectedIdx = 0;
+    renderList(currentFiltered);
+  });
+
+  cmdPalette.addEventListener('click', (e) => {
+    if (e.target === cmdPalette) closePalette();
+  });
+}
+
+/* -------------------------------------------------------------------------
+ * 11. NAVIGATION & SCROLL INTERACTIONS
  * ------------------------------------------------------------------------- */
 function setupNavigation() {
   const navbar = document.querySelector('.navbar');
@@ -516,18 +661,16 @@ function setupNavigation() {
   const mobileToggle = document.getElementById('mobile-toggle');
   const mobileDrawer = document.getElementById('mobile-drawer');
 
-  // Sticky Navbar blur on scroll
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
+    if (window.scrollY > 30) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
     }
 
-    // Active Section Indicator
     let current = '';
     sections.forEach(section => {
-      const sectionTop = section.offsetTop - 120;
+      const sectionTop = section.offsetTop - 140;
       const sectionHeight = section.offsetHeight;
       if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
         current = section.getAttribute('id');
@@ -542,7 +685,6 @@ function setupNavigation() {
     });
   });
 
-  // Mobile Drawer Toggle
   if (mobileToggle && mobileDrawer) {
     mobileToggle.addEventListener('click', () => {
       mobileDrawer.classList.toggle('open');
@@ -563,7 +705,7 @@ function setupNavigation() {
 }
 
 /* -------------------------------------------------------------------------
- * 11. CONTACT FORM HANDLING
+ * 12. CONTACT FORM DISPATCH
  * ------------------------------------------------------------------------- */
 function setupContactForm(receiverEmail) {
   const form = document.getElementById('contact-form');
@@ -583,10 +725,9 @@ function setupContactForm(receiverEmail) {
       return;
     }
 
-    // Launch direct mail client so the message is reliably sent to Prashik's inbox
     const mailtoLink = `mailto:${receiverEmail}?subject=${encodeURIComponent(subject || `Portfolio Message from ${name}`)}&body=${encodeURIComponent(`Hi Prashik,\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
     
-    status.textContent = 'Opening your email client to send your message directly to Prashik...';
+    status.textContent = 'Opening your email client to dispatch message directly to Prashik...';
     status.className = 'form-status success';
     
     setTimeout(() => {
@@ -597,7 +738,7 @@ function setupContactForm(receiverEmail) {
 }
 
 /* -------------------------------------------------------------------------
- * HELPER: TOAST NOTIFICATIONS
+ * TOAST NOTIFICATIONS
  * ------------------------------------------------------------------------- */
 function showToast(message) {
   let toast = document.getElementById('toast-notice');
@@ -608,10 +749,10 @@ function showToast(message) {
     document.body.appendChild(toast);
   }
 
-  toast.innerHTML = `<i class="ri-checkbox-circle-fill"></i> ${message}`;
+  toast.innerHTML = `<i class="ri-checkbox-circle-fill" style="color: var(--accent-emerald);"></i> ${message}`;
   toast.classList.add('show');
 
   setTimeout(() => {
     toast.classList.remove('show');
-  }, 2800);
+  }, 2600);
 }

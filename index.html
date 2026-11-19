@@ -8,15 +8,15 @@
   <!-- Primary Meta Tags -->
   <title>Prashik Humane | Full-Stack Software Engineer &amp; Competitive Programmer</title>
   <meta name="title" content="Prashik Humane | Full-Stack Software Engineer &amp; Competitive Programmer" />
-  <meta name="description" content="Portfolio of Prashik Humane: B.Tech CS &amp; Business student at IIIT Lucknow. Full-Stack Developer (React 19, Node.js, FastAPI), CodeChef 4★ (1800), and Codeforces Specialist (1572)." />
-  <meta name="keywords" content="Prashik Humane, Portfolio, Full-Stack Developer, Competitive Programmer, IIIT Lucknow, CodeChef 4 Star, Codeforces Specialist, React 19, FastAPI, OnTrip, ShopKart" />
+  <meta name="description" content="Portfolio of Prashik Humane: Final year CS &amp; Business undergraduate at IIIT Lucknow. Full-Stack Developer (React 19, Node.js, FastAPI, Gemini AI), CodeChef 4★ (1800), and Codeforces Specialist (1572)." />
+  <meta name="keywords" content="Prashik Humane, Portfolio, Software Engineer, IIIT Lucknow, CodeChef 4 Star, Codeforces Specialist, React 19, FastAPI, OnTrip, ShopKart" />
   <meta name="author" content="Prashik Humane" />
 
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Prashik Humane | Software Engineer Portfolio" />
-  <meta property="og:description" content="Explore full-stack web platforms, AI microservices, and competitive programming achievements by Prashik Humane." />
-  <meta property="og:image" content="assets/images/ontrip-preview.svg" />
+  <meta property="og:description" content="Explore full-stack platforms, AI microservices, and competitive programming achievements by Prashik Humane." />
+  <meta property="og:image" content="assets/images/ontrip.png" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/images/avatar.svg" />
@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- Remix Icon CDN for Crisp High-Craft Tech Icons -->
+  <!-- Remix Icon CDN -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
 
   <!-- Main Stylesheet -->
@@ -34,28 +34,24 @@
 </head>
 <body>
 
-  <!-- Ambient Glow Lighting Orbs -->
-  <div class="ambient-glow" aria-hidden="true">
-    <div class="ambient-orb orb-1"></div>
-    <div class="ambient-orb orb-2"></div>
-    <div class="ambient-orb orb-3"></div>
-  </div>
+  <!-- Ambient Glow Lighting -->
+  <div class="ambient-glow" aria-hidden="true"></div>
 
   <!-- =========================================================================
-       NAVIGATION BAR
+       FLOATING CAPSULE NAVBAR
        ========================================================================= -->
-  <header class="navbar" id="navbar">
-    <div class="container">
-      <a href="#hero" class="nav-brand" title="Prashik Humane Portfolio">
+  <div class="navbar-wrapper">
+    <header class="navbar" id="navbar">
+      <a href="#hero" class="nav-brand" title="Prashik Humane">
         <div class="brand-badge">PH</div>
-        <span>Prashik<span style="color: var(--accent-primary);">.</span>dev</span>
+        <span>Prashik<span style="color: var(--accent-primary);">.</span></span>
       </a>
 
       <nav aria-label="Main Navigation">
         <ul class="nav-links">
-          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#hero" class="nav-link active">Overview</a></li>
           <li><a href="#projects" class="nav-link">Projects</a></li>
-          <li><a href="#achievements" class="nav-link">Achievements</a></li>
+          <li><a href="#achievements" class="nav-link">CP Dashboard</a></li>
           <li><a href="#skills" class="nav-link">Skills</a></li>
           <li><a href="#timeline" class="nav-link">Education</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
@@ -63,39 +59,41 @@
       </nav>
 
       <div class="nav-actions">
+        <!-- Command Palette Trigger -->
+        <button class="cmd-k-trigger" id="cmd-k-open" title="Open Command Palette (Ctrl+K)">
+          <i class="ri-search-line"></i>
+          <span>Search</span>
+          <span class="cmd-k-key">⌘K</span>
+        </button>
+
         <!-- Theme Switcher -->
-        <button id="theme-toggle-btn" class="theme-toggle-btn" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">
+        <button id="theme-toggle-btn" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
           <i class="ri-sun-line"></i>
         </button>
 
-        <!-- Resume Modal Trigger -->
-        <button class="btn btn-outline btn-sm resume-trigger-btn">
+        <!-- Resume Button -->
+        <button class="btn btn-primary btn-sm resume-trigger-btn">
           <i class="ri-file-text-line"></i> Resume
         </button>
-
-        <!-- Direct Contact CTA -->
-        <a href="#contact" class="btn btn-primary btn-sm">
-          <i class="ri-send-plane-line"></i> Let's Talk
-        </a>
 
         <!-- Mobile Drawer Toggle -->
         <button id="mobile-toggle" class="mobile-toggle" aria-label="Open Navigation Menu">
           <i class="ri-menu-line"></i>
         </button>
       </div>
-    </div>
-  </header>
+    </header>
+  </div>
 
   <!-- Mobile Navigation Drawer -->
   <div class="mobile-drawer" id="mobile-drawer">
-    <a href="#about">About</a>
+    <a href="#hero">Overview</a>
     <a href="#projects">Projects</a>
-    <a href="#achievements">Achievements</a>
+    <a href="#achievements">CP Dashboard</a>
     <a href="#skills">Skills</a>
     <a href="#timeline">Education &amp; Experience</a>
     <a href="#contact">Contact</a>
     <button class="btn btn-primary btn-sm resume-trigger-btn" style="margin-top: 0.5rem;">
-      <i class="ri-file-text-line"></i> View Resume
+      <i class="ri-file-text-line"></i> View Resume (PDF)
     </button>
   </div>
 
@@ -105,76 +103,129 @@
          ======================================================================= -->
     <section class="hero-section" id="hero">
       <div class="container">
-        <div class="hero-grid">
+        
+        <!-- Hero Introduction Header -->
+        <div class="hero-header">
+          <div class="status-badge">
+            <span class="status-dot"></span>
+            <span id="hero-status-text">Final Year Undergrad • Open to Full-Time Software Engineering Roles</span>
+          </div>
+
+          <h1 class="hero-title">
+            Hi, I'm <span class="gradient-text" id="hero-name">Prashik Humane</span>
+          </h1>
+
+          <div class="hero-role" id="hero-role">
+            Full-Stack Software Engineer &amp; <strong>Competitive Programmer</strong>
+          </div>
+
+          <p class="hero-bio" id="hero-bio">
+            Final year Computer Science &amp; Business undergraduate at <strong>IIIT Lucknow</strong> (CGPA: 8.0). Proven builder of scalable distributed web platforms, real-time architectures, and ML microservices. CodeChef <strong>4★ (1800 peak)</strong> &amp; Codeforces <strong>Specialist (1572 max)</strong>.
+          </p>
+
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">
+              <i class="ri-layout-grid-line"></i> Explore Work ▾
+            </a>
+            <button class="btn btn-secondary resume-trigger-btn">
+              <i class="ri-file-download-line"></i> Resume (PDF)
+            </button>
+            <button class="btn btn-outline" onclick="copyToClipboard('prashikhumane744@gmail.com', 'Email copied to clipboard!')">
+              <i class="ri-file-copy-line"></i> Copy Email
+            </button>
+          </div>
+
+          <div class="hero-socials" id="hero-socials">
+            <!-- Rendered dynamically by main.js -->
+          </div>
+        </div>
+
+        <!-- =====================================================================
+             HERO BENTO GRID (High-Signal Highlights)
+             ===================================================================== -->
+        <div class="hero-bento-grid">
           
-          <!-- Left Column: Introduction & Elevator Pitch -->
-          <div class="hero-content">
-            <div class="status-badge">
-              <span class="status-dot"></span>
-              <span id="hero-status-text">Final Year Undergrad • Open to Full-Time Software Engineering Roles &amp; Opportunities</span>
+          <!-- Bento 1: Education & Location with Live Clock -->
+          <div class="bento-card bento-education">
+            <div class="bento-card-header">
+              <span class="bento-title"><i class="ri-building-4-line"></i> Academic Standing</span>
+              <span class="bento-tag">IIIT Lucknow</span>
             </div>
-
-            <h1 class="hero-title">
-              Hi, I'm <span class="gradient-text" id="hero-name">Prashik Humane</span>
-            </h1>
-
-            <div class="hero-role" id="hero-role">
-              Full-Stack Software Engineer &amp; <strong>Competitive Programmer</strong>
+            <div class="bento-main-text">B.Tech in Computer Science &amp; Business</div>
+            <div class="bento-sub-text" style="margin-bottom: 0.85rem;">
+              Batch of 2023 – 2027 • CGPA: <strong>8.0 / 10.0</strong>
             </div>
-
-            <p class="hero-bio" id="hero-bio">
-              Final year Computer Science &amp; Business student at <strong>IIIT Lucknow</strong> (CGPA: 8.0). Proven builder of resilient distributed web systems, real-time architectures, and ML microservices. CodeChef <strong>4★ (1800 peak)</strong> &amp; Codeforces <strong>Specialist (1572 max)</strong>.
-            </p>
-
-            <div class="hero-cta">
-              <a href="#projects" class="btn btn-primary">
-                <i class="ri-layout-grid-line"></i> View Projects
-              </a>
-              <a href="#achievements" class="btn btn-secondary">
-                <i class="ri-trophy-line"></i> CP Stats &amp; Badges
-              </a>
-              <button class="btn btn-outline resume-trigger-btn">
-                <i class="ri-file-download-line"></i> View Resume
-              </button>
-            </div>
-
-            <div class="hero-socials" id="hero-socials">
-              <!-- Populated dynamically by main.js -->
+            <div style="margin-top: auto; display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; color: var(--text-muted); border-top: 1px solid var(--border-subtle); padding-top: 0.75rem;">
+              <span><i class="ri-map-pin-line"></i> Lucknow, India</span>
+              <span id="live-clock"><i class="ri-time-line"></i> IST (UTC+05:30)</span>
             </div>
           </div>
 
-          <!-- Right Column: Clean Minimalist Profile Card -->
-          <div class="hero-visual">
-            <div class="visual-card-wrap">
-              <div class="avatar-main-card">
-                <div class="avatar-img-wrap">
-                  <img src="assets/images/avatar.svg" alt="Prashik Humane" />
-                </div>
-                <div class="avatar-info">
-                  <h3>Prashik Humane</h3>
-                  <p>B.Tech CS &amp; Business • IIIT Lucknow</p>
-                  <div class="avatar-badges">
-                    <span class="mini-badge highlight">Final Year Undergrad</span>
-                    <span class="mini-badge">CodeChef 4★ (1800)</span>
-                    <span class="mini-badge">CF Specialist (1572)</span>
-                  </div>
-                </div>
+          <!-- Bento 2: Competitive Programming Spotlight -->
+          <div class="bento-card bento-cp">
+            <div class="bento-card-header">
+              <span class="bento-title"><i class="ri-trophy-line"></i> Algorithmic Problem Solving</span>
+              <span class="bento-tag">575+ Solved</span>
+            </div>
+            <div class="bento-main-text">Rated Competitive Coder</div>
+            <div class="bento-sub-text">
+              Active participant in global programming rounds across Division 2 contests.
+            </div>
+
+            <div class="cp-stats-row">
+              <div class="cp-stat-box">
+                <div class="cp-stat-val codechef">1800</div>
+                <div class="cp-stat-lbl">CodeChef 4★</div>
+              </div>
+              <div class="cp-stat-box">
+                <div class="cp-stat-val codeforces">1572</div>
+                <div class="cp-stat-lbl">CF Specialist</div>
+              </div>
+              <div class="cp-stat-box">
+                <div class="cp-stat-val">1491</div>
+                <div class="cp-stat-lbl">LeetCode Contest</div>
               </div>
             </div>
           </div>
 
-        </div>
-      </div>
-    </section>
+          <!-- Bento 3: Tech Stack Matrix -->
+          <div class="bento-card bento-tech">
+            <div class="bento-card-header">
+              <span class="bento-title"><i class="ri-stack-line"></i> Primary Engineering Stack</span>
+              <span class="bento-tag">Production-Ready</span>
+            </div>
+            <div class="tech-cloud-chips">
+              <span class="tech-pill highlight">React 19</span>
+              <span class="tech-pill highlight">Node.js</span>
+              <span class="tech-pill highlight">FastAPI</span>
+              <span class="tech-pill highlight">Google Gemini AI</span>
+              <span class="tech-pill">MongoDB Atlas</span>
+              <span class="tech-pill">Socket.io</span>
+              <span class="tech-pill">Scikit-learn</span>
+              <span class="tech-pill">TypeScript</span>
+              <span class="tech-pill">C++</span>
+              <span class="tech-pill">Python</span>
+              <span class="tech-pill">Docker</span>
+              <span class="tech-pill">Next.js</span>
+              <span class="tech-pill">Razorpay</span>
+            </div>
+          </div>
 
-    <!-- =======================================================================
-         METRICS & STATS BANNER
-         ======================================================================= -->
-    <section class="metrics-banner" id="about">
-      <div class="container">
-        <div class="metrics-grid" id="metrics-grid">
-          <!-- Populated by main.js -->
+          <!-- Bento 4: GitHub Activity -->
+          <div class="bento-card bento-github">
+            <div class="bento-card-header">
+              <span class="bento-title"><i class="ri-git-commit-line"></i> GitHub Consistency</span>
+              <span class="bento-tag">Active</span>
+            </div>
+            <div class="bento-main-text" style="color: var(--accent-emerald);">2,000+</div>
+            <div class="bento-sub-text">Annual contributions across public microservices and open repositories.</div>
+            <a href="https://github.com/prashik24" target="_blank" rel="noopener noreferrer" style="margin-top: auto; padding-top: 0.75rem; font-size: 0.82rem; font-weight: 600; color: var(--accent-primary); display: flex; align-items: center; gap: 0.35rem;">
+              github.com/prashik24 <i class="ri-arrow-right-up-line"></i>
+            </a>
+          </div>
+
         </div>
+
       </div>
     </section>
 
@@ -184,37 +235,37 @@
     <section class="projects-section" id="projects">
       <div class="container">
         <div class="section-header">
-          <div class="section-tag"><i class="ri-code-box-line"></i> Portfolio Showcase</div>
-          <h2 class="section-title">Engineered Projects</h2>
+          <div class="section-tag"><i class="ri-terminal-box-line"></i> Selected Work</div>
+          <h2 class="section-title">Featured Engineering Projects</h2>
           <p class="section-subtitle">
-            Production-ready web applications, microservice architectures, and AI-driven platforms built with high reliability and clean code.
+            Production-grade distributed web applications, microservices, and AI platforms built with high reliability and clean code.
           </p>
         </div>
 
         <!-- Category Filters -->
         <div class="filter-tabs">
-          <button class="filter-btn active" data-filter="all">All Projects</button>
-          <button class="filter-btn" data-filter="fullstack">Full-Stack &amp; AI</button>
-          <button class="filter-btn" data-filter="frontend">Frontend &amp; Components</button>
+          <button class="filter-btn active" data-filter="all">All Projects (4)</button>
+          <button class="filter-btn" data-filter="fullstack">Full-Stack &amp; AI (2)</button>
+          <button class="filter-btn" data-filter="frontend">Frontend &amp; Components (2)</button>
         </div>
 
-        <!-- Projects Grid -->
+        <!-- Projects Grid (Populated dynamically from data.js) -->
         <div class="projects-grid" id="projects-grid">
-          <!-- Populated dynamically by main.js from data.js -->
+          <!-- Populated by main.js -->
         </div>
       </div>
     </section>
 
     <!-- =======================================================================
-         ACHIEVEMENTS & COMPETITIVE PROGRAMMING
+         COMPETITIVE PROGRAMMING & ACHIEVEMENTS
          ======================================================================= -->
     <section class="achievements-section" id="achievements">
       <div class="container">
         <div class="section-header">
-          <div class="section-tag"><i class="ri-award-line"></i> Problem Solving Rigor</div>
+          <div class="section-tag"><i class="ri-award-line"></i> Algorithmic Rigor</div>
           <h2 class="section-title">Competitive Programming &amp; Honors</h2>
           <p class="section-subtitle">
-            Demonstrated mastery across data structures, algorithmic graph theory, dynamic programming, and competitive contests.
+            Proven problem-solving performance across algorithmic contests, dynamic programming, graphs, and nationwide hackathons.
           </p>
         </div>
 
@@ -230,10 +281,10 @@
     <section class="skills-section" id="skills">
       <div class="container">
         <div class="section-header">
-          <div class="section-tag"><i class="ri-cpu-line"></i> Capabilities</div>
+          <div class="section-tag"><i class="ri-cpu-line"></i> Core Competencies</div>
           <h2 class="section-title">Technical Skills &amp; Stack</h2>
           <p class="section-subtitle">
-            A comprehensive overview of programming languages, modern frameworks, cloud databases, and core software engineering fundamentals.
+            A comprehensive breakdown of programming languages, modern frameworks, database systems, and software engineering foundations.
           </p>
         </div>
 
@@ -252,22 +303,22 @@
           <div class="section-tag"><i class="ri-graduation-cap-line"></i> Background &amp; Impact</div>
           <h2 class="section-title">Education &amp; Leadership</h2>
           <p class="section-subtitle">
-            Academic milestones at premier institutes and active leadership roles fostering student technical and entrepreneurial growth.
+            Academic records at premier institutes and active leadership roles directing university summits and entrepreneurial initiatives.
           </p>
         </div>
 
         <div class="dual-timeline-grid">
-          <!-- Left Column: Education -->
+          <!-- Left: Education -->
           <div>
             <h3 class="timeline-column-title">
-              <i class="ri-book-read-line"></i> Formal Education
+              <i class="ri-book-open-line"></i> Formal Education
             </h3>
             <div class="timeline" id="education-timeline">
               <!-- Populated by main.js -->
             </div>
           </div>
 
-          <!-- Right Column: Leadership & Responsibilities -->
+          <!-- Right: Leadership & Responsibilities -->
           <div>
             <h3 class="timeline-column-title">
               <i class="ri-team-line"></i> Positions of Responsibility
@@ -286,19 +337,19 @@
     <section class="contact-section" id="contact">
       <div class="container">
         <div class="section-header">
-          <div class="section-tag"><i class="ri-mail-send-line"></i> Get In Touch</div>
-          <h2 class="section-title">Let's Build Something Great</h2>
+          <div class="section-tag"><i class="ri-mail-send-line"></i> Reach Out</div>
+          <h2 class="section-title">Let's Build Something Together</h2>
           <p class="section-subtitle">
-            Looking for a dedicated software engineering intern or full-time engineer who combines algorithmic rigor with modern full-stack development? Reach out directly.
+            Seeking a software engineer who unites full-stack craft with algorithmic precision? I am open to discussing full-time opportunities and collaborative projects.
           </p>
         </div>
 
         <div class="contact-grid">
-          <!-- Direct Details -->
+          <!-- Direct Channels -->
           <div class="contact-info-card">
             <h3>Direct Contact Channels</h3>
             <p>
-              Feel free to reach out directly via email, phone, or connect on LinkedIn and GitHub. I respond promptly to engineering inquiries and collaboration opportunities.
+              Feel free to send an email or connect through LinkedIn. I respond promptly to engineering inquiries and recruiting conversations.
             </p>
 
             <div class="contact-methods" id="contact-methods-list">
@@ -308,11 +359,11 @@
 
           <!-- Contact Form Card -->
           <div class="contact-form-card">
-            <h3>Send a Message</h3>
+            <h3>Send a Direct Message</h3>
             <form id="contact-form">
               <div class="form-group">
                 <label for="form-name" class="form-label">Your Name</label>
-                <input type="text" id="form-name" name="name" class="form-input" placeholder="e.g. John Doe" required />
+                <input type="text" id="form-name" name="name" class="form-input" placeholder="e.g. Sarah Jenkins" required />
               </div>
 
               <div class="form-group">
@@ -322,12 +373,12 @@
 
               <div class="form-group">
                 <label for="form-subject" class="form-label">Subject</label>
-                <input type="text" id="form-subject" name="subject" class="form-input" placeholder="Engineering Opportunity / Collaboration" />
+                <input type="text" id="form-subject" name="subject" class="form-input" placeholder="Software Engineering Opportunity / Project" />
               </div>
 
               <div class="form-group">
                 <label for="form-message" class="form-label">Message</label>
-                <textarea id="form-message" name="message" class="form-textarea" placeholder="Hello Prashik, we would love to discuss an opportunity..." required></textarea>
+                <textarea id="form-message" name="message" class="form-textarea" placeholder="Hi Prashik, we came across your work on OnTrip and would love to chat..." required></textarea>
               </div>
 
               <button type="submit" class="btn btn-primary" style="width: 100%;">
@@ -353,9 +404,9 @@
           <p>Full-Stack Software Engineer • CodeChef 4★ • IIIT Lucknow '27</p>
         </div>
         <div class="footer-links">
-          <a href="#about">About</a>
+          <a href="#hero">Overview</a>
           <a href="#projects">Projects</a>
-          <a href="#achievements">Achievements</a>
+          <a href="#achievements">CP Dashboard</a>
           <a href="#skills">Skills</a>
           <a href="#contact">Contact</a>
         </div>
@@ -363,10 +414,10 @@
 
       <div class="footer-bottom">
         <div>
-          &copy; <span id="current-year">2026</span> Prashik Humane. Designed &amp; engineered for performance.
+          &copy; <span id="current-year">2026</span> Prashik Humane. Designed and engineered with precision.
         </div>
         <div>
-          <a href="#hero" style="display: inline-flex; align-items: center; gap: 0.3rem;">
+          <a href="#hero" style="display: inline-flex; align-items: center; gap: 0.35rem;">
             Back to Top <i class="ri-arrow-up-line"></i>
           </a>
         </div>
@@ -375,10 +426,30 @@
   </footer>
 
   <!-- =========================================================================
-       MODALS
+       MODALS & COMMAND PALETTE
        ========================================================================= -->
 
-  <!-- 1. Project Architecture Deep-Dive Modal -->
+  <!-- 1. Interactive Command Palette (Ctrl+K / ⌘K) -->
+  <div class="cmd-palette-backdrop" id="cmd-palette" role="dialog" aria-modal="true">
+    <div class="cmd-palette-dialog">
+      <div class="cmd-palette-input-wrap">
+        <i class="ri-search-line"></i>
+        <input type="text" id="cmd-palette-input" class="cmd-palette-input" placeholder="Search projects, skills, social links, or actions..." autocomplete="off" />
+      </div>
+
+      <div class="cmd-palette-list" id="cmd-palette-list">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div class="cmd-palette-footer">
+        <span>Navigation: <kbd>↑</kbd> <kbd>↓</kbd> to select</span>
+        <span>Execute: <kbd>↵ Enter</kbd></span>
+        <span>Close: <kbd>Esc</kbd></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Project Architecture Deep-Dive Modal -->
   <div class="modal-backdrop" id="project-modal" role="dialog" aria-modal="true">
     <div class="modal-container">
       <div class="modal-header">
@@ -391,13 +462,13 @@
     </div>
   </div>
 
-  <!-- 2. Resume Viewer Modal with Print-to-PDF & Original Download -->
+  <!-- 3. Resume Viewer Modal with Print & Original Download -->
   <div class="modal-backdrop" id="resume-modal" role="dialog" aria-modal="true">
     <div class="modal-container" style="max-width: 860px;">
       <div class="modal-header">
         <div>
           <h3 style="font-size: 1.25rem; margin-bottom: 0.2rem;">Prashik Humane — Official Resume</h3>
-          <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Linked to your original resume PDF (assets/resume.pdf)</p>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Linked to your uploaded PDF: assets/resume.pdf</p>
         </div>
         <div style="display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;">
           <a href="assets/resume.pdf" download="Prashik_Humane_Resume.pdf" class="btn btn-primary btn-sm" title="Download original uploaded PDF">
@@ -413,14 +484,15 @@
         </div>
       </div>
       <div class="modal-body">
-        <div style="background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(99, 102, 241, 0.25); border-radius: var(--radius-sm); padding: 0.75rem 1rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+        <div style="background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: var(--radius-sm); padding: 0.75rem 1rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
           <div style="font-size: 0.85rem; color: var(--text-secondary);">
-            📄 <strong>Source File:</strong> <code style="color: var(--accent-cyan);">assets/resume.pdf</code> — Replace this PDF file anytime to update your resume across your portfolio!
+            📄 <strong>Source File:</strong> <code style="color: var(--accent-primary);">assets/resume.pdf</code> — Replace this PDF file anytime to update your resume across your portfolio!
           </div>
           <a href="assets/resume.pdf" download="Prashik_Humane_Resume.pdf" class="btn btn-sm btn-outline" style="font-size: 0.78rem;">
             Direct Download
           </a>
         </div>
+
         <!-- Printable Clean Resume Document -->
         <div class="resume-sheet">
           <h1>Prashik Humane</h1>
@@ -515,7 +587,7 @@
             <li>Spearheaded inter-college literary summits and flagship university debates engaging 200+ participants.</li>
           </ul>
 
-          <div class="resume-row">
+          <div class="resume-row" style="margin-top: 0.6rem;">
             <strong>Core Member, Entrepreneurship Cell (E-Cell)</strong>
             <span>IIIT Lucknow</span>
           </div>
@@ -527,7 +599,7 @@
     </div>
   </div>
 
-  <!-- Toast Container -->
+  <!-- Toast Notification Container -->
   <div class="toast-notice" id="toast-notice"></div>
 
   <!-- Scripts -->
