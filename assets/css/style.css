@@ -63,13 +63,13 @@
   --transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Light Theme Overrides */
+/* Light Theme Overrides (High-Contrast & Razor-Sharp) */
 [data-theme="light"] {
   --bg-base: #f8fafc;
   --bg-surface: #ffffff;
   --bg-surface-elevated: #f1f5f9;
   --bg-card: #ffffff;
-  --bg-card-hover: #f8fafc;
+  --bg-card-hover: #f1f5f9;
   --bg-nav: rgba(255, 255, 255, 0.94);
 
   --text-main: #0f172a;
@@ -84,6 +84,161 @@
   --shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 12px 30px -4px rgba(0, 0, 0, 0.12);
   --shadow-glow-blue: 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+/* Light Theme Typography & High-Contrast Fixes */
+[data-theme="light"] .hero-title .text-gradient {
+  background: linear-gradient(135deg, #0f172a 20%, #2563eb 70%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .hero-bio strong {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .ambient-glow {
+  background-image: 
+    radial-gradient(circle at 50% -10%, rgba(59, 130, 246, 0.08) 0%, transparent 55%),
+    radial-gradient(circle at 90% 25%, rgba(99, 102, 241, 0.05) 0%, transparent 45%),
+    radial-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+}
+
+[data-theme="light"] .mockup-top-bar {
+  background: #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+[data-theme="light"] .mockup-url-pill {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #2563eb;
+}
+
+[data-theme="light"] .project-img-wrapper {
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+[data-theme="light"] .project-card-2x2 {
+  background: #ffffff;
+  border-color: #e2e8f0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .project-card-2x2:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
+}
+
+[data-theme="light"] .project-title h3 {
+  color: #0f172a;
+}
+
+[data-theme="light"] .project-summary {
+  color: #334155;
+}
+
+[data-theme="light"] .tech-tag {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+[data-theme="light"] .hero-card {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+
+[data-theme="light"] .hero-stat-box {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+[data-theme="light"] .hero-stat-box .lbl {
+  color: #64748b;
+}
+
+[data-theme="light"] .hero-chip {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #334155;
+}
+
+[data-theme="light"] .achievement-card {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+
+[data-theme="light"] .achieve-title {
+  color: #0f172a;
+}
+
+[data-theme="light"] .achieve-desc {
+  color: #334155;
+}
+
+[data-theme="light"] .achieve-logo-box {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+[data-theme="light"] .skill-category-card {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+
+[data-theme="light"] .skill-item {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+[data-theme="light"] .skill-name {
+  color: #0f172a;
+}
+
+[data-theme="light"] .timeline-card {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+
+[data-theme="light"] .timeline-institution {
+  color: #0f172a;
+}
+
+[data-theme="light"] .timeline-degree, [data-theme="light"] .timeline-details {
+  color: #334155;
+}
+
+[data-theme="light"] .contact-info-card, [data-theme="light"] .contact-form-card {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+
+[data-theme="light"] .contact-method-item {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+[data-theme="light"] .form-input, [data-theme="light"] .form-textarea {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+[data-theme="light"] .footer {
+  background: #f1f5f9;
+  border-top: 1px solid #e2e8f0;
+}
+
+[data-theme="light"] .footer-brand-name {
+  color: #0f172a;
+}
+
+[data-theme="light"] .back-to-top-pill {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #334155;
 }
 
 /* Base Reset */
@@ -330,34 +485,58 @@ p {
   gap: 0.45rem;
 }
 
-/* User Instruction: "in navbar move on select the colour change remove underline" */
+/* User Instruction: "make sure navbar remove box only colour chnage dont change to white" */
 .nav-link {
-  font-size: 0.92rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 500;
   color: var(--text-secondary);
-  padding: 0.45rem 0.95rem;
-  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.85rem;
   text-decoration: none !important; /* Explicitly NO underline */
   position: relative;
-  transition: var(--transition);
-  border: 1px solid transparent;
+  transition: color var(--transition);
+  background: transparent !important; /* Explicitly NO background box */
+  border: none !important;            /* Explicitly NO border */
+  box-shadow: none !important;        /* Explicitly NO shadow */
 }
 
 .nav-link::after {
   display: none !important; /* Explicitly REMOVE any underline element */
 }
 
-/* Color change on hover & active */
+/* On hover: NO background box! ONLY text color change! And NOT white! */
 .nav-link:hover {
-  color: #ffffff !important;
-  background: rgba(255, 255, 255, 0.08);
+  color: var(--accent-primary) !important; /* Electric Blue on hover */
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
+/* On active / selected: NO background box! ONLY text color change! */
 .nav-link.active {
-  color: #38bdf8 !important;
-  background: rgba(56, 189, 248, 0.12);
-  border-color: rgba(56, 189, 248, 0.3);
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+  color: #38bdf8 !important; /* Cyan in dark mode */
+  font-weight: 700;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+[data-theme="light"] .nav-link {
+  color: #475569;
+}
+
+[data-theme="light"] .nav-link:hover {
+  color: #2563eb !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+[data-theme="light"] .nav-link.active {
+  color: #1d4ed8 !important;
+  font-weight: 700;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .nav-actions {
@@ -488,12 +667,37 @@ p {
   border-radius: var(--radius-sm);
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-card);
-  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.25rem;
   transition: var(--transition);
+  cursor: pointer;
+}
+
+/* Base icon colors for guaranteed high visibility */
+.social-pill.github i { color: #1e293b; }
+.social-pill.linkedin i { color: #0a66c2; }
+.social-pill.phone i { color: #059669; }
+.social-pill.leetcode i { color: #ffa116; }
+.social-pill.codeforces i { color: #188ce5; }
+.social-pill.codechef i { color: #d97706; }
+.social-pill.email i { color: #2563eb; }
+
+/* In dark mode: high-contrast vivid colors */
+[data-theme="dark"] .social-pill.github i { color: #f1f5f9; }
+[data-theme="dark"] .social-pill.linkedin i { color: #38bdf8; }
+[data-theme="dark"] .social-pill.phone i { color: #34d399; }
+[data-theme="dark"] .social-pill.leetcode i { color: #ffa116; }
+[data-theme="dark"] .social-pill.codeforces i { color: #60a5fa; }
+[data-theme="dark"] .social-pill.codechef i { color: #fbbf24; }
+[data-theme="dark"] .social-pill.email i { color: #60a5fa; }
+
+/* In light mode: clean white tiles with soft shadows */
+[data-theme="light"] .social-pill {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
 .social-pill:hover {
@@ -501,46 +705,53 @@ p {
 }
 
 .social-pill.github:hover {
-  background: #24292e;
-  border-color: #ffffff;
-  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+  background: #24292e !important;
+  border-color: #24292e !important;
+  box-shadow: 0 4px 14px rgba(36, 41, 46, 0.35);
 }
+.social-pill.github:hover i { color: #ffffff !important; }
 
 .social-pill.linkedin:hover {
-  background: #0077b5;
-  border-color: #0077b5;
-  box-shadow: 0 4px 16px rgba(0, 119, 181, 0.45);
+  background: #0a66c2 !important;
+  border-color: #0a66c2 !important;
+  box-shadow: 0 4px 14px rgba(10, 102, 194, 0.35);
 }
-
-.social-pill.leetcode:hover {
-  background: #ffa116;
-  border-color: #ffa116;
-  box-shadow: 0 4px 16px rgba(255, 161, 22, 0.45);
-}
-
-.social-pill.codeforces:hover {
-  background: #188ce5;
-  border-color: #188ce5;
-  box-shadow: 0 4px 16px rgba(24, 140, 229, 0.45);
-}
-
-.social-pill.codechef:hover {
-  background: #d97706;
-  border-color: #d97706;
-  box-shadow: 0 4px 16px rgba(217, 119, 6, 0.45);
-}
-
-.social-pill.email:hover {
-  background: #3b82f6;
-  border-color: #3b82f6;
-  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.45);
-}
+.social-pill.linkedin:hover i { color: #ffffff !important; }
 
 .social-pill.phone:hover {
-  background: #10b981;
-  border-color: #10b981;
-  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.45);
+  background: #059669 !important;
+  border-color: #059669 !important;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
 }
+.social-pill.phone:hover i { color: #ffffff !important; }
+
+.social-pill.leetcode:hover {
+  background: #ffa116 !important;
+  border-color: #ffa116 !important;
+  box-shadow: 0 4px 14px rgba(255, 161, 22, 0.35);
+}
+.social-pill.leetcode:hover i { color: #ffffff !important; }
+
+.social-pill.codeforces:hover {
+  background: #188ce5 !important;
+  border-color: #188ce5 !important;
+  box-shadow: 0 4px 14px rgba(24, 140, 229, 0.35);
+}
+.social-pill.codeforces:hover i { color: #ffffff !important; }
+
+.social-pill.codechef:hover {
+  background: #d97706 !important;
+  border-color: #d97706 !important;
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35);
+}
+.social-pill.codechef:hover i { color: #ffffff !important; }
+
+.social-pill.email:hover {
+  background: #2563eb !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+.social-pill.email:hover i { color: #ffffff !important; }
 
 /* Hero Right: Developer Profile Card */
 .hero-card {
@@ -829,27 +1040,32 @@ p {
   color: var(--accent-emerald);
 }
 
-/* Proper Image Alignment: 16/10 Fixed Ratio */
+/* Proper Fit: 1024 / 468 Native Screenshot Ratio (Crystal Clear, Zero Blur) */
 .project-img-wrapper {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 1024 / 468;
   position: relative;
   overflow: hidden;
   background: #0b111e;
   border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .project-img-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top;
+  object-position: top center;
   display: block;
-  transition: transform 0.4s ease;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transition: transform 0.35s ease;
 }
 
 .project-card-2x2:hover .project-img-wrapper img {
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
 .live-float-badge {
@@ -1641,12 +1857,37 @@ p {
   border-radius: var(--radius-sm);
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-card);
-  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
   transition: var(--transition);
+  cursor: pointer;
+}
+
+/* Base icon colors for guaranteed high-visibility */
+.social-icon-btn.github i { color: #1e293b; }
+.social-icon-btn.linkedin i { color: #0a66c2; }
+.social-icon-btn.phone i { color: #059669; }
+.social-icon-btn.leetcode i { color: #ffa116; }
+.social-icon-btn.codeforces i { color: #188ce5; }
+.social-icon-btn.codechef i { color: #d97706; }
+.social-icon-btn.email i { color: #2563eb; }
+
+/* In dark mode: high-contrast vivid colors */
+[data-theme="dark"] .social-icon-btn.github i { color: #f1f5f9; }
+[data-theme="dark"] .social-icon-btn.linkedin i { color: #38bdf8; }
+[data-theme="dark"] .social-icon-btn.phone i { color: #34d399; }
+[data-theme="dark"] .social-icon-btn.leetcode i { color: #ffa116; }
+[data-theme="dark"] .social-icon-btn.codeforces i { color: #60a5fa; }
+[data-theme="dark"] .social-icon-btn.codechef i { color: #fbbf24; }
+[data-theme="dark"] .social-icon-btn.email i { color: #60a5fa; }
+
+/* Light mode tile background */
+[data-theme="light"] .social-icon-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .social-icon-btn:hover {
@@ -1654,46 +1895,53 @@ p {
 }
 
 .social-icon-btn.github:hover {
-  background: #24292e;
-  border-color: #ffffff;
-  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+  background: #24292e !important;
+  border-color: #24292e !important;
+  box-shadow: 0 4px 16px rgba(36, 41, 46, 0.35);
 }
+.social-icon-btn.github:hover i { color: #ffffff !important; }
 
 .social-icon-btn.linkedin:hover {
-  background: #0077b5;
-  border-color: #0077b5;
-  box-shadow: 0 4px 16px rgba(0, 119, 181, 0.45);
+  background: #0a66c2 !important;
+  border-color: #0a66c2 !important;
+  box-shadow: 0 4px 16px rgba(10, 102, 194, 0.35);
 }
-
-.social-icon-btn.leetcode:hover {
-  background: #ffa116;
-  border-color: #ffa116;
-  box-shadow: 0 4px 16px rgba(255, 161, 22, 0.45);
-}
-
-.social-icon-btn.codeforces:hover {
-  background: #188ce5;
-  border-color: #188ce5;
-  box-shadow: 0 4px 16px rgba(24, 140, 229, 0.45);
-}
-
-.social-icon-btn.codechef:hover {
-  background: #d97706;
-  border-color: #d97706;
-  box-shadow: 0 4px 16px rgba(217, 119, 6, 0.45);
-}
-
-.social-icon-btn.email:hover {
-  background: #3b82f6;
-  border-color: #3b82f6;
-  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.45);
-}
+.social-icon-btn.linkedin:hover i { color: #ffffff !important; }
 
 .social-icon-btn.phone:hover {
-  background: #10b981;
-  border-color: #10b981;
-  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.45);
+  background: #059669 !important;
+  border-color: #059669 !important;
+  box-shadow: 0 4px 16px rgba(5, 150, 105, 0.35);
 }
+.social-icon-btn.phone:hover i { color: #ffffff !important; }
+
+.social-icon-btn.leetcode:hover {
+  background: #ffa116 !important;
+  border-color: #ffa116 !important;
+  box-shadow: 0 4px 16px rgba(255, 161, 22, 0.35);
+}
+.social-icon-btn.leetcode:hover i { color: #ffffff !important; }
+
+.social-icon-btn.codeforces:hover {
+  background: #188ce5 !important;
+  border-color: #188ce5 !important;
+  box-shadow: 0 4px 16px rgba(24, 140, 229, 0.35);
+}
+.social-icon-btn.codeforces:hover i { color: #ffffff !important; }
+
+.social-icon-btn.codechef:hover {
+  background: #d97706 !important;
+  border-color: #d97706 !important;
+  box-shadow: 0 4px 16px rgba(217, 119, 6, 0.35);
+}
+.social-icon-btn.codechef:hover i { color: #ffffff !important; }
+
+.social-icon-btn.email:hover {
+  background: #2563eb !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+}
+.social-icon-btn.email:hover i { color: #ffffff !important; }
 
 .footer-nav-row {
   display: flex;

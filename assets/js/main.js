@@ -55,7 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
  * ------------------------------------------------------------------------- */
 function initTheme() {
   const toggleBtn = document.getElementById('theme-toggle-btn');
-  const storedTheme = localStorage.getItem('theme') || 'dark';
+  // Default to dark mode so obsidian aesthetic is shown immediately
+  let storedTheme = localStorage.getItem('theme');
+  if (!storedTheme || storedTheme === 'light') {
+    storedTheme = 'dark';
+    localStorage.setItem('theme', 'dark');
+  }
   document.documentElement.setAttribute('data-theme', storedTheme);
   updateThemeIcon(storedTheme);
 
