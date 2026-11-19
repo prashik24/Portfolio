@@ -215,8 +215,8 @@
         <!-- Category Filters -->
         <div class="filter-tabs">
           <button class="filter-btn active" data-filter="all">All Projects</button>
-          <button class="filter-btn" data-filter="ai-fullstack">AI / ML &amp; Full Stack</button>
-          <button class="filter-btn" data-filter="fullstack">Full-Stack Web &amp; Payments</button>
+          <button class="filter-btn" data-filter="fullstack">Full-Stack &amp; AI</button>
+          <button class="filter-btn" data-filter="frontend">Frontend &amp; Components</button>
         </div>
 
         <!-- Projects Grid -->
@@ -412,19 +412,36 @@
     </div>
   </div>
 
-  <!-- 2. Resume Viewer Modal with Print-to-PDF -->
+  <!-- 2. Resume Viewer Modal with Print-to-PDF & Original Download -->
   <div class="modal-backdrop" id="resume-modal" role="dialog" aria-modal="true">
     <div class="modal-container" style="max-width: 860px;">
       <div class="modal-header">
-        <h3>Prashik Humane — Official Resume</h3>
-        <div style="display: flex; gap: 0.6rem; align-items: center;">
-          <button class="btn btn-primary btn-sm" onclick="window.print()">
-            <i class="ri-printer-line"></i> Print / Save as PDF
+        <div>
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.2rem;">Prashik Humane — Official Resume</h3>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Linked to your original resume PDF (assets/resume.pdf)</p>
+        </div>
+        <div style="display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;">
+          <a href="assets/resume.pdf" download="Prashik_Humane_Resume.pdf" class="btn btn-primary btn-sm" title="Download original uploaded PDF">
+            <i class="ri-download-2-line"></i> Download PDF
+          </a>
+          <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" title="Open PDF in new tab">
+            <i class="ri-external-link-line"></i> Open PDF
+          </a>
+          <button class="btn btn-outline btn-sm" onclick="window.print()" title="Print resume">
+            <i class="ri-printer-line"></i> Print
           </button>
           <button class="modal-close-btn" aria-label="Close modal">&times;</button>
         </div>
       </div>
       <div class="modal-body">
+        <div style="background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(99, 102, 241, 0.25); border-radius: var(--radius-sm); padding: 0.75rem 1rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+          <div style="font-size: 0.85rem; color: var(--text-secondary);">
+            📄 <strong>Source File:</strong> <code style="color: var(--accent-cyan);">assets/resume.pdf</code> — Replace this PDF file anytime to update your resume across your portfolio!
+          </div>
+          <a href="assets/resume.pdf" download="Prashik_Humane_Resume.pdf" class="btn btn-sm btn-outline" style="font-size: 0.78rem;">
+            Direct Download
+          </a>
+        </div>
         <!-- Printable Clean Resume Document -->
         <div class="resume-sheet">
           <h1>Prashik Humane</h1>

@@ -4,8 +4,7 @@
  * =========================================================================
  * 
  * Edit this file to update any information across your entire portfolio website!
- * You don't need to touch the HTML or CSS to change text, projects, or links.
- * Everything is cleanly mapped here.
+ * You don't need to touch HTML or CSS to change text, projects, or links.
  */
 
 const portfolioData = {
@@ -30,6 +29,8 @@ const portfolioData = {
     
     With 575+ algorithmic problems solved and 2,000+ active GitHub contributions, I build software that is both architecturally sound and performance-optimized. I have designed end-to-end platforms ranging from AI-powered travel planners (integrating Gemini AI and FastAPI microservices) to secure e-commerce systems with role-based access control and payment gateways.`,
     
+    resumePdfPath: "assets/resume.pdf",
+
     // Social & Profile Links
     socials: {
       github: "https://github.com/prashik24",
@@ -55,95 +56,39 @@ const portfolioData = {
   ],
 
   // -----------------------------------------------------------------------
-  // 3. TECHNICAL SKILLS
-  // -----------------------------------------------------------------------
-  skills: {
-    categories: [
-      {
-        id: "languages",
-        title: "Programming Languages",
-        icon: "terminal",
-        items: [
-          { name: "C++", level: "Advanced", tag: "DSA & CP" },
-          { name: "JavaScript (ES6+)", level: "Advanced", tag: "Full-Stack" },
-          { name: "TypeScript", level: "Proficient", tag: "Type-Safe Web" },
-          { name: "Python", level: "Proficient", tag: "ML & Backend" },
-          { name: "SQL", level: "Proficient", tag: "Relational DB" },
-          { name: "HTML5 / CSS3", level: "Advanced", tag: "Frontend" }
-        ]
-      },
-      {
-        id: "frameworks",
-        title: "Frameworks & Libraries",
-        icon: "layers",
-        items: [
-          { name: "React 19", level: "Advanced", tag: "Frontend UI" },
-          { name: "Next.js", level: "Proficient", tag: "Full-Stack / SSR" },
-          { name: "Node.js", level: "Advanced", tag: "Runtime" },
-          { name: "Express.js", level: "Advanced", tag: "REST APIs" },
-          { name: "FastAPI", level: "Proficient", tag: "Microservices" },
-          { name: "Scikit-learn", level: "Proficient", tag: "ML & Vectors" },
-          { name: "Socket.io", level: "Proficient", tag: "Real-time Web" },
-          { name: "Vite", level: "Proficient", tag: "Build Tooling" }
-        ]
-      },
-      {
-        id: "databases_devops",
-        title: "Databases, Cloud & DevOps",
-        icon: "database",
-        items: [
-          { name: "MongoDB / Atlas", level: "Advanced", tag: "NoSQL" },
-          { name: "MySQL", level: "Proficient", tag: "RDBMS" },
-          { name: "Docker", level: "Working", tag: "Containerization" },
-          { name: "Git & GitHub", level: "Advanced", tag: "Version Control" },
-          { name: "Postman", level: "Advanced", tag: "API Testing" },
-          { name: "Render", level: "Proficient", tag: "Cloud Deployment" }
-        ]
-      },
-      {
-        id: "core_concepts",
-        title: "Core CS Fundamentals",
-        icon: "cpu",
-        items: [
-          { name: "Data Structures & Algorithms", level: "Advanced", tag: "575+ Solved" },
-          { name: "Object-Oriented Programming (OOP)", level: "Advanced", tag: "Clean Architecture" },
-          { name: "Database Management Systems (DBMS)", level: "Advanced", tag: "ACID, Indexing" },
-          { name: "Operating Systems (OS)", level: "Proficient", tag: "Concurrency, Memory" },
-          { name: "JWT & Security Protocols", level: "Advanced", tag: "RBAC, HTTP-only" },
-          { name: "Machine Learning Concepts", level: "Proficient", tag: "TF-IDF, Vectors" }
-        ]
-      }
-    ]
-  },
-
-  // -----------------------------------------------------------------------
-  // 4. PROJECTS
+  // 3. FEATURED PROJECTS (Main projects OnTrip & ShopKart prioritized at top)
   // -----------------------------------------------------------------------
   projects: [
     {
       id: "ontrip",
       title: "OnTrip – AI Travel Planning Platform",
-      category: "ai-fullstack",
+      category: "fullstack",
       categoryLabel: "AI / ML & Full Stack",
       featured: true,
       image: "assets/images/ontrip-preview.svg",
-      shortDescription: "An intelligent travel operating system featuring dynamic Gemini AI multi-day itinerary generation, real-time Socket.io collaborative messaging, and a zero-downtime hybrid ML recommendation pipeline.",
+      shortDescription: "An AI-powered travel operating system that helps users plan multi-day trips, discover destinations, join travel communities, find travel buddies, connect with travel planners, and book trips & vehicles with real-time Socket.io messaging.",
       technologies: ["React 19", "Node.js", "Express", "MongoDB", "Socket.io", "Gemini AI", "FastAPI", "Scikit-learn", "Razorpay"],
+      deployment: {
+        platform: "Render",
+        status: "Live",
+        liveUrl: "https://ontrip-frontend.onrender.com/"
+      },
       highlights: [
-        "Automated multi-day itinerary generation utilizing Google Gemini AI, seamlessly combining interactive route maps and dynamic real-time budget forecasting.",
-        "Built bidirectional real-time host and traveler chat using Socket.io alongside an interactive social community feed for bookmarking itineraries.",
-        "Integrated Razorpay payment gateway, automated client-side jsPDF invoice rendering, and Node-Cron automated itinerary reminder notifications.",
-        "Hardened system security with Google OAuth 2.0, Brevo OTP verification, HTTP-only JWT sessions, and Express role-based access control (RBAC).",
-        "Engineered a resilient hybrid recommendation pipeline using FastAPI and Scikit-learn (TF-IDF & Cosine Similarity) with automatic Node.js vector fallback ensuring 100% uptime."
+        "Automated multi-day itinerary generation using Google Gemini AI, integrating route maps, dynamic cost estimates, and automated trip vehicle bookings.",
+        "Enabled bidirectional real-time host messaging via Socket.io and built a social community feed for finding travel buddies and bookmarking trips.",
+        "Integrated Razorpay checkout, automated jsPDF invoice generation, and scheduled Node-Cron trip alerts.",
+        "Enforced authentication via Google OAuth 2.0, Brevo OTP verification, HTTP-only JWT cookies, and Express RBAC.",
+        "Engineered a hybrid recommendation pipeline via FastAPI and Scikit-learn (TF-IDF, Cosine Similarity) with a resilient Node.js native vector fallback to guarantee zero downtime."
       ],
       links: {
         github: "https://github.com/prashik24/ontrip",
-        demo: "https://github.com/prashik24/ontrip" // Replace with live URL if deployed
+        demo: "https://ontrip-frontend.onrender.com/"
       },
       stats: {
-        aiModel: "Google Gemini 1.5",
-        latency: "<150ms recommendation response",
-        security: "HTTP-Only JWT + RBAC"
+        aiEngine: "Google Gemini 1.5",
+        realtime: "Socket.io WebSockets",
+        security: "HTTP-Only JWT + RBAC",
+        mlPipeline: "FastAPI + Cosine Sim"
       }
     },
     {
@@ -153,28 +98,96 @@ const portfolioData = {
       categoryLabel: "Full-Stack Web & Payments",
       featured: true,
       image: "assets/images/shopkart-preview.svg",
-      shortDescription: "A high-performance modern e-commerce platform engineered with persistent cart state, Brevo OTP auth, complete admin inventory management, and client-side caching.",
+      shortDescription: "Production-grade e-commerce application engineered with catalog filtering, persistent cart state, Brevo OTP auth, complete admin inventory management, and client-side caching.",
       technologies: ["React 19", "Node.js", "Express", "MongoDB Atlas", "Razorpay", "JWT", "Bcrypt", "Brevo"],
+      deployment: {
+        platform: "Render",
+        status: "Live",
+        liveUrl: "https://shopkart-fontent.onrender.com/"
+      },
       highlights: [
-        "Architected complete e-commerce experience with multi-parameter catalog filtering, persistent cart state across reloads, and dynamic order progress pipelines.",
-        "Implemented ironclad authentication pipeline incorporating Brevo email OTP verification, bcrypt password hashing, and role-separated JWT cookie sessions.",
-        "Developed full-featured administrative console for complete product inventory CRUD operations, live order status updates, and audit payment logs.",
-        "Engineered smart client-side localStorage caching architecture with a 10-minute TTL, eliminating redundant database roundtrips and accelerating page transitions."
+        "Engineered an e-commerce platform with catalog filters, persistent cart state, and order progress bars.",
+        "Implemented user authentication with Brevo email OTPs, bcrypt hashing, and role-separated JWT cookie sessions.",
+        "Built an admin dashboard for full product inventory CRUD operations, order status updates, and payment logs.",
+        "Integrated client-side localStorage caching with a 10-minute TTL to reduce redundant database queries."
       ],
       links: {
-        github: "https://github.com/prashik24/shopkart",
-        demo: "https://github.com/prashik24/shopkart" // Replace with live URL if deployed
+        github: "https://github.com/prashik24/ShopKart",
+        demo: "https://shopkart-fontent.onrender.com/"
       },
       stats: {
-        cachingTTL: "10-minute client cache",
-        security: "Bcrypt + Brevo OTP",
-        payments: "Razorpay Checkout"
+        cacheTTL: "10-min Client TTL",
+        auth: "Brevo OTP + Bcrypt",
+        payments: "Razorpay Checkout",
+        admin: "Full Inventory CRUD"
+      }
+    },
+    {
+      id: "calendar",
+      title: "Interactive Wall Calendar Component",
+      category: "frontend",
+      categoryLabel: "Next.js & UI Components",
+      featured: false,
+      image: "assets/images/calendar-preview.svg",
+      shortDescription: "A visually rich, responsive wall calendar component inspired by real-world design, featuring intuitive date range selection, persistent notes, and polished UI interactions built with Next.js.",
+      technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "LocalStorage"],
+      deployment: {
+        platform: "Render",
+        status: "Live",
+        liveUrl: "https://calendar-wkay.onrender.com/"
+      },
+      highlights: [
+        "Crafted a visually rich wall calendar component with real-world physical design aesthetics and fluid micro-interactions.",
+        "Implemented multi-day intuitive date range selection and dynamic month/year switching algorithms.",
+        "Built persistent client-side note storage per date using modern reactive state management.",
+        "Optimized for high performance and zero cumulative layout shift (CLS) using Next.js."
+      ],
+      links: {
+        github: "https://github.com/prashik24/Calendar",
+        demo: "https://calendar-wkay.onrender.com/"
+      },
+      stats: {
+        framework: "Next.js & React",
+        styling: "Tailwind CSS & Glassmorphism",
+        state: "Persistent Notes State",
+        deploy: "Render Web Service"
+      }
+    },
+    {
+      id: "amazon",
+      title: "Amazon Homepage Clone",
+      category: "frontend",
+      categoryLabel: "Frontend & Pure JS",
+      featured: false,
+      image: "assets/images/amazon-preview.svg",
+      shortDescription: "A responsive front-end replica of the Amazon e-commerce homepage crafted with pure HTML5, CSS3, and JavaScript, focusing on multi-tier sticky navigation, banner carousels, and responsive layouts.",
+      technologies: ["HTML5", "CSS3", "JavaScript (ES6+)", "Responsive Grid", "CSS Flexbox"],
+      deployment: {
+        platform: "GitHub Pages",
+        status: "Live",
+        liveUrl: "https://prashik24.github.io/Amazon/"
+      },
+      highlights: [
+        "Replicated the look and feel of the Amazon homepage with high visual fidelity without external UI libraries.",
+        "Designed complex multi-tier responsive header, department dropdowns, and search bar layout.",
+        "Engineered smooth banner sliders and fluid responsive CSS Grid product category tiles.",
+        "Achieved fast initial load times and seamless cross-browser compatibility across mobile and desktop."
+      ],
+      links: {
+        github: "https://github.com/prashik24/Amazon",
+        demo: "https://prashik24.github.io/Amazon/"
+      },
+      stats: {
+        stack: "Pure HTML5 / CSS3 / JS",
+        architecture: "Zero-dependency Frontend",
+        layout: "CSS Grid & Flexbox",
+        host: "GitHub Pages Live"
       }
     }
   ],
 
   // -----------------------------------------------------------------------
-  // 5. ACHIEVEMENTS & COMPETITIVE PROGRAMMING
+  // 4. ACHIEVEMENTS & COMPETITIVE PROGRAMMING
   // -----------------------------------------------------------------------
   achievements: [
     {
@@ -238,6 +251,68 @@ const portfolioData = {
       accent: "#8b5cf6"
     }
   ],
+
+  // -----------------------------------------------------------------------
+  // 5. TECHNICAL SKILLS
+  // -----------------------------------------------------------------------
+  skills: {
+    categories: [
+      {
+        id: "languages",
+        title: "Programming Languages",
+        icon: "terminal",
+        items: [
+          { name: "C++", level: "Advanced", tag: "DSA & CP" },
+          { name: "JavaScript (ES6+)", level: "Advanced", tag: "Full-Stack" },
+          { name: "TypeScript", level: "Proficient", tag: "Type-Safe Web" },
+          { name: "Python", level: "Proficient", tag: "ML & Backend" },
+          { name: "SQL", level: "Proficient", tag: "Relational DB" },
+          { name: "HTML5 / CSS3", level: "Advanced", tag: "Frontend" }
+        ]
+      },
+      {
+        id: "frameworks",
+        title: "Frameworks & Libraries",
+        icon: "layers",
+        items: [
+          { name: "React 19", level: "Advanced", tag: "Frontend UI" },
+          { name: "Next.js", level: "Proficient", tag: "Full-Stack / SSR" },
+          { name: "Node.js", level: "Advanced", tag: "Runtime" },
+          { name: "Express.js", level: "Advanced", tag: "REST APIs" },
+          { name: "FastAPI", level: "Proficient", tag: "Microservices" },
+          { name: "Scikit-learn", level: "Proficient", tag: "ML & Vectors" },
+          { name: "Socket.io", level: "Proficient", tag: "Real-time Web" },
+          { name: "Vite", level: "Proficient", tag: "Build Tooling" }
+        ]
+      },
+      {
+        id: "databases_devops",
+        title: "Databases, Cloud & DevOps",
+        icon: "database",
+        items: [
+          { name: "MongoDB / Atlas", level: "Advanced", tag: "NoSQL" },
+          { name: "MySQL", level: "Proficient", tag: "RDBMS" },
+          { name: "Docker", level: "Working", tag: "Containerization" },
+          { name: "Git & GitHub", level: "Advanced", tag: "Version Control" },
+          { name: "Postman", level: "Advanced", tag: "API Testing" },
+          { name: "Render", level: "Proficient", tag: "Cloud Deployment" }
+        ]
+      },
+      {
+        id: "core_concepts",
+        title: "Core CS Fundamentals",
+        icon: "cpu",
+        items: [
+          { name: "Data Structures & Algorithms", level: "Advanced", tag: "575+ Solved" },
+          { name: "Object-Oriented Programming (OOP)", level: "Advanced", tag: "Clean Architecture" },
+          { name: "Database Management Systems (DBMS)", level: "Advanced", tag: "ACID, Indexing" },
+          { name: "Operating Systems (OS)", level: "Proficient", tag: "Concurrency, Memory" },
+          { name: "JWT & Security Protocols", level: "Advanced", tag: "RBAC, HTTP-only" },
+          { name: "Machine Learning Concepts", level: "Proficient", tag: "TF-IDF, Vectors" }
+        ]
+      }
+    ]
+  },
 
   // -----------------------------------------------------------------------
   // 6. EDUCATION

@@ -174,6 +174,11 @@ function displayFilteredProjects(category) {
       <div class="project-preview">
         <img src="${project.image}" alt="${project.title} Preview" loading="lazy" />
         <span class="project-category-tag">${project.categoryLabel}</span>
+        ${project.deployment ? `
+          <a href="${project.deployment.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-deploy-badge" title="Live on ${project.deployment.platform}">
+            <span class="live-dot"></span> Live • ${project.deployment.platform}
+          </a>
+        ` : ''}
       </div>
       <div class="project-body">
         <div class="project-title">
@@ -191,17 +196,15 @@ function displayFilteredProjects(category) {
 
         <div class="project-footer">
           <div class="project-links">
-            <a href="${project.links.github}" target="_blank" rel="noopener noreferrer" class="project-link-btn">
-              <i class="ri-github-line"></i> Source Code
+            <a href="${project.links.demo}" target="_blank" rel="noopener noreferrer" class="project-link-btn primary" title="View Live Deployment">
+              <i class="ri-external-link-line"></i> Live Demo
             </a>
-            ${project.links.demo ? `
-              <a href="${project.links.demo}" target="_blank" rel="noopener noreferrer" class="project-link-btn">
-                <i class="ri-external-link-line"></i> Live Demo
-              </a>
-            ` : ''}
+            <a href="${project.links.github}" target="_blank" rel="noopener noreferrer" class="project-link-btn" title="View Source on GitHub">
+              <i class="ri-github-line"></i> GitHub Repo
+            </a>
           </div>
           <button class="project-deep-dive-btn" onclick="openProjectModal('${project.id}')">
-            Architecture Details <i class="ri-arrow-right-line"></i>
+            Details <i class="ri-arrow-right-line"></i>
           </button>
         </div>
       </div>
@@ -431,7 +434,14 @@ window.openProjectModal = function(projectId) {
   title.textContent = project.title;
   body.innerHTML = `
     <div style="margin-bottom: 1.5rem;">
-      <span class="project-category-tag" style="position: static; margin-bottom: 0.8rem; display: inline-block;">${project.categoryLabel}</span>
+      <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.8rem; flex-wrap: wrap;">
+        <span class="project-category-tag" style="position: static; margin-bottom: 0;">${project.categoryLabel}</span>
+        ${project.deployment ? `
+          <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-emerald); background: rgba(16, 185, 129, 0.15); padding: 0.3rem 0.75rem; border-radius: var(--radius-full); border: 1px solid rgba(16, 185, 129, 0.3);">
+            🟢 Deployed on ${project.deployment.platform}
+          </span>
+        ` : ''}
+      </div>
       <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6;">${project.shortDescription}</p>
     </div>
 
@@ -443,7 +453,7 @@ window.openProjectModal = function(projectId) {
     </div>
 
     <div style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); margin-bottom: 1.5rem;">
-      <h4 style="font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--accent-cyan);">Key Engineering Metrics</h4>
+      <h4 style="font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--accent-cyan);">Key Engineering Metrics &amp; Stack</h4>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; font-size: 0.85rem;">
         ${Object.entries(project.stats || {}).map(([k, v]) => `
           <div>
@@ -455,14 +465,14 @@ window.openProjectModal = function(projectId) {
     </div>
 
     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-      <a href="${project.links.github}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
-        <i class="ri-github-line"></i> View GitHub Repository
-      </a>
       ${project.links.demo ? `
-        <a href="${project.links.demo}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-          <i class="ri-external-link-line"></i> Live Deployment Link
+        <a href="${project.links.demo}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+          <i class="ri-external-link-line"></i> Open Live Deployment
         </a>
       ` : ''}
+      <a href="${project.links.github}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+        <i class="ri-github-line"></i> View GitHub Repository
+      </a>
     </div>
   `;
 

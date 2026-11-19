@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="calBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#090d16" />
+    </linearGradient>
+    <linearGradient id="calGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#818cf8" />
+    </linearGradient>
+    <linearGradient id="sheetGlass" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255, 255, 255, 0.08)" />
+      <stop offset="100%" stop-color="rgba(255, 255, 255, 0.02)" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="480" fill="url(#calBg)" />
+
+  <!-- Soft Ambient Glow -->
+  <circle cx="240" cy="180" r="130" fill="#38bdf8" opacity="0.14" filter="blur(30px)" />
+  <circle cx="620" cy="320" r="140" fill="#818cf8" opacity="0.12" filter="blur(30px)" />
+
+  <!-- Window Frame -->
+  <rect x="60" y="45" width="680" height="390" rx="16" fill="#0b0f19" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.5" />
+
+  <!-- Window Header -->
+  <rect x="60" y="45" width="680" height="42" rx="16" fill="rgba(255, 255, 255, 0.04)" />
+  <circle cx="85" cy="66" r="6" fill="#ef4444" opacity="0.8" />
+  <circle cx="105" cy="66" r="6" fill="#f59e0b" opacity="0.8" />
+  <circle cx="125" cy="66" r="6" fill="#10b981" opacity="0.8" />
+  <text x="400" y="72" fill="#94a3b8" font-family="sans-serif" font-size="12" font-weight="500" text-anchor="middle">calendar-wkay.onrender.com — Wall Calendar Component (Next.js)</text>
+
+  <!-- Left: Calendar Wall Sheet -->
+  <rect x="85" y="105" width="390" height="305" rx="12" fill="url(#sheetGlass)" stroke="rgba(255,255,255,0.08)" />
+
+  <!-- Calendar Header -->
+  <text x="110" y="140" fill="#f8fafc" font-family="sans-serif" font-size="18" font-weight="800">November 2026</text>
+  <rect x="365" y="122" width="90" height="24" rx="12" fill="rgba(56, 189, 248, 0.15)" stroke="rgba(56, 189, 248, 0.3)" />
+  <text x="410" y="138" fill="#38bdf8" font-family="sans-serif" font-size="11" font-weight="600" text-anchor="middle">Next.js App</text>
+
+  <!-- Days of Week Header -->
+  <g fill="#64748b" font-family="sans-serif" font-size="11" font-weight="600">
+    <text x="120" y="172" text-anchor="middle">SU</text>
+    <text x="165" y="172" text-anchor="middle">MO</text>
+    <text x="210" y="172" text-anchor="middle">TU</text>
+    <text x="255" y="172" text-anchor="middle">WE</text>
+    <text x="300" y="172" text-anchor="middle">TH</text>
+    <text x="345" y="172" text-anchor="middle">FR</text>
+    <text x="390" y="172" text-anchor="middle">SA</text>
+  </g>
+
+  <!-- Calendar Date Cells Grid -->
+  <g fill="#94a3b8" font-family="sans-serif" font-size="12">
+    <!-- Row 1 -->
+    <text x="120" y="206" text-anchor="middle">1</text>
+    <text x="165" y="206" text-anchor="middle">2</text>
+    <text x="210" y="206" text-anchor="middle">3</text>
+    <text x="255" y="206" text-anchor="middle">4</text>
+    <text x="300" y="206" text-anchor="middle">5</text>
+    <text x="345" y="206" text-anchor="middle">6</text>
+    <text x="390" y="206" text-anchor="middle">7</text>
+
+    <!-- Row 2 -->
+    <text x="120" y="246" text-anchor="middle">8</text>
+    <text x="165" y="246" text-anchor="middle">9</text>
+    <text x="210" y="246" text-anchor="middle">10</text>
+    <text x="255" y="246" text-anchor="middle">11</text>
+    <text x="300" y="246" text-anchor="middle">12</text>
+    <text x="345" y="246" text-anchor="middle">13</text>
+    <text x="390" y="246" text-anchor="middle">14</text>
+  </g>
+
+  <!-- Selected Date Range Highlight (17 to 21) -->
+  <rect x="235" y="268" width="175" height="30" rx="15" fill="rgba(56, 189, 248, 0.2)" />
+  <circle cx="255" cy="283" r="14" fill="#38bdf8" />
+  <text x="255" y="287" fill="#042f2e" font-family="sans-serif" font-size="12" font-weight="700" text-anchor="middle">17</text>
+
+  <g fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="600">
+    <text x="300" y="287" text-anchor="middle">18</text>
+    <text x="345" y="287" text-anchor="middle">19</text>
+  </g>
+
+  <circle cx="390" cy="283" r="14" fill="#818cf8" />
+  <text x="390" y="287" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="700" text-anchor="middle">20</text>
+
+  <!-- Row 4 -->
+  <g fill="#94a3b8" font-family="sans-serif" font-size="12">
+    <text x="120" y="328" text-anchor="middle">22</text>
+    <text x="165" y="328" text-anchor="middle">23</text>
+    <text x="210" y="328" text-anchor="middle">24</text>
+    <text x="255" y="328" text-anchor="middle">25</text>
+    <text x="300" y="328" text-anchor="middle">26</text>
+    <text x="345" y="328" text-anchor="middle">27</text>
+    <text x="390" y="328" text-anchor="middle">28</text>
+  </g>
+
+  <!-- Right: Persistent Notes & Details Panel -->
+  <rect x="495" y="105" width="225" height="305" rx="12" fill="url(#sheetGlass)" stroke="rgba(255,255,255,0.08)" />
+  <text x="515" y="138" fill="#e2e8f0" font-family="sans-serif" font-size="13" font-weight="700">Persistent Notes</text>
+  <text x="515" y="156" fill="#64748b" font-family="sans-serif" font-size="10">Active Date Selection</text>
+
+  <!-- Note Card 1 -->
+  <rect x="515" y="175" width="185" height="65" rx="8" fill="rgba(56, 189, 248, 0.1)" stroke="rgba(56, 189, 248, 0.25)" />
+  <text x="530" y="196" fill="#38bdf8" font-family="sans-serif" font-size="11" font-weight="700">Nov 17 • Hackathon OA</text>
+  <text x="530" y="214" fill="#94a3b8" font-family="sans-serif" font-size="10">Adobe University Round 1</text>
+  <text x="530" y="228" fill="#64748b" font-family="sans-serif" font-size="9">Status: Completed ✓</text>
+
+  <!-- Note Card 2 -->
+  <rect x="515" y="252" width="185" height="65" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.06)" />
+  <text x="530" y="273" fill="#cbd5e1" font-family="sans-serif" font-size="11" font-weight="700">Nov 20 • Codeforces Div 2</text>
+  <text x="530" y="291" fill="#94a3b8" font-family="sans-serif" font-size="10">Rated contest preparation</text>
+  <text x="530" y="305" fill="#f59e0b" font-family="sans-serif" font-size="9">Target: 1600+ Rating</text>
+
+  <!-- Quick Add Note Input -->
+  <rect x="515" y="335" width="185" height="32" rx="6" fill="#111827" stroke="rgba(255,255,255,0.1)" />
+  <text x="528" y="355" fill="#64748b" font-family="sans-serif" font-size="10">Add note for date...</text>
+</svg>
