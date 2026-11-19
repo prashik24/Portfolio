@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+  <!-- Primary Meta Tags -->
+  <title>Prashik Humane | Full-Stack Software Engineer &amp; Competitive Programmer</title>
+  <meta name="title" content="Prashik Humane | Full-Stack Software Engineer &amp; Competitive Programmer" />
+  <meta name="description" content="Portfolio of Prashik Humane: B.Tech CS &amp; Business student at IIIT Lucknow. Full-Stack Developer (React 19, Node.js, FastAPI), CodeChef 4★ (1800), and Codeforces Specialist (1572)." />
+  <meta name="keywords" content="Prashik Humane, Portfolio, Full-Stack Developer, Competitive Programmer, IIIT Lucknow, CodeChef 4 Star, Codeforces Specialist, React 19, FastAPI, OnTrip, ShopKart" />
+  <meta name="author" content="Prashik Humane" />
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Prashik Humane | Software Engineer Portfolio" />
+  <meta property="og:description" content="Explore full-stack web platforms, AI microservices, and competitive programming achievements by Prashik Humane." />
+  <meta property="og:image" content="assets/images/ontrip-preview.svg" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/avatar.svg" />
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Remix Icon CDN for Crisp High-Craft Tech Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- Ambient Glow Lighting Orbs -->
+  <div class="ambient-glow" aria-hidden="true">
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+  </div>
+
+  <!-- =========================================================================
+       NAVIGATION BAR
+       ========================================================================= -->
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <a href="#hero" class="nav-brand" title="Prashik Humane Portfolio">
+        <div class="brand-badge">PH</div>
+        <span>Prashik<span style="color: var(--accent-primary);">.</span>dev</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#achievements" class="nav-link">Achievements</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#timeline" class="nav-link">Education</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Theme Switcher -->
+        <button id="theme-toggle-btn" class="theme-toggle-btn" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">
+          <i class="ri-sun-line"></i>
+        </button>
+
+        <!-- Resume Modal Trigger -->
+        <button class="btn btn-outline btn-sm resume-trigger-btn">
+          <i class="ri-file-text-line"></i> Resume
+        </button>
+
+        <!-- Direct Contact CTA -->
+        <a href="#contact" class="btn btn-primary btn-sm">
+          <i class="ri-send-plane-line"></i> Let's Talk
+        </a>
+
+        <!-- Mobile Drawer Toggle -->
+        <button id="mobile-toggle" class="mobile-toggle" aria-label="Open Navigation Menu">
+          <i class="ri-menu-line"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#skills">Skills</a>
+    <a href="#timeline">Education &amp; Experience</a>
+    <a href="#contact">Contact</a>
+    <button class="btn btn-primary btn-sm resume-trigger-btn" style="margin-top: 0.5rem;">
+      <i class="ri-file-text-line"></i> View Resume
+    </button>
+  </div>
+
+  <main>
+    <!-- =======================================================================
+         HERO SECTION
+         ======================================================================= -->
+    <section class="hero-section" id="hero">
+      <div class="container">
+        <div class="hero-grid">
+          
+          <!-- Left Column: Introduction & Elevator Pitch -->
+          <div class="hero-content">
+            <div class="status-badge">
+              <span class="status-dot"></span>
+              <span id="hero-status-text">Open to Software Engineering Internships &amp; Roles</span>
+            </div>
+
+            <h1 class="hero-title">
+              Hi, I'm <span class="gradient-text" id="hero-name">Prashik Humane</span>
+            </h1>
+
+            <div class="hero-role" id="hero-role">
+              Full-Stack Software Engineer &amp; <strong>Competitive Programmer</strong>
+            </div>
+
+            <p class="hero-bio" id="hero-bio">
+              Pre-final year Computer Science &amp; Business student at <strong>IIIT Lucknow</strong> (CGPA: 8.0). Proven builder of resilient distributed web systems, real-time architectures, and ML microservices. CodeChef <strong>4★ (1800 peak)</strong> &amp; Codeforces <strong>Specialist (1572 max)</strong>.
+            </p>
+
+            <div class="hero-cta">
+              <a href="#projects" class="btn btn-primary">
+                <i class="ri-layout-grid-line"></i> View Projects
+              </a>
+              <a href="#achievements" class="btn btn-secondary">
+                <i class="ri-trophy-line"></i> CP Stats &amp; Badges
+              </a>
+              <button class="btn btn-outline resume-trigger-btn">
+                <i class="ri-file-download-line"></i> View Resume
+              </button>
+            </div>
+
+            <div class="hero-socials" id="hero-socials">
+              <!-- Populated dynamically by main.js -->
+            </div>
+          </div>
+
+          <!-- Right Column: Visual Avatar & Floating Highlights -->
+          <div class="hero-visual">
+            <div class="visual-card-wrap">
+              
+              <!-- Floating Pill Left -->
+              <div class="floating-stat stat-left">
+                <div class="icon codechef-icon"><i class="ri-star-fill"></i></div>
+                <div class="details">
+                  <div class="val">4★ (1800)</div>
+                  <div class="lbl">CodeChef Peak</div>
+                </div>
+              </div>
+
+              <!-- Main Glass Avatar Card -->
+              <div class="avatar-main-card">
+                <div class="avatar-img-wrap">
+                  <img src="assets/images/avatar.svg" alt="Prashik Humane" />
+                </div>
+                <div class="avatar-info">
+                  <h3>Prashik Humane</h3>
+                  <p>B.Tech CS &amp; Business • IIIT Lucknow</p>
+                  <div class="avatar-badges">
+                    <span class="mini-badge">React 19 &amp; Node</span>
+                    <span class="mini-badge codechef">CodeChef 4★</span>
+                    <span class="mini-badge codeforces">CF Specialist</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floating Pill Right -->
+              <div class="floating-stat stat-right">
+                <div class="icon commit-icon"><i class="ri-git-commit-line"></i></div>
+                <div class="details">
+                  <div class="val">2,000+</div>
+                  <div class="lbl">GitHub Contributions</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         METRICS & STATS BANNER
+         ======================================================================= -->
+    <section class="metrics-banner" id="about">
+      <div class="container">
+        <div class="metrics-grid" id="metrics-grid">
+          <!-- Populated by main.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         FEATURED PROJECTS SECTION
+         ======================================================================= -->
+    <section class="projects-section" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><i class="ri-code-box-line"></i> Portfolio Showcase</div>
+          <h2 class="section-title">Engineered Projects</h2>
+          <p class="section-subtitle">
+            Production-ready web applications, microservice architectures, and AI-driven platforms built with high reliability and clean code.
+          </p>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="filter-tabs">
+          <button class="filter-btn active" data-filter="all">All Projects</button>
+          <button class="filter-btn" data-filter="ai-fullstack">AI / ML &amp; Full Stack</button>
+          <button class="filter-btn" data-filter="fullstack">Full-Stack Web &amp; Payments</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid" id="projects-grid">
+          <!-- Populated dynamically by main.js from data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         ACHIEVEMENTS & COMPETITIVE PROGRAMMING
+         ======================================================================= -->
+    <section class="achievements-section" id="achievements">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><i class="ri-award-line"></i> Problem Solving Rigor</div>
+          <h2 class="section-title">Competitive Programming &amp; Honors</h2>
+          <p class="section-subtitle">
+            Demonstrated mastery across data structures, algorithmic graph theory, dynamic programming, and competitive contests.
+          </p>
+        </div>
+
+        <div class="achievements-grid" id="achievements-grid">
+          <!-- Populated dynamically by main.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         TECHNICAL SKILLS SECTION
+         ======================================================================= -->
+    <section class="skills-section" id="skills">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><i class="ri-cpu-line"></i> Capabilities</div>
+          <h2 class="section-title">Technical Skills &amp; Stack</h2>
+          <p class="section-subtitle">
+            A comprehensive overview of programming languages, modern frameworks, cloud databases, and core software engineering fundamentals.
+          </p>
+        </div>
+
+        <div class="skills-grid" id="skills-grid">
+          <!-- Populated dynamically by main.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         EDUCATION & LEADERSHIP TIMELINE
+         ======================================================================= -->
+    <section class="experience-section" id="timeline">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><i class="ri-graduation-cap-line"></i> Background &amp; Impact</div>
+          <h2 class="section-title">Education &amp; Leadership</h2>
+          <p class="section-subtitle">
+            Academic milestones at premier institutes and active leadership roles fostering student technical and entrepreneurial growth.
+          </p>
+        </div>
+
+        <div class="dual-timeline-grid">
+          <!-- Left Column: Education -->
+          <div>
+            <h3 class="timeline-column-title">
+              <i class="ri-book-read-line"></i> Formal Education
+            </h3>
+            <div class="timeline" id="education-timeline">
+              <!-- Populated by main.js -->
+            </div>
+          </div>
+
+          <!-- Right Column: Leadership & Responsibilities -->
+          <div>
+            <h3 class="timeline-column-title">
+              <i class="ri-team-line"></i> Positions of Responsibility
+            </h3>
+            <div class="timeline" id="leadership-timeline">
+              <!-- Populated by main.js -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         CONTACT SECTION
+         ======================================================================= -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag"><i class="ri-mail-send-line"></i> Get In Touch</div>
+          <h2 class="section-title">Let's Build Something Great</h2>
+          <p class="section-subtitle">
+            Looking for a dedicated software engineering intern or full-time engineer who combines algorithmic rigor with modern full-stack development? Reach out directly.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Direct Details -->
+          <div class="contact-info-card">
+            <h3>Direct Contact Channels</h3>
+            <p>
+              Feel free to reach out directly via email, phone, or connect on LinkedIn and GitHub. I respond promptly to engineering inquiries and collaboration opportunities.
+            </p>
+
+            <div class="contact-methods" id="contact-methods-list">
+              <!-- Populated by main.js -->
+            </div>
+          </div>
+
+          <!-- Contact Form Card -->
+          <div class="contact-form-card">
+            <h3>Send a Message</h3>
+            <form id="contact-form">
+              <div class="form-group">
+                <label for="form-name" class="form-label">Your Name</label>
+                <input type="text" id="form-name" name="name" class="form-input" placeholder="e.g. John Doe" required />
+              </div>
+
+              <div class="form-group">
+                <label for="form-email" class="form-label">Your Email</label>
+                <input type="email" id="form-email" name="email" class="form-input" placeholder="name@company.com" required />
+              </div>
+
+              <div class="form-group">
+                <label for="form-subject" class="form-label">Subject</label>
+                <input type="text" id="form-subject" name="subject" class="form-input" placeholder="Engineering Opportunity / Collaboration" />
+              </div>
+
+              <div class="form-group">
+                <label for="form-message" class="form-label">Message</label>
+                <textarea id="form-message" name="message" class="form-textarea" placeholder="Hello Prashik, we would love to discuss an opportunity..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%;">
+                <i class="ri-send-plane-fill"></i> Send Message
+              </button>
+
+              <div class="form-status" id="form-status"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h4>Prashik Humane</h4>
+          <p>Full-Stack Software Engineer • CodeChef 4★ • IIIT Lucknow '27</p>
+        </div>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#achievements">Achievements</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; <span id="current-year">2026</span> Prashik Humane. Designed &amp; engineered for performance.
+        </div>
+        <div>
+          <a href="#hero" style="display: inline-flex; align-items: center; gap: 0.3rem;">
+            Back to Top <i class="ri-arrow-up-line"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       MODALS
+       ========================================================================= -->
+
+  <!-- 1. Project Architecture Deep-Dive Modal -->
+  <div class="modal-backdrop" id="project-modal" role="dialog" aria-modal="true">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 id="modal-project-title">Project Architecture</h3>
+        <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-project-body">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Resume Viewer Modal with Print-to-PDF -->
+  <div class="modal-backdrop" id="resume-modal" role="dialog" aria-modal="true">
+    <div class="modal-container" style="max-width: 860px;">
+      <div class="modal-header">
+        <h3>Prashik Humane — Official Resume</h3>
+        <div style="display: flex; gap: 0.6rem; align-items: center;">
+          <button class="btn btn-primary btn-sm" onclick="window.print()">
+            <i class="ri-printer-line"></i> Print / Save as PDF
+          </button>
+          <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <!-- Printable Clean Resume Document -->
+        <div class="resume-sheet">
+          <h1>Prashik Humane</h1>
+          <div class="resume-header-links">
+            Lucknow, India &nbsp;|&nbsp; +91-8262049540 &nbsp;|&nbsp; prashikhumane744@gmail.com<br />
+            linkedin.com/in/prashik-humane &nbsp;|&nbsp; github.com/prashik24
+          </div>
+
+          <!-- Education -->
+          <div class="resume-section-title">Education</div>
+          <div class="resume-row">
+            <strong>Indian Institute of Information Technology (IIIT), Lucknow</strong>
+            <span>2023 – 2027</span>
+          </div>
+          <div class="resume-sub-row">
+            <span>B.Tech in Computer Science and Business – CGPA: 8.0</span>
+            <span>Lucknow, India</span>
+          </div>
+
+          <div class="resume-row" style="margin-top: 0.6rem;">
+            <strong>St. Peter’s School</strong>
+            <span>2022</span>
+          </div>
+          <div class="resume-sub-row">
+            <span>Higher Secondary Certificate (HSC – Maharashtra State Board) – 94.5%</span>
+            <span>Nagpur, India</span>
+          </div>
+
+          <div class="resume-row" style="margin-top: 0.6rem;">
+            <strong>Sunny’s Spring Dale School</strong>
+            <span>2020</span>
+          </div>
+          <div class="resume-sub-row">
+            <span>Secondary School Examination (CBSE Class X) – 90.0%</span>
+            <span>Bhandara, India</span>
+          </div>
+
+          <!-- Technical Skills -->
+          <div class="resume-section-title">Technical Skills</div>
+          <p style="font-size: 0.85rem; color: #334155; margin-bottom: 0.35rem;">
+            <strong>Languages:</strong> JavaScript (ES6+), TypeScript, C++, Python, SQL, HTML/CSS<br />
+            <strong>Developer Tools &amp; DevOps:</strong> Git, GitHub, Docker, Postman, Render<br />
+            <strong>Frameworks &amp; Libraries:</strong> React.js, Next.js, Node.js, Express.js, FastAPI, Scikit-learn, REST APIs, JWT, Vite<br />
+            <strong>Databases:</strong> MongoDB, MySQL<br />
+            <strong>Core Concepts:</strong> Data Structures &amp; Algorithms (DSA), OOP, DBMS, Operating Systems, Machine Learning
+          </p>
+
+          <!-- Projects -->
+          <div class="resume-section-title">Projects</div>
+          <div class="resume-row">
+            <strong>OnTrip – AI Travel Planning Platform</strong>
+            <span>React 19, Node.js, Express, MongoDB, Socket.io, Gemini AI, FastAPI, Scikit-learn</span>
+          </div>
+          <ul class="resume-bullets">
+            <li>Automated multi-day itinerary generation using Google Gemini AI, integrating route maps and dynamic cost estimates.</li>
+            <li>Enabled real-time bidirectional host messaging via Socket.io and built a social feed for travel bookmarks.</li>
+            <li>Integrated Razorpay checkout, automated jsPDF invoice generation, and scheduled Node-Cron trip alerts.</li>
+            <li>Enforced authentication via Google OAuth 2.0, Brevo OTP verification, HTTP-only JWT cookies, and Express RBAC.</li>
+            <li>Engineered a hybrid recommendation pipeline via FastAPI and Scikit-learn (TF-IDF, Cosine Similarity) with a resilient Node.js native vector fallback to guarantee zero downtime.</li>
+          </ul>
+
+          <div class="resume-row" style="margin-top: 0.6rem;">
+            <strong>ShopKart – Full-Stack E-Commerce Platform</strong>
+            <span>React 19, Node.js, Express, MongoDB Atlas, Razorpay</span>
+          </div>
+          <ul class="resume-bullets">
+            <li>Engineered an e-commerce platform with catalog filters, persistent cart state, and order progress bars.</li>
+            <li>Implemented user authentication with Brevo email OTPs, bcrypt hashing, and role-separated JWT cookie sessions.</li>
+            <li>Built an admin dashboard for full product inventory CRUD operations, order status updates, and payment logs.</li>
+            <li>Integrated client-side localStorage caching with a 10-minute TTL to reduce redundant database queries.</li>
+          </ul>
+
+          <!-- Achievements -->
+          <div class="resume-section-title">Achievements &amp; Competitive Programming</div>
+          <ul class="resume-bullets">
+            <li><strong>CodeChef 4★:</strong> Achieved peak rating of 1800.</li>
+            <li><strong>Codeforces Specialist:</strong> Achieved max rating of 1572.</li>
+            <li><strong>LeetCode:</strong> Max rating of 1491 with consistent contest participation.</li>
+            <li><strong>GitHub Activity:</strong> Maintained 2000+ contributions demonstrating active development consistency.</li>
+            <li><strong>Problem Solving:</strong> Solved over 575+ algorithmic problems and competed in 50+ official contests across platforms.</li>
+            <li><strong>Adobe University Hackathon:</strong> Cleared Round 1 (MCQ + Coding OA) organized by Adobe.</li>
+            <li><strong>AlgoUniversity Certification:</strong> Completed Advanced Graphs Module Certification.</li>
+          </ul>
+
+          <!-- Positions of Responsibility -->
+          <div class="resume-section-title">Positions of Responsibility</div>
+          <div class="resume-row">
+            <strong>Senior Member, Crotonia Literary Society</strong>
+            <span>IIIT Lucknow</span>
+          </div>
+          <ul class="resume-bullets">
+            <li>Spearheaded inter-college literary summits and flagship university debates engaging 200+ participants.</li>
+          </ul>
+
+          <div class="resume-row">
+            <strong>Core Member, Entrepreneurship Cell (E-Cell)</strong>
+            <span>IIIT Lucknow</span>
+          </div>
+          <ul class="resume-bullets">
+            <li>Coordinated technical entrepreneurship workshops, speaker sessions, and startup pitch events hosting 150+ attendees.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-notice" id="toast-notice"></div>
+
+  <!-- Scripts -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

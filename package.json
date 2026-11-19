@@ -1,0 +1,21 @@
+{
+  "name": "prashik-humane-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio of Prashik Humane - Full-Stack Software Engineer & Competitive Programmer (IIIT Lucknow)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "portfolio",
+    "software-engineer",
+    "iiit-lucknow",
+    "competitive-programming",
+    "full-stack",
+    "react-19",
+    "node"
+  ],
+  "author": "Prashik Humane <prashikhumane744@gmail.com>",
+  "license": "MIT"
+}
