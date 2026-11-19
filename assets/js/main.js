@@ -1,16 +1,15 @@
 /**
  * =========================================================================
- * PRASHIK HUMANE - ADVANCED UI/UX CONTROLLER
+ * PRASHIK HUMANE - OFFICIAL PORTFOLIO MAIN CONTROLLER
  * =========================================================================
  * 
  * Features:
- * - Real-time IST Digital Clock in Bento Header
- * - Command Palette (Ctrl+K / ⌘K) with keyboard search & navigation
- * - Realistic Browser Mockup Frames with Live URL & Status
- * - Category Filter Engine with count pills
- * - Dynamic Modals (Project Architecture & Printable PDF Resume)
- * - Copy to Clipboard with animated toast notifications
- * - Theme Switcher (Dark / Light) with localStorage persistence
+ * - Proper Full-Width Sticky Navbar with smooth section highlights
+ * - Flagship Showcase Project Cards with real-world browser mockup frames
+ * - Category Filtering with active state
+ * - Architecture Deep-Dive Modals & Resume Viewer
+ * - 1-Click Clipboard copy for Email & Phone with Toast notifications
+ * - Dark & Light Theme engine with localStorage persistence
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -23,37 +22,31 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. Theme Management
   initTheme();
 
-  // 2. Real-time Digital Clock (Bento Card)
-  initLiveClock();
-
-  // 3. Render Hero & Socials
+  // 2. Render Hero Social Links
   renderHero(data.personal);
 
-  // 4. Render Projects & Filter Mechanism
+  // 3. Render Flagship Projects Stack
   renderProjects(data.projects);
 
-  // 5. Render Achievements & Competitive Programming
+  // 4. Render Achievements & Competitive Programming
   renderAchievements(data.achievements);
 
-  // 6. Render Technical Skills
+  // 5. Render Technical Skills Matrix
   renderSkills(data.skills);
 
-  // 7. Render Timelines
+  // 6. Render Education & Leadership Timelines
   renderTimelines(data.education, data.responsibilities);
 
-  // 8. Render Contact Section
+  // 7. Render Contact Info Cards
   renderContact(data.personal);
 
-  // 9. Interactive Modals
+  // 8. Setup Interactive Modals
   setupModals(data);
 
-  // 10. Command Palette (Ctrl+K / ⌘K)
-  setupCommandPalette(data);
-
-  // 11. Navigation & Scroll Interactions
+  // 9. Setup Sticky Navigation & Active Link tracking
   setupNavigation();
 
-  // 12. Contact Form
+  // 10. Contact Form Dispatch
   setupContactForm(data.personal.email);
 });
 
@@ -86,30 +79,13 @@ function updateThemeIcon(theme) {
 }
 
 /* -------------------------------------------------------------------------
- * 2. LIVE CLOCK (Bento Grid)
- * ------------------------------------------------------------------------- */
-function initLiveClock() {
-  const clockEl = document.getElementById('live-clock');
-  if (!clockEl) return;
-
-  function update() {
-    const options = { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-    const istTime = new Intl.DateTimeFormat('en-US', options).format(new Date());
-    clockEl.innerHTML = `<i class="ri-time-line"></i> ${istTime} IST (UTC+05:30)`;
-  }
-
-  update();
-  setInterval(update, 1000);
-}
-
-/* -------------------------------------------------------------------------
- * 3. HERO & PERSONAL INFO
+ * 2. HERO & SOCIAL LINKS
  * ------------------------------------------------------------------------- */
 function renderHero(personal) {
   const heroSocialsContainer = document.getElementById('hero-socials');
   if (heroSocialsContainer) {
     heroSocialsContainer.innerHTML = `
-      <a href="${personal.socials.github}" target="_blank" rel="noopener noreferrer" class="social-pill" title="GitHub Profile (2,000+ Contributions)">
+      <a href="${personal.socials.github}" target="_blank" rel="noopener noreferrer" class="social-pill" title="GitHub (2,000+ Contributions)">
         <i class="ri-github-fill"></i>
       </a>
       <a href="${personal.socials.linkedin}" target="_blank" rel="noopener noreferrer" class="social-pill" title="LinkedIn Profile">
@@ -121,10 +97,10 @@ function renderHero(personal) {
       <a href="${personal.socials.codeforces}" target="_blank" rel="noopener noreferrer" class="social-pill" title="Codeforces Specialist (Peak 1572)">
         <i class="ri-flashlight-line"></i>
       </a>
-      <a href="${personal.socials.leetcode}" target="_blank" rel="noopener noreferrer" class="social-pill" title="LeetCode Contest Profile">
+      <a href="${personal.socials.leetcode}" target="_blank" rel="noopener noreferrer" class="social-pill" title="LeetCode Profile">
         <i class="ri-code-s-slash-line"></i>
       </a>
-      <a href="${personal.socials.email}" class="social-pill" title="Send Direct Email">
+      <a href="${personal.socials.email}" class="social-pill" title="Send Email">
         <i class="ri-mail-line"></i>
       </a>
     `;
@@ -132,18 +108,17 @@ function renderHero(personal) {
 }
 
 /* -------------------------------------------------------------------------
- * 4. PROJECTS SHOWCASE (Realistic Browser Mockups)
+ * 3. FLAGSHIP PROJECTS SHOWCASE (Realistic Browser Mockups)
  * ------------------------------------------------------------------------- */
 let allProjects = [];
 
 function renderProjects(projects) {
   allProjects = projects;
-  const container = document.getElementById('projects-grid');
+  const container = document.getElementById('projects-stack');
   if (!container) return;
 
   displayFilteredProjects('all');
 
-  // Filter Buttons
   const filterButtons = document.querySelectorAll('.filter-btn');
   filterButtons.forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -156,7 +131,7 @@ function renderProjects(projects) {
 }
 
 function displayFilteredProjects(category) {
-  const container = document.getElementById('projects-grid');
+  const container = document.getElementById('projects-stack');
   if (!container) return;
 
   const filtered = category === 'all' 
@@ -168,64 +143,61 @@ function displayFilteredProjects(category) {
     const cleanUrl = rawUrl.replace(/^https?:\/\//, '').replace(/\/$/, '') || `github.com/prashik24/${project.id}`;
 
     return `
-      <article class="project-card" data-id="${project.id}">
-        <!-- Realistic Browser Window Frame -->
-        <div class="project-preview">
-          <div class="mockup-header-bar">
-            <div class="mockup-dots">
-              <span class="mockup-dot dot-red"></span>
-              <span class="mockup-dot dot-yellow"></span>
-              <span class="mockup-dot dot-green"></span>
+      <article class="flagship-project-card" data-id="${project.id}">
+        <!-- Realistic Browser Mockup Frame -->
+        <div class="project-mockup-frame">
+          <div class="mockup-top-bar">
+            <div class="mockup-window-dots">
+              <span class="mockup-dot red"></span>
+              <span class="mockup-dot yellow"></span>
+              <span class="mockup-dot green"></span>
             </div>
-            <div class="mockup-address-bar" title="${rawUrl}">
+            <div class="mockup-url-pill" title="${rawUrl}">
               <i class="ri-lock-line"></i> ${cleanUrl}
             </div>
             <div style="width: 36px;"></div>
           </div>
 
-          <div class="project-img-holder">
+          <div class="project-img-wrapper">
             <img src="${project.image}" alt="${project.title} Screenshot" loading="lazy" />
-            <a href="${project.links.demo}" target="_blank" rel="noopener noreferrer" class="img-hover-overlay" title="Open live deployment">
-              <span class="btn btn-primary btn-sm"><i class="ri-external-link-line"></i> Visit Live App</span>
-            </a>
+            ${project.deployment ? `
+              <div class="live-float-badge">
+                <span class="live-dot"></span> Live • ${project.deployment.platform}
+              </div>
+            ` : ''}
           </div>
-
-          ${project.deployment ? `
-            <a href="${project.deployment.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-deploy-badge" title="Live on ${project.deployment.platform}">
-              <span class="live-dot"></span> Live • ${project.deployment.platform}
-            </a>
-          ` : ''}
         </div>
 
-        <!-- Project Content Body -->
-        <div class="project-body">
-          <div class="project-header-row">
-            <div class="project-title">
-              <h3>${project.title}</h3>
-            </div>
-            <span class="project-category-pill">${project.categoryLabel}</span>
+        <!-- Project Detail Content Side -->
+        <div class="project-content-side">
+          <div class="project-meta-row">
+            <span class="project-category-tag">${project.categoryLabel}</span>
           </div>
 
-          <p class="project-desc">${project.shortDescription}</p>
-
-          <div class="tech-stack-chips">
-            ${project.technologies.map(t => `<span class="tech-chip">${t}</span>`).join('')}
+          <div class="project-title">
+            <h3>${project.title}</h3>
           </div>
 
-          <ul class="project-bullets">
+          <p class="project-summary">${project.shortDescription}</p>
+
+          <div class="project-tech-chips">
+            ${project.technologies.map(t => `<span class="tech-tag">${t}</span>`).join('')}
+          </div>
+
+          <ul class="project-achieve-list">
             ${project.highlights.slice(0, 3).map(h => `<li>${h}</li>`).join('')}
           </ul>
 
-          <div class="project-footer">
-            <div class="project-links">
-              <a href="${project.links.demo}" target="_blank" rel="noopener noreferrer" class="project-link-btn primary" title="Open Live Application">
+          <div class="project-action-row">
+            <div class="project-buttons">
+              <a href="${project.links.demo}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" title="Visit Live Application">
                 <i class="ri-external-link-line"></i> Live Demo
               </a>
-              <a href="${project.links.github}" target="_blank" rel="noopener noreferrer" class="project-link-btn" title="View Source Code on GitHub">
-                <i class="ri-github-line"></i> GitHub Repo
+              <a href="${project.links.github}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" title="View Source on GitHub">
+                <i class="ri-github-line"></i> Source Code
               </a>
             </div>
-            <button class="project-deep-dive-btn" onclick="openProjectModal('${project.id}')" title="View Architecture Details">
+            <button class="arch-btn" onclick="openProjectModal('${project.id}')">
               Architecture Details <i class="ri-arrow-right-line"></i>
             </button>
           </div>
@@ -236,7 +208,7 @@ function displayFilteredProjects(category) {
 }
 
 /* -------------------------------------------------------------------------
- * 5. ACHIEVEMENTS & COMPETITIVE PROGRAMMING
+ * 4. ACHIEVEMENTS & COMPETITIVE PROGRAMMING
  * ------------------------------------------------------------------------- */
 function renderAchievements(achievements) {
   const container = document.getElementById('achievements-grid');
@@ -263,7 +235,7 @@ function renderAchievements(achievements) {
 }
 
 /* -------------------------------------------------------------------------
- * 6. TECHNICAL SKILLS
+ * 5. TECHNICAL SKILLS MATRIX
  * ------------------------------------------------------------------------- */
 function renderSkills(skillsData) {
   const container = document.getElementById('skills-grid');
@@ -293,10 +265,9 @@ function renderSkills(skillsData) {
 }
 
 /* -------------------------------------------------------------------------
- * 7. EDUCATION & LEADERSHIP TIMELINE
+ * 6. EDUCATION & LEADERSHIP TIMELINE
  * ------------------------------------------------------------------------- */
 function renderTimelines(education, responsibilities) {
-  // Education
   const eduContainer = document.getElementById('education-timeline');
   if (eduContainer) {
     eduContainer.innerHTML = education.map(item => `
@@ -317,7 +288,6 @@ function renderTimelines(education, responsibilities) {
     `).join('');
   }
 
-  // Leadership
   const respContainer = document.getElementById('leadership-timeline');
   if (respContainer) {
     respContainer.innerHTML = responsibilities.map(item => `
@@ -340,7 +310,7 @@ function renderTimelines(education, responsibilities) {
 }
 
 /* -------------------------------------------------------------------------
- * 8. CONTACT SECTION & CLIPBOARD
+ * 7. CONTACT SECTION & CLIPBOARD
  * ------------------------------------------------------------------------- */
 function renderContact(personal) {
   const contactContainer = document.getElementById('contact-methods-list');
@@ -414,7 +384,7 @@ window.copyToClipboard = function(text, successMsg) {
 };
 
 /* -------------------------------------------------------------------------
- * 9. INTERACTIVE MODALS
+ * 8. INTERACTIVE MODALS
  * ------------------------------------------------------------------------- */
 function setupModals(data) {
   document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
@@ -454,7 +424,7 @@ window.openProjectModal = function(projectId) {
   body.innerHTML = `
     <div style="margin-bottom: 1.5rem;">
       <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.8rem; flex-wrap: wrap;">
-        <span class="project-category-pill">${project.categoryLabel}</span>
+        <span class="project-category-tag">${project.categoryLabel}</span>
         ${project.deployment ? `
           <span style="font-size: 0.78rem; font-weight: 700; color: var(--accent-emerald); background: rgba(16, 185, 129, 0.12); padding: 0.25rem 0.7rem; border-radius: var(--radius-full); border: 1px solid rgba(16, 185, 129, 0.3);">
             🟢 Deployed on ${project.deployment.platform}
@@ -466,7 +436,7 @@ window.openProjectModal = function(projectId) {
 
     <div style="margin-bottom: 1.5rem;">
       <h4 style="font-size: 1.1rem; margin-bottom: 0.8rem; color: var(--text-main);">Technical Architecture &amp; Highlights</h4>
-      <ul class="project-bullets" style="margin-bottom: 1rem;">
+      <ul class="project-achieve-list" style="margin-bottom: 1rem;">
         ${project.highlights.map(h => `<li>${h}</li>`).join('')}
       </ul>
     </div>
@@ -509,150 +479,11 @@ window.closeAllModals = function() {
   document.querySelectorAll('.modal-backdrop').forEach(modal => {
     modal.classList.remove('open');
   });
-  const cmdPalette = document.getElementById('cmd-palette');
-  if (cmdPalette) cmdPalette.classList.remove('open');
   document.body.style.overflow = '';
 };
 
 /* -------------------------------------------------------------------------
- * 10. COMMAND PALETTE (Ctrl+K / ⌘K)
- * ------------------------------------------------------------------------- */
-function setupCommandPalette(data) {
-  const cmdPalette = document.getElementById('cmd-palette');
-  const cmdInput = document.getElementById('cmd-palette-input');
-  const cmdList = document.getElementById('cmd-palette-list');
-  const cmdTrigger = document.getElementById('cmd-k-open');
-
-  if (!cmdPalette || !cmdInput || !cmdList) return;
-
-  const commands = [
-    // Projects
-    { title: "OnTrip – AI Travel Planning Platform", category: "Projects", icon: "ri-plane-line", action: () => { window.location.hash = "#projects"; openProjectModal("ontrip"); } },
-    { title: "ShopKart – Full-Stack E-Commerce", category: "Projects", icon: "ri-shopping-cart-line", action: () => { window.location.hash = "#projects"; openProjectModal("shopkart"); } },
-    { title: "Interactive Wall Calendar Component", category: "Projects", icon: "ri-calendar-line", action: () => { window.location.hash = "#projects"; openProjectModal("calendar"); } },
-    { title: "Amazon Homepage Clone", category: "Projects", icon: "ri-amazon-line", action: () => { window.location.hash = "#projects"; openProjectModal("amazon"); } },
-
-    // Resume & Contact
-    { title: "Download Resume (Original PDF)", category: "Actions", icon: "ri-download-2-line", action: () => { window.location.href = data.personal.resumePdfPath; } },
-    { title: "View Formatted Resume", category: "Actions", icon: "ri-file-text-line", action: () => openResumeModal() },
-    { title: "Copy Email Address", category: "Actions", icon: "ri-mail-line", action: () => copyToClipboard(data.personal.email, "Email copied!") },
-    { title: "Copy Phone Number", category: "Actions", icon: "ri-phone-line", action: () => copyToClipboard(data.personal.phone, "Phone copied!") },
-
-    // Competitive Programming
-    { title: "CodeChef Profile (1800 4★)", category: "Profiles", icon: "ri-star-line", action: () => window.open(data.personal.socials.codechef, "_blank") },
-    { title: "Codeforces Profile (1572 Specialist)", category: "Profiles", icon: "ri-flashlight-line", action: () => window.open(data.personal.socials.codeforces, "_blank") },
-    { title: "LeetCode Profile", category: "Profiles", icon: "ri-code-s-slash-line", action: () => window.open(data.personal.socials.leetcode, "_blank") },
-    { title: "GitHub Profile (2,000+ Contributions)", category: "Profiles", icon: "ri-github-fill", action: () => window.open(data.personal.socials.github, "_blank") },
-    { title: "LinkedIn Profile", category: "Profiles", icon: "ri-linkedin-fill", action: () => window.open(data.personal.socials.linkedin, "_blank") }
-  ];
-
-  let selectedIdx = 0;
-  let currentFiltered = [...commands];
-
-  function renderList(items) {
-    if (items.length === 0) {
-      cmdList.innerHTML = `<div style="padding: 1.5rem; text-align: center; color: var(--text-muted); font-size: 0.9rem;">No matching commands found.</div>`;
-      return;
-    }
-
-    let groups = {};
-    items.forEach((item, idx) => {
-      if (!groups[item.category]) groups[item.category] = [];
-      groups[item.category].push({ ...item, globalIdx: idx });
-    });
-
-    let html = '';
-    Object.keys(groups).forEach(category => {
-      html += `<div class="cmd-group-label">${category}</div>`;
-      groups[category].forEach(item => {
-        const isSelected = item.globalIdx === selectedIdx;
-        html += `
-          <li class="cmd-item ${isSelected ? 'selected' : ''}" data-idx="${item.globalIdx}">
-            <div class="cmd-item-left">
-              <i class="${item.icon}"></i>
-              <span>${item.title}</span>
-            </div>
-            <span class="cmd-item-tag">${item.category}</span>
-          </li>
-        `;
-      });
-    });
-
-    cmdList.innerHTML = html;
-
-    // Click handler for items
-    cmdList.querySelectorAll('.cmd-item').forEach(el => {
-      el.addEventListener('click', () => {
-        const idx = parseInt(el.getAttribute('data-idx'), 10);
-        executeCommand(idx);
-      });
-    });
-  }
-
-  function executeCommand(idx) {
-    if (currentFiltered[idx]) {
-      closePalette();
-      currentFiltered[idx].action();
-    }
-  }
-
-  function openPalette() {
-    cmdPalette.classList.add('open');
-    cmdInput.value = '';
-    currentFiltered = [...commands];
-    selectedIdx = 0;
-    renderList(currentFiltered);
-    setTimeout(() => cmdInput.focus(), 50);
-  }
-
-  function closePalette() {
-    cmdPalette.classList.remove('open');
-  }
-
-  if (cmdTrigger) cmdTrigger.addEventListener('click', openPalette);
-
-  // Keyboard shortcut listener (Ctrl+K / Cmd+K)
-  document.addEventListener('keydown', (e) => {
-    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-      e.preventDefault();
-      if (cmdPalette.classList.contains('open')) {
-        closePalette();
-      } else {
-        openPalette();
-      }
-    } else if (e.key === 'Escape' && cmdPalette.classList.contains('open')) {
-      closePalette();
-    } else if (cmdPalette.classList.contains('open')) {
-      if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        selectedIdx = (selectedIdx + 1) % currentFiltered.length;
-        renderList(currentFiltered);
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        selectedIdx = (selectedIdx - 1 + currentFiltered.length) % currentFiltered.length;
-        renderList(currentFiltered);
-      } else if (e.key === 'Enter') {
-        e.preventDefault();
-        executeCommand(selectedIdx);
-      }
-    }
-  });
-
-  // Search input filtering
-  cmdInput.addEventListener('input', (e) => {
-    const q = e.target.value.toLowerCase().trim();
-    currentFiltered = commands.filter(c => c.title.toLowerCase().includes(q) || c.category.toLowerCase().includes(q));
-    selectedIdx = 0;
-    renderList(currentFiltered);
-  });
-
-  cmdPalette.addEventListener('click', (e) => {
-    if (e.target === cmdPalette) closePalette();
-  });
-}
-
-/* -------------------------------------------------------------------------
- * 11. NAVIGATION & SCROLL INTERACTIONS
+ * 9. NAVIGATION & SCROLL TRACKING
  * ------------------------------------------------------------------------- */
 function setupNavigation() {
   const navbar = document.querySelector('.navbar');
@@ -662,7 +493,7 @@ function setupNavigation() {
   const mobileDrawer = document.getElementById('mobile-drawer');
 
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 30) {
+    if (window.scrollY > 40) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
@@ -670,7 +501,7 @@ function setupNavigation() {
 
     let current = '';
     sections.forEach(section => {
-      const sectionTop = section.offsetTop - 140;
+      const sectionTop = section.offsetTop - 100;
       const sectionHeight = section.offsetHeight;
       if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
         current = section.getAttribute('id');
@@ -705,7 +536,7 @@ function setupNavigation() {
 }
 
 /* -------------------------------------------------------------------------
- * 12. CONTACT FORM DISPATCH
+ * 10. CONTACT FORM DISPATCH
  * ------------------------------------------------------------------------- */
 function setupContactForm(receiverEmail) {
   const form = document.getElementById('contact-form');
@@ -725,9 +556,9 @@ function setupContactForm(receiverEmail) {
       return;
     }
 
-    const mailtoLink = `mailto:${receiverEmail}?subject=${encodeURIComponent(subject || `Portfolio Message from ${name}`)}&body=${encodeURIComponent(`Hi Prashik,\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+    const mailtoLink = `mailto:${receiverEmail}?subject=${encodeURIComponent(subject || `Portfolio Inquiry from ${name}`)}&body=${encodeURIComponent(`Hi Prashik,\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
     
-    status.textContent = 'Opening your email client to dispatch message directly to Prashik...';
+    status.textContent = 'Opening your email client to send message directly to Prashik...';
     status.className = 'form-status success';
     
     setTimeout(() => {
