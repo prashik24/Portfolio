@@ -172,8 +172,18 @@ function displayFilteredProjects(category) {
   container.innerHTML = filtered.map(project => `
     <article class="project-card" data-id="${project.id}">
       <div class="project-preview">
-        <img src="${project.image}" alt="${project.title} Preview" loading="lazy" />
-        <span class="project-category-tag">${project.categoryLabel}</span>
+        <div class="mockup-header-bar">
+          <div class="mockup-dots">
+            <span class="mockup-dot"></span>
+            <span class="mockup-dot"></span>
+            <span class="mockup-dot"></span>
+          </div>
+          <div class="mockup-url">${(project.deployment && project.deployment.liveUrl) ? project.deployment.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '') : 'github.com/prashik24/' + project.id}</div>
+          <div></div>
+        </div>
+        <div class="project-img-holder">
+          <img src="${project.image}" alt="${project.title} Screenshot" loading="lazy" />
+        </div>
         ${project.deployment ? `
           <a href="${project.deployment.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-deploy-badge" title="Live on ${project.deployment.platform}">
             <span class="live-dot"></span> Live • ${project.deployment.platform}
@@ -181,8 +191,11 @@ function displayFilteredProjects(category) {
         ` : ''}
       </div>
       <div class="project-body">
-        <div class="project-title">
-          <h3>${project.title}</h3>
+        <div class="project-header-row">
+          <div class="project-title">
+            <h3>${project.title}</h3>
+          </div>
+          <span class="project-category-pill">${project.categoryLabel}</span>
         </div>
         <p class="project-desc">${project.shortDescription}</p>
 
@@ -222,10 +235,10 @@ function renderAchievements(achievements) {
   container.innerHTML = achievements.map(item => `
     <div class="achievement-card">
       <div class="achieve-header">
-        <div class="achieve-icon-box" style="color: ${item.accent}; background: ${item.accent}15; border-color: ${item.accent}30;">
+        <div class="achieve-icon-box">
           <i class="ri-${item.icon === 'trophy' ? 'trophy-line' : item.icon === 'star' ? 'star-line' : item.icon === 'zap' ? 'flashlight-line' : item.icon === 'git-commit' ? 'git-commit-line' : 'shield-check-line'}"></i>
         </div>
-        <span class="achieve-badge" style="background: ${item.accent}20; color: ${item.accent}; border: 1px solid ${item.accent}40;">
+        <span class="achieve-badge">
           ${item.badge}
         </span>
       </div>

@@ -65,7 +65,7 @@ const portfolioData = {
       category: "fullstack",
       categoryLabel: "AI / ML & Full Stack",
       featured: true,
-      image: "assets/images/ontrip-preview.svg",
+      image: "assets/images/ontrip.png",
       shortDescription: "An AI-powered travel operating system that helps users plan multi-day trips, discover destinations, join travel communities, find travel buddies, connect with travel planners, and book trips & vehicles with real-time Socket.io messaging.",
       technologies: ["React 19", "Node.js", "Express", "MongoDB", "Socket.io", "Gemini AI", "FastAPI", "Scikit-learn", "Razorpay"],
       deployment: {
@@ -97,7 +97,7 @@ const portfolioData = {
       category: "fullstack",
       categoryLabel: "Full-Stack Web & Payments",
       featured: true,
-      image: "assets/images/shopkart-preview.svg",
+      image: "assets/images/shopkart.jpg",
       shortDescription: "Production-grade e-commerce application engineered with catalog filtering, persistent cart state, Brevo OTP auth, complete admin inventory management, and client-side caching.",
       technologies: ["React 19", "Node.js", "Express", "MongoDB Atlas", "Razorpay", "JWT", "Bcrypt", "Brevo"],
       deployment: {
@@ -128,7 +128,7 @@ const portfolioData = {
       category: "frontend",
       categoryLabel: "Next.js & UI Components",
       featured: false,
-      image: "assets/images/calendar-preview.svg",
+      image: "assets/images/calendar.jpg",
       shortDescription: "A visually rich, responsive wall calendar component inspired by real-world design, featuring intuitive date range selection, persistent notes, and polished UI interactions built with Next.js.",
       technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "LocalStorage"],
       deployment: {
@@ -159,7 +159,7 @@ const portfolioData = {
       category: "frontend",
       categoryLabel: "Frontend & Pure JS",
       featured: false,
-      image: "assets/images/amazon-preview.svg",
+      image: "assets/images/amazon.jpg",
       shortDescription: "A responsive front-end replica of the Amazon e-commerce homepage crafted with pure HTML5, CSS3, and JavaScript, focusing on multi-tier sticky navigation, banner carousels, and responsive layouts.",
       technologies: ["HTML5", "CSS3", "JavaScript (ES6+)", "Responsive Grid", "CSS Flexbox"],
       deployment: {

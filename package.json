@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "build": "node server.js"
   },
   "keywords": [
     "portfolio",
@@ -17,5 +18,9 @@
     "node"
   ],
   "author": "Prashik Humane <prashikhumane744@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prashik24/prashik24.github.io.git"
+  },
   "license": "MIT"
 }
