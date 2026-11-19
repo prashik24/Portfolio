@@ -55,18 +55,17 @@ document.addEventListener('DOMContentLoaded', () => {
  * ------------------------------------------------------------------------- */
 function initTheme() {
   const toggleBtn = document.getElementById('theme-toggle-btn');
-  // Default to dark mode so obsidian aesthetic is shown immediately
   let storedTheme = localStorage.getItem('theme');
-  if (!storedTheme || storedTheme === 'light') {
-    storedTheme = 'dark';
-    localStorage.setItem('theme', 'dark');
+  if (!storedTheme) {
+    storedTheme = 'light';
+    localStorage.setItem('theme', 'light');
   }
   document.documentElement.setAttribute('data-theme', storedTheme);
   updateThemeIcon(storedTheme);
 
   if (toggleBtn) {
     toggleBtn.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
@@ -92,25 +91,25 @@ function renderHero(personal) {
     const rawPhone = (personal.phone || '').replace(/[^+\d]/g, '');
     heroSocialsContainer.innerHTML = `
       <a href="${personal.socials.github}" target="_blank" rel="noopener noreferrer" class="social-pill github" title="GitHub (2,000+ Contributions)">
-        <i class="ri-github-fill"></i>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
       </a>
       <a href="${personal.socials.linkedin}" target="_blank" rel="noopener noreferrer" class="social-pill linkedin" title="LinkedIn Profile">
-        <i class="ri-linkedin-fill"></i>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="#0A66C2"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
       </a>
       <a href="tel:${rawPhone}" class="social-pill phone" title="Call Phone (${personal.phone})">
-        <i class="ri-phone-fill"></i>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M21 16.42v3.536a1 1 0 0 1-.93.998c-.427.03-.81.046-1.07.046-8.837 0-16-7.163-16-16 0-.26.015-.643.046-1.07A1 1 0 0 1 4.044 3H7.58a1 1 0 0 1 .982.804l.745 3.725a1 1 0 0 1-.418 1.004l-2.008 1.506a12.04 12.04 0 0 0 6.082 6.082l1.506-2.008a1 1 0 0 1 1.004-.418l3.725.745a1 1 0 0 1 .804.982z"/></svg>
       </a>
       <a href="${personal.socials.leetcode}" target="_blank" rel="noopener noreferrer" class="social-pill leetcode" title="LeetCode (1491 Max Rating)">
-        <i class="ri-code-s-slash-line"></i>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path class="leetcode-bracket" d="M16.1 17.9l-2.7 2.6c-.5.5-1.1.7-1.8.7s-1.4-.2-1.8-.7L5.5 16.1c-.5-.5-.7-1.1-.7-1.8s.2-1.4.7-1.8l4.3-4.4c.5-.5 1.1-.6 1.8-.6s1.4.2 1.8.7l2.7 2.6c.5.5 1.4.5 1.9 0 .5-.5.5-1.4 0-1.9l-2.6-2.6c-1-1-2.4-1.5-3.8-1.5s-2.8.5-3.8 1.5L3.6 10.7C2.6 11.7 2 13.1 2 14.5s.6 2.8 1.6 3.8l4.3 4.4c1 1 2.4 1.5 3.8 1.5s2.8-.5 3.8-1.5l2.7-2.6c.5-.5.5-1.4 0-1.9-.5-.5-1.4-.6-2.1-.3z" fill="currentColor"/><path d="M10.5 13.5h10.5a1.5 1.5 0 0 0 0-3H10.5a1.5 1.5 0 0 0 0 3z" fill="#FFA116"/></svg>
       </a>
       <a href="${personal.socials.codeforces}" target="_blank" rel="noopener noreferrer" class="social-pill codeforces" title="Codeforces (Specialist 1572)">
-        <i class="ri-flashlight-line"></i>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><rect x="2" y="10" width="5" height="12" rx="1.5" fill="#FFD400"/><rect x="9.5" y="3" width="5" height="19" rx="1.5" fill="#188CE5"/><rect x="17" y="6.5" width="5" height="15.5" rx="1.5" fill="#FF1818"/></svg>
       </a>
       <a href="${personal.socials.codechef}" target="_blank" rel="noopener noreferrer" class="social-pill codechef" title="CodeChef (4★ Peak 1800)">
-        <i class="ri-star-line"></i>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M18.8 9.5C18.6 7 16.5 5 14 5c-.7 0-1.4.2-2 .5C11.4 5.2 10.7 5 10 5c-2.5 0-4.6 2-4.8 4.5C3.9 10.2 3 11.5 3 13c0 1.9 1.4 3.4 3.2 3.8.3 1.8 1.8 3.2 3.8 3.2h4c2 0 3.5-1.4 3.8-3.2 1.8-.4 3.2-1.9 3.2-3.8 0-1.5-.9-2.8-2.2-3.5z" fill="#D97706"/><ellipse cx="12" cy="11.5" rx="5" ry="3.5" fill="#FFFFFF"/><path d="M7 17h10v2c0 1.1-.9 2-2 2H9c-1.1 0-2-.9-2-2v-2z" fill="#5B4638"/></svg>
       </a>
       <a href="${personal.socials.email}" class="social-pill email" title="Send Email">
-        <i class="ri-mail-line"></i>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm9.06 8.683L5.648 6.238 4.353 7.762l7.72 6.555 7.58-6.56-1.306-1.514-6.287 5.44z"/></svg>
       </a>
     `;
   }
@@ -223,17 +222,17 @@ function getPlatformLogo(platform) {
     case 'codechef':
       return `
         <div class="achieve-logo-box codechef-logo-box" title="CodeChef Official Logo">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18.8 9.5C18.6 7 16.5 5 14 5c-.7 0-1.4.2-2 .5C11.4 5.2 10.7 5 10 5c-2.5 0-4.6 2-4.8 4.5C3.9 10.2 3 11.5 3 13c0 1.9 1.4 3.4 3.2 3.8.3 1.8 1.8 3.2 3.8 3.2h4c2 0 3.5-1.4 3.8-3.2 1.8-.4 3.2-1.9 3.2-3.8 0-1.5-.9-2.8-2.2-3.5z" fill="#F59E0B"/>
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.8 9.5C18.6 7 16.5 5 14 5c-.7 0-1.4.2-2 .5C11.4 5.2 10.7 5 10 5c-2.5 0-4.6 2-4.8 4.5C3.9 10.2 3 11.5 3 13c0 1.9 1.4 3.4 3.2 3.8.3 1.8 1.8 3.2 3.8 3.2h4c2 0 3.5-1.4 3.8-3.2 1.8-.4 3.2-1.9 3.2-3.8 0-1.5-.9-2.8-2.2-3.5z" fill="#D97706"/>
             <ellipse cx="12" cy="11.5" rx="5" ry="3.5" fill="#FFFFFF"/>
-            <path d="M7 17h10v2c0 1.1-.9 2-2 2H9c-1.1 0-2-.9-2-2v-2z" fill="#D97706"/>
+            <path d="M7 17h10v2c0 1.1-.9 2-2 2H9c-1.1 0-2-.9-2-2v-2z" fill="#5B4638"/>
           </svg>
         </div>
       `;
     case 'codeforces':
       return `
         <div class="achieve-logo-box codeforces-logo-box" title="Codeforces Official Logo">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="2" y="10" width="5" height="12" rx="1.5" fill="#FFD400"/>
             <rect x="9.5" y="3" width="5" height="19" rx="1.5" fill="#188CE5"/>
             <rect x="17" y="6.5" width="5" height="15.5" rx="1.5" fill="#FF1818"/>
@@ -243,8 +242,8 @@ function getPlatformLogo(platform) {
     case 'leetcode':
       return `
         <div class="achieve-logo-box leetcode-logo-box" title="LeetCode Official Logo">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1 17.9l-2.7 2.6c-.5.5-1.1.7-1.8.7s-1.4-.2-1.8-.7L5.5 16.1c-.5-.5-.7-1.1-.7-1.8s.2-1.4.7-1.8l4.3-4.4c.5-.5 1.1-.6 1.8-.6s1.4.2 1.8.7l2.7 2.6c.5.5 1.4.5 1.9 0 .5-.5.5-1.4 0-1.9l-2.6-2.6c-1-1-2.4-1.5-3.8-1.5s-2.8.5-3.8 1.5L3.6 10.7C2.6 11.7 2 13.1 2 14.5s.6 2.8 1.6 3.8l4.3 4.4c1 1 2.4 1.5 3.8 1.5s2.8-.5 3.8-1.5l2.7-2.6c.5-.5.5-1.4 0-1.9-.5-.5-1.4-.6-2.1-.3z" fill="#E2E8F0"/>
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="leetcode-bracket" d="M16.1 17.9l-2.7 2.6c-.5.5-1.1.7-1.8.7s-1.4-.2-1.8-.7L5.5 16.1c-.5-.5-.7-1.1-.7-1.8s.2-1.4.7-1.8l4.3-4.4c.5-.5 1.1-.6 1.8-.6s1.4.2 1.8.7l2.7 2.6c.5.5 1.4.5 1.9 0 .5-.5.5-1.4 0-1.9l-2.6-2.6c-1-1-2.4-1.5-3.8-1.5s-2.8.5-3.8 1.5L3.6 10.7C2.6 11.7 2 13.1 2 14.5s.6 2.8 1.6 3.8l4.3 4.4c1 1 2.4 1.5 3.8 1.5s2.8-.5 3.8-1.5l2.7-2.6c.5-.5.5-1.4 0-1.9-.5-.5-1.4-.6-2.1-.3z" fill="currentColor"/>
             <path d="M10.5 13.5h10.5a1.5 1.5 0 0 0 0-3H10.5a1.5 1.5 0 0 0 0 3z" fill="#FFA116"/>
           </svg>
         </div>
@@ -252,7 +251,7 @@ function getPlatformLogo(platform) {
     case 'github':
       return `
         <div class="achieve-logo-box github-logo-box" title="GitHub Official Logo">
-          <svg viewBox="0 0 24 24" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
           </svg>
         </div>
@@ -260,8 +259,8 @@ function getPlatformLogo(platform) {
     case 'adobe':
       return `
         <div class="achieve-logo-box adobe-logo-box" title="Adobe Official Logo">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14 3h7v18l-7-18zM3 3h7L3 21V3zm6 11.5l2.8-7.2 3.5 9.1h-2.5l-1-2.6H9.9l-.9 2.3V14.5z" fill="#FF0000"/>
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 3h7v18l-7-18zM3 3h7L3 21V3zm6 11.5l2.8-7.2 3.5 9.1h-2.5l-1-2.6H9.9l-.9 2.3V14.5z" fill="#FA0F00"/>
           </svg>
         </div>
       `;
@@ -269,9 +268,9 @@ function getPlatformLogo(platform) {
     default:
       return `
         <div class="achieve-logo-box algouniv-logo-box" title="AlgoUniversity Graph Theory">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
             <circle cx="6" cy="6" r="3" fill="#3B82F6"/>
-            <circle cx="18" cy="6" r="3" fill="#A855F7"/>
+            <circle cx="18" cy="6" r="3" fill="#8B5CF6"/>
             <circle cx="12" cy="18" r="3" fill="#10B981"/>
             <line x1="8.5" y1="7.5" x2="15.5" y2="7.5"/>
             <line x1="7.5" y1="8.5" x2="10.5" y2="15.5"/>
@@ -388,7 +387,9 @@ function renderContact(personal) {
 
   contactContainer.innerHTML = `
     <div class="contact-method-item">
-      <div class="contact-icon email"><i class="ri-mail-line"></i></div>
+      <div class="contact-icon email" title="Email">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm9.06 8.683L5.648 6.238 4.353 7.762l7.72 6.555 7.58-6.56-1.306-1.514-6.287 5.44z"/></svg>
+      </div>
       <div class="contact-details">
         <span class="contact-lbl">Email Address</span>
         <span class="contact-val" id="email-text">${personal.email}</span>
@@ -399,7 +400,9 @@ function renderContact(personal) {
     </div>
 
     <div class="contact-method-item">
-      <div class="contact-icon phone"><i class="ri-phone-fill"></i></div>
+      <div class="contact-icon phone" title="Phone">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M21 16.42v3.536a1 1 0 0 1-.93.998c-.427.03-.81.046-1.07.046-8.837 0-16-7.163-16-16 0-.26.015-.643.046-1.07A1 1 0 0 1 4.044 3H7.58a1 1 0 0 1 .982.804l.745 3.725a1 1 0 0 1-.418 1.004l-2.008 1.506a12.04 12.04 0 0 0 6.082 6.082l1.506-2.008a1 1 0 0 1 1.004-.418l3.725.745a1 1 0 0 1 .804.982z"/></svg>
+      </div>
       <div class="contact-details">
         <span class="contact-lbl">Phone Number</span>
         <span class="contact-val" id="phone-text">${personal.phone}</span>
@@ -410,7 +413,9 @@ function renderContact(personal) {
     </div>
 
     <div class="contact-method-item">
-      <div class="contact-icon location"><i class="ri-map-pin-2-fill"></i></div>
+      <div class="contact-icon location" title="Location">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 20.9l4.95-4.95a7 7 0 1 0-9.9 0L12 20.9zm0 2.828l-6.364-6.364a9 9 0 1 1 12.728 0L12 23.728zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+      </div>
       <div class="contact-details">
         <span class="contact-lbl">Location</span>
         <span class="contact-val">${personal.location} (IIIT Lucknow)</span>
@@ -418,7 +423,9 @@ function renderContact(personal) {
     </div>
 
     <div class="contact-method-item">
-      <div class="contact-icon linkedin"><i class="ri-linkedin-fill"></i></div>
+      <div class="contact-icon linkedin" title="LinkedIn">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="#0A66C2"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+      </div>
       <div class="contact-details">
         <span class="contact-lbl">LinkedIn</span>
         <a href="${personal.socials.linkedin}" target="_blank" rel="noopener noreferrer" class="contact-val">
@@ -428,7 +435,9 @@ function renderContact(personal) {
     </div>
 
     <div class="contact-method-item">
-      <div class="contact-icon github"><i class="ri-github-fill"></i></div>
+      <div class="contact-icon github" title="GitHub">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      </div>
       <div class="contact-details">
         <span class="contact-lbl">GitHub</span>
         <a href="${personal.socials.github}" target="_blank" rel="noopener noreferrer" class="contact-val">
