@@ -22,9 +22,9 @@ const portfolioData = {
     email: "prashikhumane744@gmail.com",
     phone: "+91-8262049540",
     availableForHire: true,
-    statusText: "Open to Software Engineering Internships & Opportunities",
+    statusText: "Final Year Undergrad • Open to Full-Time Software Engineering Roles & Opportunities",
     tagline: "Engineering resilient full-stack systems, intelligent AI platforms, and algorithmic solutions with precision.",
-    aboutShort: "Pre-final year Computer Science and Business undergraduate at IIIT Lucknow with strong algorithmic fundamentals and proven full-stack product building experience. CodeChef 4★ (1800 peak) and Codeforces Specialist (1572 max).",
+    aboutShort: "Final year Computer Science and Business undergraduate at IIIT Lucknow with strong algorithmic fundamentals and proven full-stack product building experience. CodeChef 4★ (1800 peak) and Codeforces Specialist (1572 max).",
     aboutFull: `I am a Computer Science & Business undergraduate at the Indian Institute of Information Technology (IIIT), Lucknow. My expertise bridges scalable web application architecture, real-time systems, and AI integration with high-level competitive programming rigor.
     
     With 575+ algorithmic problems solved and 2,000+ active GitHub contributions, I build software that is both architecturally sound and performance-optimized. I have designed end-to-end platforms ranging from AI-powered travel planners (integrating Gemini AI and FastAPI microservices) to secure e-commerce systems with role-based access control and payment gateways.`,

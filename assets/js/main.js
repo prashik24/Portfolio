@@ -91,7 +91,7 @@ function renderHero(personal) {
     roleEl.innerHTML = `Full-Stack Software Engineer &amp; <strong>Competitive Programmer</strong>`;
   }
   if (bioEl) {
-    bioEl.innerHTML = `Pre-final year Computer Science &amp; Business student at <strong>IIIT Lucknow</strong> (CGPA: ${personal.cgpa}). Proven builder of resilient distributed web systems, real-time architectures, and ML microservices. CodeChef <strong>4★ (1800)</strong> &amp; Codeforces <strong>Specialist (1572)</strong>.`;
+    bioEl.innerHTML = `Final year Computer Science &amp; Business student at <strong>IIIT Lucknow</strong> (CGPA: ${personal.cgpa}). Proven builder of resilient distributed web systems, real-time architectures, and ML microservices. CodeChef <strong>4★ (1800)</strong> &amp; Codeforces <strong>Specialist (1572)</strong>.`;
   }
   if (statusEl) statusEl.textContent = personal.statusText;
 
