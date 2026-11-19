@@ -33,6 +33,8 @@
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
+  <!-- Ambient background glow utilizing custom palette -->
+  <div class="ambient-glow"></div>
 
   <!-- =========================================================================
        PROPER FULL-WIDTH STICKY NAVBAR (Real Website Standard)
@@ -240,9 +242,9 @@
           <button class="filter-btn" data-filter="frontend">Frontend &amp; Components (2)</button>
         </div>
 
-        <!-- Projects Stack (Rendered dynamically by main.js) -->
-        <div class="projects-stack" id="projects-stack">
-          <!-- Populated by main.js -->
+        <!-- Projects 2x2 Grid (Rendered dynamically by main.js) -->
+        <div class="projects-grid-2x2" id="projects-grid">
+          <!-- Populated by main.js in a 2x2 grid -->
         </div>
       </div>
     </section>
@@ -385,32 +387,93 @@
   </main>
 
   <!-- =========================================================================
-       FOOTER
+       PROPER COMPREHENSIVE FOOTER (Real Website Standard)
        ========================================================================= -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <h4>Prashik Humane</h4>
-          <p>Full-Stack Software Engineer • CodeChef 4★ • IIIT Lucknow '27</p>
+      <div class="footer-main-grid">
+        <!-- Col 1: Brand & Profile -->
+        <div class="footer-col footer-col-brand">
+          <div class="footer-logo-row">
+            <div class="brand-avatar">PH</div>
+            <span class="footer-brand-title">Prashik Humane</span>
+          </div>
+          <p class="footer-bio">
+            Final-year Computer Science &amp; Business undergraduate at <strong>IIIT Lucknow</strong> ('27). Full-stack engineer, AI systems builder, CodeChef 4★ (1800 peak), and Codeforces Specialist (1572 max).
+          </p>
+          <div class="footer-contact-pill">
+            <span class="status-dot"></span> Open to Full-Time SDE Opportunities
+          </div>
         </div>
-        <div class="footer-links">
-          <a href="#hero">Overview</a>
-          <a href="#projects">Projects</a>
-          <a href="#achievements">Achievements</a>
-          <a href="#skills">Skills</a>
-          <a href="#contact">Contact</a>
+
+        <!-- Col 2: Navigation Links -->
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-link-list">
+            <li><a href="#hero"><i class="ri-arrow-right-s-line"></i> Overview</a></li>
+            <li><a href="#projects"><i class="ri-arrow-right-s-line"></i> Featured Projects</a></li>
+            <li><a href="#achievements"><i class="ri-arrow-right-s-line"></i> Competitive Honors</a></li>
+            <li><a href="#skills"><i class="ri-arrow-right-s-line"></i> Technical Skills</a></li>
+            <li><a href="#timeline"><i class="ri-arrow-right-s-line"></i> Education &amp; Leadership</a></li>
+            <li><a href="#contact"><i class="ri-arrow-right-s-line"></i> Contact &amp; Connect</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Live Deployments -->
+        <div class="footer-col">
+          <h4>Live Projects</h4>
+          <ul class="footer-link-list">
+            <li><a href="https://ontrip-frontend.onrender.com/" target="_blank" rel="noopener noreferrer"><i class="ri-external-link-line"></i> OnTrip (AI Travel Platform)</a></li>
+            <li><a href="https://shopkart-fontent.onrender.com/" target="_blank" rel="noopener noreferrer"><i class="ri-external-link-line"></i> ShopKart (E-Commerce Platform)</a></li>
+            <li><a href="https://calendar-wkay.onrender.com/" target="_blank" rel="noopener noreferrer"><i class="ri-external-link-line"></i> Wall Calendar (Next.js)</a></li>
+            <li><a href="https://prashik24.github.io/Amazon/" target="_blank" rel="noopener noreferrer"><i class="ri-external-link-line"></i> Amazon Clone (Pure JS)</a></li>
+            <li><a href="assets/resume.pdf" download="Prashik_Humane_Resume.pdf"><i class="ri-download-2-line"></i> Download Resume (PDF)</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Connect & Profiles -->
+        <div class="footer-col">
+          <h4>Profiles &amp; Contact</h4>
+          <ul class="footer-link-list">
+            <li><a href="mailto:prashikhumane744@gmail.com"><i class="ri-mail-line"></i> prashikhumane744@gmail.com</a></li>
+            <li><a href="tel:+918262049540"><i class="ri-phone-line"></i> +91-8262049540</a></li>
+            <li><a href="https://linkedin.com/in/prashik-humane" target="_blank" rel="noopener noreferrer"><i class="ri-linkedin-fill"></i> LinkedIn Profile</a></li>
+            <li><a href="https://github.com/prashik24" target="_blank" rel="noopener noreferrer"><i class="ri-github-fill"></i> GitHub (2,000+ Contribs)</a></li>
+          </ul>
+          <div class="footer-social-icons">
+            <a href="https://github.com/prashik24" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="GitHub">
+              <i class="ri-github-fill"></i>
+            </a>
+            <a href="https://linkedin.com/in/prashik-humane" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="LinkedIn">
+              <i class="ri-linkedin-fill"></i>
+            </a>
+            <a href="https://www.codechef.com/users/prashik24" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="CodeChef 4★">
+              <i class="ri-star-line"></i>
+            </a>
+            <a href="https://codeforces.com/profile/prashik24" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Codeforces Specialist">
+              <i class="ri-flashlight-line"></i>
+            </a>
+            <a href="https://leetcode.com/u/prashik24" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="LeetCode">
+              <i class="ri-code-s-slash-line"></i>
+            </a>
+            <a href="tel:+918262049540" class="footer-social-btn" title="Phone">
+              <i class="ri-phone-fill"></i>
+            </a>
+          </div>
         </div>
       </div>
 
-      <div class="footer-bottom">
+      <div class="footer-bottom-bar">
         <div>
-          &copy; <span id="current-year">2026</span> Prashik Humane. Designed and engineered for production.
+          &copy; <span id="current-year">2026</span> <strong>Prashik Humane</strong>. Designed and engineered for production.
         </div>
         <div>
-          <a href="#hero" style="display: inline-flex; align-items: center; gap: 0.35rem;">
+          <span>Indian Institute of Information Technology, Lucknow • Class of 2027</span>
+        </div>
+        <div>
+          <button class="back-to-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
             Back to Top <i class="ri-arrow-up-line"></i>
-          </a>
+          </button>
         </div>
       </div>
     </div>
