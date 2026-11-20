@@ -33,6 +33,7 @@ const portfolioData = {
 
     // Social & Profile Links
     socials: {
+      portfolio: "https://prashik-portfolio.onrender.com",
       github: "https://github.com/prashik24",
       linkedin: "https://linkedin.com/in/prashik-humane",
       email: "mailto:prashikhumane744@gmail.com",

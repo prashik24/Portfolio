@@ -1,5 +1,17 @@
 # 🚀 Prashik Humane — Personal Developer Portfolio
 
+<p align="center">
+  <a href="https://prashik-portfolio.onrender.com" target="_blank">
+    <img src="https://img.shields.io/badge/🌐_Live_Deployment-prashik--portfolio.onrender.com-2563eb?style=for-the-badge&logo=render&logoColor=white" alt="Live on Render" />
+  </a>
+  <a href="https://github.com/prashik24/Portfolio" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub_Repository-prashik24/Portfolio-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Repo" />
+  </a>
+  <a href="https://linkedin.com/in/prashik-humane" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-Prashik_Humane-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+</p>
+
 > A modern, high-performance, responsive portfolio website built with clean semantic architecture, dark/light theme support, glassmorphism UI, centralized data management, and direct integration with your original uploaded resume.
 
 ---
