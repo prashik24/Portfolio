@@ -40,13 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // 7. Render Contact Info Cards
   renderContact(data.personal);
 
-  // 8. Setup Interactive Modals
-  setupModals(data);
-
-  // 9. Setup Sticky Navigation & Active Link tracking
+  // 8. Setup Sticky Navigation & Active Link tracking
   setupNavigation();
 
-  // 10. Contact Form Dispatch
+  // 9. Contact Form Dispatch
   setupContactForm(data.personal.email);
 });
 
@@ -191,21 +188,31 @@ function displayFilteredProjects(category) {
           </div>
 
           <ul class="project-achieve-list">
-            ${project.highlights.slice(0, 3).map(h => `<li>${h}</li>`).join('')}
+            ${project.highlights.map(h => `<li>${h}</li>`).join('')}
           </ul>
+
+          ${project.stats && Object.keys(project.stats).length > 0 ? `
+            <div class="project-stat-chips-grid">
+              ${Object.entries(project.stats).map(([k, v]) => `
+                <div class="project-stat-chip">
+                  <span class="stat-lbl">${k.replace(/([A-Z])/g, ' $1')}:</span>
+                  <span class="stat-val">${v}</span>
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
 
           <div class="project-action-row">
             <div class="project-buttons">
-              <a href="${project.links.demo}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" title="Visit Live Application">
-                <i class="ri-external-link-line"></i> Live Demo
-              </a>
+              ${project.links.demo ? `
+                <a href="${project.links.demo}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" title="Visit Live Application">
+                  <i class="ri-external-link-line"></i> Live Demo
+                </a>
+              ` : ''}
               <a href="${project.links.github}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" title="View Source on GitHub">
                 <i class="ri-github-line"></i> Source Code
               </a>
             </div>
-            <button class="arch-btn" onclick="openProjectModal('${project.id}')">
-              Architecture Details <i class="ri-arrow-right-line"></i>
-            </button>
           </div>
         </div>
       </article>
@@ -463,106 +470,7 @@ window.copyToClipboard = function(text, successMsg) {
 };
 
 /* -------------------------------------------------------------------------
- * 8. INTERACTIVE MODALS
- * ------------------------------------------------------------------------- */
-function setupModals(data) {
-  document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
-    backdrop.addEventListener('click', (e) => {
-      if (e.target === backdrop) {
-        closeAllModals();
-      }
-    });
-  });
-
-  document.querySelectorAll('.modal-close-btn').forEach(btn => {
-    btn.addEventListener('click', closeAllModals);
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeAllModals();
-  });
-
-  const resumeBtns = document.querySelectorAll('.resume-trigger-btn');
-  resumeBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      openResumeModal();
-    });
-  });
-}
-
-window.openProjectModal = function(projectId) {
-  const project = window.portfolioData.projects.find(p => p.id === projectId);
-  if (!project) return;
-
-  const modal = document.getElementById('project-modal');
-  const title = document.getElementById('modal-project-title');
-  const body = document.getElementById('modal-project-body');
-
-  title.textContent = project.title;
-  body.innerHTML = `
-    <div style="margin-bottom: 1.5rem;">
-      <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.8rem; flex-wrap: wrap;">
-        <span class="project-category-tag">${project.categoryLabel}</span>
-        ${project.deployment ? `
-          <span style="font-size: 0.78rem; font-weight: 700; color: var(--accent-emerald); background: rgba(16, 185, 129, 0.12); padding: 0.25rem 0.7rem; border-radius: var(--radius-full); border: 1px solid rgba(16, 185, 129, 0.3);">
-            🟢 Deployed on ${project.deployment.platform}
-          </span>
-        ` : ''}
-      </div>
-      <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.6;">${project.shortDescription}</p>
-    </div>
-
-    <div style="margin-bottom: 1.5rem;">
-      <h4 style="font-size: 1.1rem; margin-bottom: 0.8rem; color: var(--text-main);">Technical Architecture &amp; Highlights</h4>
-      <ul class="project-achieve-list" style="margin-bottom: 1rem;">
-        ${project.highlights.map(h => `<li>${h}</li>`).join('')}
-      </ul>
-    </div>
-
-    <div style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-card); margin-bottom: 1.5rem;">
-      <h4 style="font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--accent-primary);">Key Engineering Metrics &amp; Stack</h4>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; font-size: 0.85rem;">
-        ${Object.entries(project.stats || {}).map(([k, v]) => `
-          <div>
-            <div style="color: var(--text-muted); text-transform: capitalize;">${k}</div>
-            <div style="color: var(--text-main); font-weight: 700; margin-top: 0.2rem;">${v}</div>
-          </div>
-        `).join('')}
-      </div>
-    </div>
-
-    <div style="display: flex; gap: 0.85rem; flex-wrap: wrap;">
-      ${project.links.demo ? `
-        <a href="${project.links.demo}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
-          <i class="ri-external-link-line"></i> Open Live Deployment
-        </a>
-      ` : ''}
-      <a href="${project.links.github}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-        <i class="ri-github-line"></i> View GitHub Repository
-      </a>
-    </div>
-  `;
-
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
-};
-
-window.openResumeModal = function() {
-  const modal = document.getElementById('resume-modal');
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
-};
-
-window.closeAllModals = function() {
-  document.querySelectorAll('.modal-backdrop').forEach(modal => {
-    modal.classList.remove('open');
-  });
-  document.body.style.overflow = '';
-};
-
-/* -------------------------------------------------------------------------
- * 9. NAVIGATION & SCROLL TRACKING
+ * 8. NAVIGATION & SCROLL TRACKING
  * ------------------------------------------------------------------------- */
 function setupNavigation() {
   const navbar = document.querySelector('.navbar');

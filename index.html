@@ -65,8 +65,8 @@
         </button>
 
         <!-- Resume Download -->
-        <a href="assets/resume.pdf" download="Prashik_Humane_Resume.pdf" class="btn btn-secondary btn-sm" title="Download Resume PDF">
-          <i class="ri-download-2-line"></i> Resume
+        <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" title="View Resume PDF">
+          <i class="ri-file-text-line"></i> Resume
         </a>
 
         <!-- Contact CTA -->
@@ -122,9 +122,9 @@
               <a href="#projects" class="btn btn-primary">
                 <i class="ri-layout-grid-line"></i> Explore Featured Work ▾
               </a>
-              <button class="btn btn-secondary resume-trigger-btn">
+              <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
                 <i class="ri-file-text-line"></i> View Resume
-              </button>
+              </a>
               <button class="btn btn-outline" onclick="copyToClipboard('prashikhumane744@gmail.com', 'Email copied to clipboard!')">
                 <i class="ri-file-copy-line"></i> Copy Email
               </button>
@@ -446,7 +446,7 @@
         <a href="#skills">Skills</a>
         <a href="#timeline">Education</a>
         <a href="#contact">Contact</a>
-        <a href="assets/resume.pdf" download="Prashik_Humane_Resume.pdf" class="footer-resume-link">
+        <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="footer-resume-link">
           <i class="ri-file-text-line"></i> Download Resume (PDF)
         </a>
       </div>
@@ -464,160 +464,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- =========================================================================
-       MODALS
-       ========================================================================= -->
-
-  <!-- 1. Project Architecture Deep-Dive Modal -->
-  <div class="modal-backdrop" id="project-modal" role="dialog" aria-modal="true">
-    <div class="modal-container">
-      <div class="modal-header">
-        <h3 id="modal-project-title">Project Architecture</h3>
-        <button class="modal-close-btn" aria-label="Close modal">&times;</button>
-      </div>
-      <div class="modal-body" id="modal-project-body">
-        <!-- Injected dynamically -->
-      </div>
-    </div>
-  </div>
-
-  <!-- 2. Resume Viewer Modal with Print & Original Download -->
-  <div class="modal-backdrop" id="resume-modal" role="dialog" aria-modal="true">
-    <div class="modal-container" style="max-width: 860px;">
-      <div class="modal-header">
-        <div>
-          <h3 style="font-size: 1.25rem; margin-bottom: 0.2rem;">Prashik Humane — Official Resume</h3>
-          <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Linked to your uploaded PDF: assets/resume.pdf</p>
-        </div>
-        <div style="display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;">
-          <a href="assets/resume.pdf" download="Prashik_Humane_Resume.pdf" class="btn btn-primary btn-sm" title="Download original uploaded PDF">
-            <i class="ri-download-2-line"></i> Download PDF
-          </a>
-          <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" title="Open PDF in new tab">
-            <i class="ri-external-link-line"></i> Open PDF
-          </a>
-          <button class="btn btn-outline btn-sm" onclick="window.print()" title="Print resume">
-            <i class="ri-printer-line"></i> Print
-          </button>
-          <button class="modal-close-btn" aria-label="Close modal">&times;</button>
-        </div>
-      </div>
-      <div class="modal-body">
-        <div style="background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: var(--radius-sm); padding: 0.75rem 1rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
-          <div style="font-size: 0.85rem; color: var(--text-secondary);">
-            📄 <strong>Source File:</strong> <code style="color: var(--accent-primary);">assets/resume.pdf</code> — Replace this PDF file anytime to update your resume across your portfolio!
-          </div>
-          <a href="assets/resume.pdf" download="Prashik_Humane_Resume.pdf" class="btn btn-sm btn-outline" style="font-size: 0.78rem;">
-            Direct Download
-          </a>
-        </div>
-
-        <!-- Printable Clean Resume Document -->
-        <div class="resume-sheet">
-          <h1>Prashik Humane</h1>
-          <div class="resume-header-links">
-            Lucknow, India &nbsp;|&nbsp; +91-8262049540 &nbsp;|&nbsp; prashikhumane744@gmail.com<br />
-            linkedin.com/in/prashik-humane &nbsp;|&nbsp; github.com/prashik24
-          </div>
-
-          <!-- Education -->
-          <div class="resume-section-title">Education</div>
-          <div class="resume-row">
-            <strong>Indian Institute of Information Technology (IIIT), Lucknow</strong>
-            <span>2023 – 2027</span>
-          </div>
-          <div class="resume-sub-row">
-            <span>B.Tech in Computer Science and Business – CGPA: 8.0</span>
-            <span>Lucknow, India</span>
-          </div>
-
-          <div class="resume-row" style="margin-top: 0.6rem;">
-            <strong>St. Peter’s School</strong>
-            <span>2022</span>
-          </div>
-          <div class="resume-sub-row">
-            <span>Higher Secondary Certificate (HSC – Maharashtra State Board) – 94.5%</span>
-            <span>Nagpur, India</span>
-          </div>
-
-          <div class="resume-row" style="margin-top: 0.6rem;">
-            <strong>Sunny’s Spring Dale School</strong>
-            <span>2020</span>
-          </div>
-          <div class="resume-sub-row">
-            <span>Secondary School Examination (CBSE Class X) – 90.0%</span>
-            <span>Bhandara, India</span>
-          </div>
-
-          <!-- Technical Skills -->
-          <div class="resume-section-title">Technical Skills</div>
-          <p style="font-size: 0.85rem; color: #334155; margin-bottom: 0.35rem;">
-            <strong>Languages:</strong> JavaScript (ES6+), TypeScript, C++, Python, SQL, HTML/CSS<br />
-            <strong>Developer Tools &amp; DevOps:</strong> Git, GitHub, Docker, Postman, Render<br />
-            <strong>Frameworks &amp; Libraries:</strong> React.js, Next.js, Node.js, Express.js, FastAPI, Scikit-learn, REST APIs, JWT, Vite<br />
-            <strong>Databases:</strong> MongoDB, MySQL<br />
-            <strong>Core Concepts:</strong> Data Structures &amp; Algorithms (DSA), OOP, DBMS, Operating Systems, Machine Learning
-          </p>
-
-          <!-- Projects -->
-          <div class="resume-section-title">Projects</div>
-          <div class="resume-row">
-            <strong>OnTrip – AI Travel Planning Platform</strong>
-            <span>React 19, Node.js, Express, MongoDB, Socket.io, Gemini AI, FastAPI, Scikit-learn</span>
-          </div>
-          <ul class="resume-bullets">
-            <li>Automated multi-day itinerary generation using Google Gemini AI, integrating route maps and dynamic cost estimates.</li>
-            <li>Enabled real-time bidirectional host messaging via Socket.io and built a social feed for travel bookmarks.</li>
-            <li>Integrated Razorpay checkout, automated jsPDF invoice generation, and scheduled Node-Cron trip alerts.</li>
-            <li>Enforced authentication via Google OAuth 2.0, Brevo OTP verification, HTTP-only JWT cookies, and Express RBAC.</li>
-            <li>Engineered a hybrid recommendation pipeline via FastAPI and Scikit-learn (TF-IDF, Cosine Similarity) with a resilient Node.js native vector fallback to guarantee zero downtime.</li>
-          </ul>
-
-          <div class="resume-row" style="margin-top: 0.6rem;">
-            <strong>ShopKart – Full-Stack E-Commerce Platform</strong>
-            <span>React 19, Node.js, Express, MongoDB Atlas, Razorpay</span>
-          </div>
-          <ul class="resume-bullets">
-            <li>Engineered an e-commerce platform with catalog filters, persistent cart state, and order progress bars.</li>
-            <li>Implemented user authentication with Brevo email OTPs, bcrypt hashing, and role-separated JWT cookie sessions.</li>
-            <li>Built an admin dashboard for full product inventory CRUD operations, order status updates, and payment logs.</li>
-            <li>Integrated client-side localStorage caching with a 10-minute TTL to reduce redundant database queries.</li>
-          </ul>
-
-          <!-- Achievements -->
-          <div class="resume-section-title">Achievements &amp; Competitive Programming</div>
-          <ul class="resume-bullets">
-            <li><strong>CodeChef 4★:</strong> Achieved peak rating of 1800.</li>
-            <li><strong>Codeforces Specialist:</strong> Achieved max rating of 1572.</li>
-            <li><strong>LeetCode:</strong> Max rating of 1491 with consistent contest participation.</li>
-            <li><strong>GitHub Activity:</strong> Maintained 2000+ contributions demonstrating active development consistency.</li>
-            <li><strong>Problem Solving:</strong> Solved over 575+ algorithmic problems and competed in 50+ official contests across platforms.</li>
-            <li><strong>Adobe University Hackathon:</strong> Cleared Round 1 (MCQ + Coding OA) organized by Adobe.</li>
-            <li><strong>AlgoUniversity Certification:</strong> Completed Advanced Graphs Module Certification.</li>
-          </ul>
-
-          <!-- Positions of Responsibility -->
-          <div class="resume-section-title">Positions of Responsibility</div>
-          <div class="resume-row">
-            <strong>Senior Member, Crotonia Literary Society</strong>
-            <span>IIIT Lucknow</span>
-          </div>
-          <ul class="resume-bullets">
-            <li>Spearheaded inter-college literary summits and flagship university debates engaging 200+ participants.</li>
-          </ul>
-
-          <div class="resume-row" style="margin-top: 0.6rem;">
-            <strong>Core Member, Entrepreneurship Cell (E-Cell)</strong>
-            <span>IIIT Lucknow</span>
-          </div>
-          <ul class="resume-bullets">
-            <li>Coordinated technical entrepreneurship workshops, speaker sessions, and startup pitch events hosting 150+ attendees.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Toast Notification Container -->
   <div class="toast-notice" id="toast-notice"></div>
