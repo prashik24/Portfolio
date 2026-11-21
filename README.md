@@ -127,7 +127,7 @@ Open **`assets/js/data.js`** in your code editor. Everything is structured in cl
 
 ---
 
-## 📬 Contact & Support
+## 📬 Contact & Support :
 - **Developer**: Prashik Humane
 - **Email**: [prashikhumane744@gmail.com](mailto:prashikhumane744@gmail.com)
 - **LinkedIn**: [linkedin.com/in/prashik-humane](https://linkedin.com/in/prashik-humane)
