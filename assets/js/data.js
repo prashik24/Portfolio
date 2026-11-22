@@ -39,8 +39,8 @@ const portfolioData = {
       email: "mailto:prashikhumane744@gmail.com",
       phone: "tel:+918262049540",
       leetcode: "https://leetcode.com/u/prashik24",
-      codechef: "https://www.codechef.com/users/prashik24",
-      codeforces: "https://codeforces.com/profile/prashik24"
+      codechef: "https://www.codechef.com/users/whyitsme",
+      codeforces: "https://codeforces.com/profile/whyitsme"
     }
   },
 
@@ -198,7 +198,7 @@ const portfolioData = {
       rating: "Peak Rating: 1800",
       description: "Consistent high-ranking performer in rated Division 2 contests solving advanced algorithmic problems.",
       icon: "star",
-      url: "https://www.codechef.com/users/prashik24",
+      url: "https://www.codechef.com/users/whyitsme",
       accent: "#f59e0b"
     },
     {
@@ -208,7 +208,7 @@ const portfolioData = {
       rating: "Max Rating: 1572",
       description: "Competed in high-intensity global rounds solving intricate combinatorics, dynamic programming, and greedy algorithms.",
       icon: "zap",
-      url: "https://codeforces.com/profile/prashik24",
+      url: "https://codeforces.com/profile/whyitsme",
       accent: "#06b6d4"
     },
     {

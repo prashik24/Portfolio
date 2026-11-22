@@ -53,10 +53,10 @@
 ### 🏆 Competitive Programming & Honors
 
 <p align="center">
-  <a href="https://www.codechef.com/users/prashik24" target="_blank">
+  <a href="https://www.codechef.com/users/whyitsme" target="_blank">
     <img src="https://img.shields.io/badge/CodeChef-4★%20(1800%20Peak)-5B4638?style=for-the-badge&logo=codechef&logoColor=white" alt="CodeChef 4 Star" />
   </a>
-  <a href="https://codeforces.com/profile/prashik24" target="_blank">
+  <a href="https://codeforces.com/profile/whyitsme" target="_blank">
     <img src="https://img.shields.io/badge/Codeforces-Specialist%20(1572%20Max)-1F8ACB?style=for-the-badge&logo=codeforces&logoColor=white" alt="Codeforces Specialist" />
   </a>
   <a href="https://leetcode.com/u/prashik24" target="_blank">
@@ -163,10 +163,10 @@
   <a href="https://leetcode.com/u/prashik24" target="_blank">
     <img src="https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=white" alt="LeetCode" />
   </a>
-  <a href="https://www.codechef.com/users/prashik24" target="_blank">
+  <a href="https://www.codechef.com/users/whyitsme" target="_blank">
     <img src="https://img.shields.io/badge/CodeChef-5B4638?style=for-the-badge&logo=codechef&logoColor=white" alt="CodeChef" />
   </a>
-  <a href="https://codeforces.com/profile/prashik24" target="_blank">
+  <a href="https://codeforces.com/profile/whyitsme" target="_blank">
     <img src="https://img.shields.io/badge/Codeforces-1F8ACB?style=for-the-badge&logo=codeforces&logoColor=white" alt="Codeforces" />
   </a>
 </p>
