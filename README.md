@@ -129,6 +129,9 @@ Open **`assets/js/data.js`** in your code editor. Everything is structured in cl
 
 ## 📬 Contact & Support :
 - **Developer**: Prashik Humane
+- **Live Portfolio**: [prashik-portfolio.onrender.com](https://prashik-portfolio.onrender.com)
 - **Email**: [prashikhumane744@gmail.com](mailto:prashikhumane744@gmail.com)
 - **LinkedIn**: [linkedin.com/in/prashik-humane](https://linkedin.com/in/prashik-humane)
 - **GitHub**: [github.com/prashik24](https://github.com/prashik24)
+- **CodeChef**: [codechef.com/users/whyitsme](https://www.codechef.com/users/whyitsme)
+- **Codeforces**: [codeforces.com/profile/whyitsme](https://codeforces.com/profile/whyitsme)
