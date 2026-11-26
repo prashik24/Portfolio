@@ -244,7 +244,7 @@ function renderOpenSource(openSourceData) {
           <div class="os-titles">
             <div class="os-title-row">
               <h3 class="os-org-title">
-                ${item.role} – <a href="${item.repoUrl}" target="_blank" rel="noopener noreferrer" class="os-org-name">${item.organization}</a>
+                <span class="os-role-text">${item.role}</span> <span class="os-sep">–</span> <a href="${item.repoUrl}" target="_blank" rel="noopener noreferrer" class="os-org-name">${item.organization}</a>
               </h3>
               <span class="os-status-pill">
                 <i class="ri-git-merge-line"></i> ${item.status}

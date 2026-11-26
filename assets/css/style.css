@@ -680,6 +680,7 @@ p {
   background: transparent !important; /* Explicitly NO background box */
   border: none !important;            /* Explicitly NO border */
   box-shadow: none !important;        /* Explicitly NO shadow */
+  white-space: nowrap !important;     /* Strictly keep nav item in one line across devices */
 }
 
 .nav-link::after {
@@ -1500,12 +1501,23 @@ p {
   font-weight: 700;
   color: var(--text-main);
   margin: 0;
+  line-height: 1.3;
+}
+
+.os-role-text {
+  white-space: nowrap; /* Strictly in one line across devices */
+}
+
+.os-sep {
+  color: var(--text-muted);
+  margin: 0 0.15rem;
 }
 
 .os-org-name {
   color: #38bdf8;
   text-decoration: none;
   transition: var(--transition);
+  white-space: nowrap;
 }
 
 .os-org-name:hover {
@@ -1769,12 +1781,111 @@ p {
   color: #0f172a;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 860px) {
   .os-prs-grid {
     grid-template-columns: 1fr;
   }
   .os-card {
-    padding: 1.5rem;
+    padding: 1.75rem 1.35rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .opensource-section {
+    padding: 3.75rem 0;
+  }
+  .os-card {
+    padding: 1.35rem 1.15rem;
+  }
+  .os-card-header {
+    margin-bottom: 1rem;
+  }
+  .os-org-meta {
+    gap: 0.85rem;
+    align-items: flex-start;
+  }
+  .os-logo-box {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+  .os-logo-box svg {
+    width: 28px;
+    height: 28px;
+  }
+  .os-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+  .os-org-title {
+    font-size: 1.15rem;
+    line-height: 1.35;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .os-role-text {
+    white-space: nowrap;
+  }
+  .os-meta-row {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+  }
+  .os-summary {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+  }
+  .os-prs-grid {
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .os-pr-card {
+    padding: 1.15rem;
+  }
+  .os-pr-top {
+    gap: 0.4rem;
+  }
+  .os-pr-footer {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .os-highlights-box {
+    padding: 0.85rem 1rem;
+    gap: 0.65rem;
+  }
+  .os-hl-text {
+    font-size: 0.84rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .os-card {
+    padding: 1.15rem 0.85rem;
+  }
+  .os-org-title {
+    font-size: 1.05rem;
+  }
+  .os-role-text {
+    font-size: 0.95rem;
+  }
+  .os-logo-box {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+  }
+  .os-pr-card {
+    padding: 0.95rem 0.8rem;
+  }
+  .os-highlights-box {
+    padding: 0.75rem 0.8rem;
+    gap: 0.5rem;
+  }
+  .os-hl-text {
+    font-size: 0.8rem;
   }
 }
 
@@ -2548,6 +2659,7 @@ p {
   color: var(--text-secondary);
   transition: var(--transition);
   text-decoration: none;
+  white-space: nowrap; /* Strictly in one line */
 }
 
 .footer-nav-row a:hover {
@@ -2717,18 +2829,49 @@ p {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1140px) and (min-width: 992px) {
+  .nav-container {
+    padding: 0 1rem;
+  }
+  .nav-menu {
+    gap: 0.2rem;
+  }
+  .nav-link {
+    font-size: 0.86rem;
+    padding: 0.45rem 0.5rem;
+  }
+  .brand-role {
+    display: none;
+  }
+  .nav-actions .btn-secondary {
+    display: none;
+  }
+}
+
+@media (max-width: 991px) {
   .nav-menu, .nav-actions .btn {
     display: none;
   }
   .mobile-toggle {
     display: block;
   }
+  .brand-role {
+    display: none;
+  }
   .hero-title {
-    font-size: 2.25rem;
+    font-size: 2.35rem;
   }
   .hero-section {
     padding-top: 7rem;
+  }
+  .footer-nav-row {
+    gap: 1.15rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.15rem;
   }
   .metrics-grid {
     grid-template-columns: 1fr;
@@ -2743,7 +2886,7 @@ p {
     grid-template-columns: 1fr;
   }
   .footer-nav-row {
-    gap: 1.25rem;
+    gap: 1rem;
   }
 }
 
@@ -2773,9 +2916,10 @@ p {
 .mobile-drawer a {
   font-size: 1.05rem;
   font-weight: 600;
-  padding: 0.5rem 0;
+  padding: 0.6rem 0;
   border-bottom: 1px solid var(--border-subtle);
   color: var(--text-main);
+  white-space: nowrap; /* Strictly in one line */
 }
 
 .mobile-drawer a:hover {
