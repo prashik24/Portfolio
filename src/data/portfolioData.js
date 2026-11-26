@@ -188,6 +188,40 @@ const portfolioData = {
   ],
 
   // -----------------------------------------------------------------------
+  // 3.5. OPEN SOURCE CONTRIBUTIONS
+  // -----------------------------------------------------------------------
+  openSource: [
+    {
+      organization: "NumPy",
+      repo: "numpy/numpy",
+      repoUrl: "https://github.com/numpy/numpy",
+      role: "Open Source Contributor",
+      period: "November 2026 – Present",
+      status: "Merged Upstream",
+      summary: "Contributed two bug fixes to NumPy, an established open-source numerical computing library.",
+      prs: [
+        {
+          number: "PR #33468",
+          url: "https://github.com/numpy/numpy/pull/33468",
+          status: "Merged",
+          title: "Fixed degenerate domain inference in Polynomial.fromroots, preventing division-by-zero warnings and NaN coefficients for single or repeated roots.",
+          module: "numpy.polynomial",
+          tag: "Bug Fix & Math Logic"
+        },
+        {
+          number: "PR #33457",
+          url: "https://github.com/numpy/numpy/pull/33457",
+          status: "Merged",
+          title: "Fixed MaskedArray.put issues involving value repetition, multidimensional indexing and hard-mask handling.",
+          module: "numpy.ma",
+          tag: "Core Indexing & Masking"
+        }
+      ],
+      highlights: "Added regression tests, addressed maintainer feedback, and contributed fixes merged into NumPy's main branch."
+    }
+  ],
+
+  // -----------------------------------------------------------------------
   // 4. ACHIEVEMENTS & COMPETITIVE PROGRAMMING
   // -----------------------------------------------------------------------
   achievements: [

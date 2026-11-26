@@ -36,6 +36,11 @@
     - **Live App**: [https://prashik24.github.io/Amazon/](https://prashik24.github.io/Amazon/)
     - **GitHub**: [https://github.com/prashik24/Amazon](https://github.com/prashik24/Amazon)
     - Pure HTML5, CSS3, and JavaScript front-end replica of Amazon's homepage with responsive grid and multi-tier navigation.
+- **Open Source Contributions (NumPy)**:
+  - Active contributor to **NumPy** (`numpy/numpy`):
+    - [PR #33468](https://github.com/numpy/numpy/pull/33468): Fixed degenerate domain inference in `Polynomial.fromroots`.
+    - [PR #33457](https://github.com/numpy/numpy/pull/33457): Fixed `MaskedArray.put` value repetition and multidimensional indexing.
+    - Regression tests and bug fixes merged into NumPy main branch.
 - **Competitive Programming & Metrics Showcase**:
   - Visual badges for **CodeChef 4★ (1800 Peak)**, **Codeforces Specialist (1572 Max)**, **LeetCode (1491)**, **Adobe Hackathon**, and **AlgoUniversity**.
 - **Original Resume Integration**:

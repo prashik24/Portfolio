@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // 3. Render Flagship Projects Stack
   renderProjects(data.projects);
 
+  // 3.5. Render Open Source Contributions
+  renderOpenSource(data.openSource);
+
   // 4. Render Achievements & Competitive Programming
   renderAchievements(data.achievements);
 
@@ -218,6 +221,75 @@ function displayFilteredProjects(category) {
       </article>
     `;
   }).join('');
+}
+
+/* -------------------------------------------------------------------------
+ * 3.5. OPEN SOURCE CONTRIBUTIONS (NumPy Upstream Bug Fixes)
+ * ------------------------------------------------------------------------- */
+function renderOpenSource(openSourceData) {
+  const container = document.getElementById('opensource-container');
+  if (!container || !openSourceData || !openSourceData.length) return;
+
+  container.innerHTML = openSourceData.map(item => `
+    <article class="os-card">
+      <div class="os-card-header">
+        <div class="os-org-meta">
+          <div class="os-logo-box" title="${item.organization} Official Numerical Computing Logo">
+            <svg viewBox="0 0 24 24" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="24" height="24" rx="5" fill="#013243"/>
+              <path d="M5 6h3.2l5 7.8V6H16v12h-3.2l-5-7.8V18H5V6z" fill="#4DABCF"/>
+              <rect x="14" y="6" width="5" height="5" rx="1" fill="#EAA52E"/>
+            </svg>
+          </div>
+          <div class="os-titles">
+            <div class="os-title-row">
+              <h3 class="os-org-title">
+                ${item.role} – <a href="${item.repoUrl}" target="_blank" rel="noopener noreferrer" class="os-org-name">${item.organization}</a>
+              </h3>
+              <span class="os-status-pill">
+                <i class="ri-git-merge-line"></i> ${item.status}
+              </span>
+            </div>
+            <div class="os-meta-row">
+              <span class="os-period"><i class="ri-calendar-line"></i> ${item.period}</span>
+              <span class="os-meta-dot">•</span>
+              <a href="${item.repoUrl}" target="_blank" rel="noopener noreferrer" class="os-repo-link">
+                <i class="ri-github-fill"></i> ${item.repo}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="os-summary">${item.summary}</p>
+
+      <div class="os-prs-grid">
+        ${item.prs.map(pr => `
+          <div class="os-pr-card">
+            <div class="os-pr-top">
+              <a href="${pr.url}" target="_blank" rel="noopener noreferrer" class="os-pr-badge">
+                <i class="ri-git-pull-request-line"></i> ${pr.number}
+              </a>
+              <span class="os-pr-module">${pr.module}</span>
+              <span class="os-pr-merged-pill"><i class="ri-check-line"></i> Merged</span>
+            </div>
+            <p class="os-pr-desc">${pr.title}</p>
+            <div class="os-pr-footer">
+              <span class="os-pr-tag"><i class="ri-price-tag-3-line"></i> ${pr.tag}</span>
+              <a href="${pr.url}" target="_blank" rel="noopener noreferrer" class="os-pr-link">
+                View on GitHub <i class="ri-arrow-right-up-line"></i>
+              </a>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="os-highlights-box">
+        <div class="os-hl-icon"><i class="ri-checkbox-circle-fill"></i></div>
+        <div class="os-hl-text"><strong>Engineering Verification:</strong> ${item.highlights}</div>
+      </div>
+    </article>
+  `).join('');
 }
 
 /* -------------------------------------------------------------------------

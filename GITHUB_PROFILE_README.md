@@ -50,6 +50,16 @@
 
 ---
 
+### 🌐 Open Source Contributions
+
+- 🚀 **[NumPy](https://github.com/numpy/numpy)** — *Open Source Contributor (November 2026 – Present)*
+  - Contributed two bug fixes to NumPy, an established open-source numerical computing library:
+  - **[PR #33468](https://github.com/numpy/numpy/pull/33468)** (*Merged*): Fixed degenerate domain inference in `Polynomial.fromroots`, preventing division-by-zero warnings and NaN coefficients for single or repeated roots.
+  - **[PR #33457](https://github.com/numpy/numpy/pull/33457)** (*Merged*): Fixed `MaskedArray.put` issues involving value repetition, multidimensional indexing and hard-mask handling.
+  - Added regression tests, addressed maintainer feedback, and contributed fixes merged into NumPy's main branch.
+
+---
+
 ### 🏆 Competitive Programming & Honors
 
 <p align="center">
