@@ -1,63 +1,62 @@
 /**
  * =========================================================================
- * INTERACTIVE 3D WIREFRAME POLYHEDRA & CONSTELLATION BACKGROUND
- * High-performance, zero-dependency HTML5 Canvas visualization.
+ * 3D GEOMETRIC CRYSTAL POLYHEDRA (OVERVIEW / HERO ONLY)
+ * Distinct, non-colliding geometric wireframe patterns confined strictly
+ * to the Overview/Hero section with smooth harmonic floating motion.
  * =========================================================================
  */
 
 (function () {
   'use strict';
 
-  const canvas = document.getElementById('bg-canvas');
-  if (!canvas) return;
+  const heroSection = document.getElementById('hero');
+  const canvas = document.getElementById('hero-bg-canvas');
+  if (!heroSection || !canvas) return;
 
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
-  // Configuration
   let width = 0;
   let height = 0;
   let dpr = 1;
   let animationFrameId = null;
+  let isSectionVisible = true;
   let isTabActive = true;
 
-  // Mouse interaction state
+  // Mouse interaction state (relative to hero section)
   const mouse = {
     x: -9999,
     y: -9999,
     targetX: -9999,
     targetY: -9999,
-    radius: 140,
     active: false
   };
 
-  // Color theme definitions
+  // Theme-aware color palette
   function getThemeColors() {
     const isLight = document.documentElement.getAttribute('data-theme') === 'light';
     if (isLight) {
       return {
-        polyEdge: 'rgba(37, 99, 235, ',      // Indigo/Blue
-        polyVertex: 'rgba(30, 64, 175, ',    // Deep Blue
-        particle: 'rgba(59, 130, 246, ',     // Soft Blue
-        connection: 'rgba(99, 102, 241, ',   // Slate-Indigo
-        glowColor: 'rgba(37, 99, 235, 0.3)'
+        edgeColor: 'rgba(37, 99, 235, ',      // Vibrant Blue / Indigo
+        vertexColor: 'rgba(30, 64, 175, ',    // Deep Navy Blue
+        starColor: 'rgba(59, 130, 246, ',     // Soft Blue
+        glow: 'rgba(37, 99, 235, 0.25)'
       };
     } else {
       return {
-        polyEdge: 'rgba(56, 189, 248, ',     // Vibrant Cyan/Sky
-        polyVertex: 'rgba(224, 242, 254, ',  // Luminous Ice White
-        particle: 'rgba(96, 165, 250, ',     // Tech Blue
-        connection: 'rgba(56, 189, 248, ',   // Ethereal Cyan
-        glowColor: 'rgba(56, 189, 248, 0.45)'
+        edgeColor: 'rgba(56, 189, 248, ',     // Tech Cyan / Sky
+        vertexColor: 'rgba(224, 242, 254, ',  // Luminous Ice White
+        starColor: 'rgba(96, 165, 250, ',     // Ambient Stardust
+        glow: 'rgba(56, 189, 248, 0.45)'
       };
     }
   }
 
-  let themeColors = getThemeColors();
+  let theme = getThemeColors();
 
-  // Listen to theme changes
+  // Watch for theme toggle
   const themeObserver = new MutationObserver(() => {
-    themeColors = getThemeColors();
+    theme = getThemeColors();
   });
   themeObserver.observe(document.documentElement, {
     attributes: true,
@@ -65,10 +64,10 @@
   });
 
   /* -------------------------------------------------------------------------
-   * 1. 3D GEOMETRY MODELS (Polyhedra & Crystals)
+   * 1. 6 DISTINCT GEOMETRIC 3D WIREFRAME MODELS
    * ------------------------------------------------------------------------- */
   
-  // Model A: Icosahedron (20 triangular faces, 12 vertices, 30 edges)
+  // Model 0: Regular Icosahedron (20 faces, 12 vertices, 30 edges)
   function createIcosahedron() {
     const phi = (1 + Math.sqrt(5)) / 2;
     const rawVerts = [
@@ -78,8 +77,6 @@
     ];
     const len = Math.hypot(1, phi);
     const verts = rawVerts.map(([x, y, z]) => [x / len, y / len, z / len]);
-    
-    // Connect vertices within icosahedron edge distance
     const edges = [];
     for (let i = 0; i < verts.length; i++) {
       for (let j = i + 1; j < verts.length; j++) {
@@ -93,10 +90,38 @@
         }
       }
     }
-    return { vertices: verts, edges };
+    return { name: 'Icosahedron', vertices: verts, edges };
   }
 
-  // Model B: Octahedron (8 faces, 6 vertices, 12 edges)
+  // Model 1: Elongated Faceted Crystal Shard (Asymmetric Gem)
+  function createCrystalShard() {
+    const verts = [
+      [0, 1.4, 0],          // Top needle
+      [-0.8, 0.4, -0.6],    // Upper ring
+      [0.8, 0.4, -0.6],
+      [0, 0.5, 0.9],
+      [-0.9, -0.4, 0.5],    // Lower ring
+      [0.9, -0.4, 0.5],
+      [0, -0.5, -0.9],
+      [0, -1.4, 0]          // Bottom needle
+    ];
+    // Normalize to unit scale
+    const normVerts = verts.map(([x, y, z]) => {
+      const l = Math.hypot(x, y, z);
+      return [x / l, y / l, z / l];
+    });
+    const edges = [
+      [0, 1], [0, 2], [0, 3],
+      [1, 2], [2, 3], [3, 1],
+      [1, 4], [2, 5], [3, 4], [3, 5],
+      [1, 6], [2, 6], [4, 6], [5, 6],
+      [4, 5],
+      [7, 4], [7, 5], [7, 6]
+    ];
+    return { name: 'CrystalShard', vertices: normVerts, edges };
+  }
+
+  // Model 2: Geometric Octahedron (Dual Pyramid Diamond, 6 vertices, 12 edges)
   function createOctahedron() {
     const verts = [
       [ 1,  0,  0], [-1,  0,  0],
@@ -108,112 +133,150 @@
       [1, 2], [1, 3], [1, 4], [1, 5],
       [2, 4], [4, 3], [3, 5], [5, 2]
     ];
-    return { vertices: verts, edges };
+    return { name: 'Octahedron', vertices: verts, edges };
   }
 
-  // Model C: Hexagonal Crystal Bipyramid (8 vertices, 18 edges)
-  function createCrystalBipyramid() {
+  // Model 3: Hexagonal Bipyramid (Diamond Crystal, 8 vertices, 18 edges)
+  function createHexBipyramid() {
     const verts = [
-      [0,  1.35, 0], // Top apex
-      [0, -1.35, 0]  // Bottom apex
+      [0,  1.3, 0], // Top
+      [0, -1.3, 0]  // Bottom
     ];
-    // 6 equatorial vertices
     for (let i = 0; i < 6; i++) {
-      const angle = (i * Math.PI) / 3;
-      verts.push([Math.cos(angle) * 0.9, 0, Math.sin(angle) * 0.9]);
+      const a = (i * Math.PI) / 3;
+      verts.push([Math.cos(a) * 0.95, 0, Math.sin(a) * 0.95]);
     }
+    const normVerts = verts.map(([x, y, z]) => {
+      const l = Math.hypot(x, y, z);
+      return [x / l, y / l, z / l];
+    });
     const edges = [];
-    // Equatorial ring
     for (let i = 2; i < 8; i++) {
       const next = i === 7 ? 2 : i + 1;
-      edges.push([i, next]);
-      edges.push([0, i]); // to top apex
-      edges.push([1, i]); // to bottom apex
+      edges.push([i, next]); // equator
+      edges.push([0, i]);    // to top
+      edges.push([1, i]);    // to bottom
     }
-    return { vertices: verts, edges };
+    return { name: 'HexBipyramid', vertices: normVerts, edges };
   }
 
-  // Model D: Faceted Gem Cluster (Irregular Triangulated Mesh)
-  function createFacetedGem() {
-    const verts = [
-      [0, 1.2, 0],
-      [-0.9, 0.4, -0.6], [0.9, 0.4, -0.6], [0, 0.5, 1.0],
-      [-1.0, -0.5, 0.5], [1.0, -0.5, 0.5], [0, -0.6, -1.0],
-      [0, -1.3, 0]
+  // Model 4: Truncated Tetrahedron (Faceted Tech Prism, 12 vertices, 18 edges)
+  function createTruncatedTetrahedron() {
+    const a = 1.0;
+    const b = 0.333;
+    const rawVerts = [
+      [ a,  b,  b], [ a, -b, -b], [-a,  b, -b], [-a, -b,  b],
+      [ b,  a,  b], [-b,  a, -b], [ b, -a, -b], [-b, -a,  b],
+      [ b,  b,  a], [-b, -b,  a], [ b, -b, -a], [-b,  b, -a]
     ];
+    const normVerts = rawVerts.map(([x, y, z]) => {
+      const l = Math.hypot(x, y, z);
+      return [x / l, y / l, z / l];
+    });
+    const edges = [];
+    for (let i = 0; i < normVerts.length; i++) {
+      for (let j = i + 1; j < normVerts.length; j++) {
+        const d = Math.hypot(
+          normVerts[i][0] - normVerts[j][0],
+          normVerts[i][1] - normVerts[j][1],
+          normVerts[i][2] - normVerts[j][2]
+        );
+        if (d > 0.45 && d < 0.85) {
+          edges.push([i, j]);
+        }
+      }
+    }
+    return { name: 'TruncatedTetrahedron', vertices: normVerts, edges };
+  }
+
+  // Model 5: Stellated Gem (Facet Prism)
+  function createStellatedGem() {
+    const verts = [
+      [0, 1.25, 0],
+      [0.85, 0.3, 0.5], [-0.85, 0.3, 0.5], [0, 0.3, -0.9],
+      [0.7, -0.4, -0.6], [-0.7, -0.4, -0.6], [0, -0.5, 0.9],
+      [0, -1.25, 0]
+    ];
+    const normVerts = verts.map(([x, y, z]) => {
+      const l = Math.hypot(x, y, z);
+      return [x / l, y / l, z / l];
+    });
     const edges = [
       [0, 1], [0, 2], [0, 3],
       [1, 2], [2, 3], [3, 1],
-      [1, 4], [2, 5], [3, 4], [3, 5],
-      [1, 6], [2, 6], [4, 6], [5, 6],
-      [4, 5],
+      [1, 4], [2, 5], [3, 6],
+      [4, 5], [5, 6], [6, 4],
       [7, 4], [7, 5], [7, 6]
     ];
-    return { vertices: verts, edges };
+    return { name: 'StellatedGem', vertices: normVerts, edges };
   }
 
-  const GEOMETRY_TEMPLATES = [
+  const MODELS = [
     createIcosahedron(),
+    createCrystalShard(),
     createOctahedron(),
-    createCrystalBipyramid(),
-    createFacetedGem()
+    createHexBipyramid(),
+    createTruncatedTetrahedron(),
+    createStellatedGem()
   ];
 
   /* -------------------------------------------------------------------------
-   * 2. POLYHEDRON INSTANCE CLASS
+   * 2. NON-COLLIDING HARMONIC POLYHEDRON CLASS
    * ------------------------------------------------------------------------- */
-  class Polyhedron {
-    constructor(x, y, radius, modelIndex) {
-      this.x = x;
-      this.y = y;
-      this.baseX = x;
-      this.baseY = y;
+  class HarmonicPolyhedron {
+    constructor(anchorXRatio, anchorYRatio, radius, modelIndex) {
+      this.anchorXRatio = anchorXRatio;
+      this.anchorYRatio = anchorYRatio;
       this.radius = radius;
-      
-      const template = GEOMETRY_TEMPLATES[modelIndex % GEOMETRY_TEMPLATES.length];
-      this.vertices = template.vertices;
-      this.edges = template.edges;
 
-      // Rotation angles and velocity
+      const model = MODELS[modelIndex % MODELS.length];
+      this.vertices = model.vertices;
+      this.edges = model.edges;
+
+      // 3D rotation angles
       this.rotX = Math.random() * Math.PI * 2;
       this.rotY = Math.random() * Math.PI * 2;
       this.rotZ = Math.random() * Math.PI * 2;
 
-      this.speedX = (Math.random() - 0.5) * 0.007;
-      this.speedY = (Math.random() - 0.5) * 0.007;
-      this.speedZ = (Math.random() - 0.5) * 0.005;
+      // Smooth slow 3D tumbling speeds
+      this.speedX = (Math.random() > 0.5 ? 1 : -1) * (0.003 + Math.random() * 0.003);
+      this.speedY = (Math.random() > 0.5 ? 1 : -1) * (0.003 + Math.random() * 0.003);
+      this.speedZ = (Math.random() > 0.5 ? 1 : -1) * (0.002 + Math.random() * 0.0025);
 
-      // Drift velocity across screen
-      this.vx = (Math.random() - 0.5) * 0.35;
-      this.vy = (Math.random() - 0.5) * 0.35;
+      // Harmonic floating offsets (confined to dedicated anchor, never collides)
+      this.phaseX = Math.random() * Math.PI * 2;
+      this.phaseY = Math.random() * Math.PI * 2;
+      this.freqX = 0.0007 + Math.random() * 0.0006;
+      this.freqY = 0.0008 + Math.random() * 0.0006;
+      this.ampX = 16 + Math.random() * 14;
+      this.ampY = 14 + Math.random() * 12;
 
-      // Mouse parallax response factor
-      this.parallaxFactor = 0.02 + Math.random() * 0.025;
+      // Subtle parallax reaction to mouse
+      this.parallaxFactor = 0.02 + Math.random() * 0.02;
+
+      this.currentX = 0;
+      this.currentY = 0;
     }
 
-    update() {
-      // Rotate in 3D
+    update(timestamp) {
+      // 3D rotation update
       this.rotX += this.speedX;
       this.rotY += this.speedY;
       this.rotZ += this.speedZ;
 
-      // Gentle drift
-      this.x += this.vx;
-      this.y += this.vy;
+      // Smooth harmonic floating motion around anchor
+      const baseAnchorX = this.anchorXRatio * width;
+      const baseAnchorY = this.anchorYRatio * height;
 
-      // Screen boundary wrapping with padding
-      const pad = this.radius * 1.5;
-      if (this.x < -pad) this.x = width + pad;
-      if (this.x > width + pad) this.x = -pad;
-      if (this.y < -pad) this.y = height + pad;
-      if (this.y > height + pad) this.y = -pad;
+      this.currentX = baseAnchorX + Math.sin(timestamp * this.freqX + this.phaseX) * this.ampX;
+      this.currentY = baseAnchorY + Math.cos(timestamp * this.freqY + this.phaseY) * this.ampY;
     }
 
     draw(ctx, projectedMouse) {
-      // Calculate mouse offset for smooth parallax
-      let renderX = this.x;
-      let renderY = this.y;
+      let renderX = this.currentX;
+      let renderY = this.currentY;
 
+      // Gentle mouse parallax
       if (projectedMouse.active) {
         const dx = projectedMouse.x - width / 2;
         const dy = projectedMouse.y - height / 2;
@@ -221,7 +284,7 @@
         renderY += dy * this.parallaxFactor;
       }
 
-      // Precalculate trigonometric values for 3D rotation
+      // Precalculate 3D rotation trigonometric values
       const cosX = Math.cos(this.rotX);
       const sinX = Math.sin(this.rotX);
       const cosY = Math.cos(this.rotY);
@@ -229,8 +292,8 @@
       const cosZ = Math.cos(this.rotZ);
       const sinZ = Math.sin(this.rotZ);
 
-      // Project 3D vertices to 2D screen coordinates with perspective
-      const fov = 340;
+      // Perspective projection
+      const fov = 320;
       const projected = [];
 
       for (let i = 0; i < this.vertices.length; i++) {
@@ -239,19 +302,19 @@
         y *= this.radius;
         z *= this.radius;
 
-        // Rotation around X axis
+        // Rotate X
         const y1 = y * cosX - z * sinX;
         const z1 = y * sinX + z * cosX;
 
-        // Rotation around Y axis
+        // Rotate Y
         const x2 = x * cosY + z1 * sinY;
         const z2 = -x * sinY + z1 * cosY;
 
-        // Rotation around Z axis
+        // Rotate Z
         const x3 = x2 * cosZ - y1 * sinZ;
         const y3 = x2 * sinZ + y1 * cosZ;
 
-        // Perspective projection
+        // Perspective scale
         const scale = fov / (fov + z2 + 80);
         const px = renderX + x3 * scale;
         const py = renderY + y3 * scale;
@@ -259,73 +322,78 @@
         projected.push({ x: px, y: py, z: z2, scale });
       }
 
-      // Check proximity to mouse for reactive highlight
-      let mouseDist = 9999;
+      // Proximity highlight if mouse is near
+      let isNear = false;
       if (projectedMouse.active) {
-        mouseDist = Math.hypot(renderX - projectedMouse.x, renderY - projectedMouse.y);
+        const d = Math.hypot(renderX - projectedMouse.x, renderY - projectedMouse.y);
+        isNear = d < this.radius * 2.2;
       }
-      const isHovered = mouseDist < this.radius * 2.2;
-      const baseAlpha = isHovered ? 0.55 : 0.28;
+      const baseAlpha = isNear ? 0.6 : 0.32;
 
       // Draw wireframe edges
-      ctx.lineWidth = isHovered ? 1.4 : 1.0;
-      ctx.beginPath();
+      ctx.lineWidth = isNear ? 1.4 : 1.0;
       for (let i = 0; i < this.edges.length; i++) {
         const [a, b] = this.edges[i];
         const p1 = projected[a];
         const p2 = projected[b];
 
-        // Depth cueing: edge opacity based on average z
+        // Depth cueing: front edges are crisper, back edges softer
         const avgZ = (p1.z + p2.z) / (this.radius * 2);
-        const edgeAlpha = Math.max(0.08, Math.min(0.65, baseAlpha + avgZ * 0.18));
+        const edgeAlpha = Math.max(0.1, Math.min(0.7, baseAlpha + avgZ * 0.22));
 
-        ctx.strokeStyle = `${themeColors.polyEdge}${edgeAlpha})`;
+        ctx.strokeStyle = `${theme.edgeColor}${edgeAlpha})`;
         ctx.beginPath();
         ctx.moveTo(p1.x, p1.y);
         ctx.lineTo(p2.x, p2.y);
         ctx.stroke();
       }
 
-      // Draw vertices with subtle luminous node glow
+      // Draw glowing vertex nodes
       for (let i = 0; i < projected.length; i++) {
         const p = projected[i];
-        const pointAlpha = Math.max(0.15, Math.min(0.85, 0.45 + (p.z / this.radius) * 0.25));
-        const pointRadius = isHovered ? 2.4 * p.scale : 1.8 * p.scale;
+        const nodeAlpha = Math.max(0.18, Math.min(0.9, 0.5 + (p.z / this.radius) * 0.3));
+        const nodeRadius = Math.max(0.8, (isNear ? 2.2 : 1.7) * p.scale);
 
-        ctx.fillStyle = `${themeColors.polyVertex}${pointAlpha})`;
+        ctx.fillStyle = `${theme.vertexColor}${nodeAlpha})`;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, Math.max(0.8, pointRadius), 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, nodeRadius, 0, Math.PI * 2);
         ctx.fill();
       }
     }
   }
 
   /* -------------------------------------------------------------------------
-   * 3. CONSTELLATION NODE (Floating Particle Network)
+   * 3. SUBTLE AMBIENT STARDUST PARTICLES (Sparse & Clean)
    * ------------------------------------------------------------------------- */
-  class Particle {
+  class Stardust {
     constructor() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.vx = (Math.random() - 0.5) * 0.5;
-      this.vy = (Math.random() - 0.5) * 0.5;
-      this.radius = 1.2 + Math.random() * 1.4;
-      this.baseAlpha = 0.25 + Math.random() * 0.35;
+      this.reset();
     }
 
-    update() {
+    reset() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.vx = (Math.random() - 0.5) * 0.25;
+      this.vy = (Math.random() - 0.5) * 0.25;
+      this.radius = 0.8 + Math.random() * 1.2;
+      this.alpha = 0.15 + Math.random() * 0.3;
+      this.pulseSpeed = 0.002 + Math.random() * 0.002;
+    }
+
+    update(timestamp) {
       this.x += this.vx;
       this.y += this.vy;
 
-      // Wrap around edges
       if (this.x < 0) this.x = width;
       if (this.x > width) this.x = 0;
       if (this.y < 0) this.y = height;
       if (this.y > height) this.y = 0;
+
+      this.currentAlpha = this.alpha + Math.sin(timestamp * this.pulseSpeed) * 0.12;
     }
 
     draw(ctx) {
-      ctx.fillStyle = `${themeColors.particle}${this.baseAlpha})`;
+      ctx.fillStyle = `${theme.starColor}${Math.max(0.05, this.currentAlpha)})`;
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
       ctx.fill();
@@ -333,54 +401,62 @@
   }
 
   /* -------------------------------------------------------------------------
-   * 4. WORLD STATE & INITIALIZATION
+   * 4. ANCHOR LAYOUT & SPAWN (Dedicated Non-Overlapping Quadrants)
    * ------------------------------------------------------------------------- */
   let polyhedra = [];
-  let particles = [];
+  let stars = [];
 
-  function initWorld() {
+  function initShapes() {
     polyhedra = [];
-    particles = [];
+    stars = [];
 
-    // Scale counts according to display size
     const isMobile = width < 768;
-    const isTablet = width >= 768 && width < 1100;
+    const isTablet = width >= 768 && width < 1024;
 
-    const polyCount = isMobile ? 3 : isTablet ? 5 : 7;
-    const particleCount = isMobile ? 24 : isTablet ? 38 : 52;
+    // Strategically placed anchors in hero empty negative spaces:
+    // Guarantees shapes never overlap each other, title text, or the developer card
+    const anchors = isMobile
+      ? [
+          { x: 0.10, y: 0.18, r: 48, model: 1 }, // Top left
+          { x: 0.90, y: 0.22, r: 44, model: 3 }, // Top right
+          { x: 0.50, y: 0.90, r: 52, model: 0 }  // Bottom center
+        ]
+      : isTablet
+      ? [
+          { x: 0.08, y: 0.22, r: 58, model: 1 }, // Far upper left
+          { x: 0.12, y: 0.82, r: 66, model: 0 }, // Lower left
+          { x: 0.50, y: 0.14, r: 46, model: 2 }, // Top center
+          { x: 0.90, y: 0.25, r: 58, model: 3 }, // Upper right
+          { x: 0.86, y: 0.84, r: 62, model: 4 }  // Lower right
+        ]
+      : [
+          { x: 0.06, y: 0.24, r: 66, model: 1 }, // Far upper left
+          { x: 0.10, y: 0.84, r: 76, model: 0 }, // Lower left
+          { x: 0.46, y: 0.14, r: 48, model: 2 }, // Top center (above headline)
+          { x: 0.48, y: 0.88, r: 56, model: 3 }, // Bottom center (below buttons)
+          { x: 0.92, y: 0.18, r: 64, model: 4 }, // Upper right (behind card top)
+          { x: 0.88, y: 0.82, r: 70, model: 5 }  // Lower right (behind card bottom)
+        ];
 
-    // Distinct starting distribution quadrants for polyhedra
-    const positions = [
-      { x: width * 0.12, y: height * 0.22, r: 62 }, // Upper left
-      { x: width * 0.88, y: height * 0.18, r: 54 }, // Upper right
-      { x: width * 0.08, y: height * 0.75, r: 72 }, // Lower left
-      { x: width * 0.92, y: height * 0.82, r: 60 }, // Lower right
-      { x: width * 0.50, y: height * 0.12, r: 48 }, // Top center
-      { x: width * 0.48, y: height * 0.88, r: 66 }, // Bottom center
-      { x: width * 0.82, y: height * 0.52, r: 56 }  // Right middle
-    ];
-
-    for (let i = 0; i < polyCount; i++) {
-      const pos = positions[i % positions.length];
-      const offsetX = (Math.random() - 0.5) * 80;
-      const offsetY = (Math.random() - 0.5) * 80;
-      const radius = pos.r * (0.85 + Math.random() * 0.3);
-      polyhedra.push(new Polyhedron(pos.x + offsetX, pos.y + offsetY, radius, i));
+    for (let i = 0; i < anchors.length; i++) {
+      const a = anchors[i];
+      polyhedra.push(new HarmonicPolyhedron(a.x, a.y, a.r, a.model));
     }
 
-    // Initialize floating ambient particles
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
+    // 18-24 delicate ambient stardust particles
+    const starCount = isMobile ? 12 : 20;
+    for (let i = 0; i < starCount; i++) {
+      stars.push(new Stardust());
     }
   }
 
   /* -------------------------------------------------------------------------
-   * 5. RESIZE & HIGH-DPI CANVAS MANAGEMENT
+   * 5. RESIZE & SECTION BOUNDS
    * ------------------------------------------------------------------------- */
   function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2); // Cap at 2 for optimal battery/FPS
-    width = window.innerWidth;
-    height = window.innerHeight;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = heroSection.clientWidth;
+    height = heroSection.clientHeight;
 
     canvas.width = Math.floor(width * dpr);
     canvas.height = Math.floor(height * dpr);
@@ -388,119 +464,81 @@
     canvas.style.height = `${height}px`;
 
     ctx.scale(dpr, dpr);
-    initWorld();
+    initShapes();
   }
 
-  let resizeTimeout;
+  let resizeTimer;
   window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(resize, 180);
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resize, 150);
   }, { passive: true });
 
   /* -------------------------------------------------------------------------
-   * 6. MOUSE & TOUCH LISTENERS
+   * 6. MOUSE & VISIBILITY LISTENERS
    * ------------------------------------------------------------------------- */
-  window.addEventListener('mousemove', (e) => {
-    mouse.targetX = e.clientX;
-    mouse.targetY = e.clientY;
+  heroSection.addEventListener('mousemove', (e) => {
+    const rect = heroSection.getBoundingClientRect();
+    mouse.targetX = e.clientX - rect.left;
+    mouse.targetY = e.clientY - rect.top;
     mouse.active = true;
   }, { passive: true });
 
-  window.addEventListener('mouseleave', () => {
+  heroSection.addEventListener('mouseleave', () => {
     mouse.active = false;
   }, { passive: true });
 
-  window.addEventListener('touchmove', (e) => {
-    if (e.touches.length > 0) {
-      mouse.targetX = e.touches[0].clientX;
-      mouse.targetY = e.touches[0].clientY;
-      mouse.active = true;
-    }
-  }, { passive: true });
+  // Pause when scrolled out of view (using IntersectionObserver)
+  const heroObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      isSectionVisible = entry.isIntersecting;
+      if (isSectionVisible && isTabActive && !animationFrameId) {
+        animationFrameId = requestAnimationFrame(animate);
+      }
+    });
+  }, { threshold: 0.05 });
+  heroObserver.observe(heroSection);
 
-  window.addEventListener('touchend', () => {
-    mouse.active = false;
-  }, { passive: true });
-
-  // Tab visibility management to save CPU
+  // Pause when browser tab is inactive
   document.addEventListener('visibilitychange', () => {
     isTabActive = !document.hidden;
-    if (isTabActive && !animationFrameId) {
+    if (isSectionVisible && isTabActive && !animationFrameId) {
       animationFrameId = requestAnimationFrame(animate);
     }
   });
 
   /* -------------------------------------------------------------------------
-   * 7. ANIMATION RENDER LOOP
+   * 7. SMOOTH ANIMATION LOOP
    * ------------------------------------------------------------------------- */
-  const CONNECTION_DIST = 115;
-  const MOUSE_CONNECTION_DIST = 150;
-
-  function animate() {
-    if (!isTabActive) {
+  function animate(timestamp) {
+    if (!isSectionVisible || !isTabActive) {
       animationFrameId = null;
       return;
     }
 
     ctx.clearRect(0, 0, width, height);
 
-    // Smooth mouse interpolation
+    // Smooth mouse position easing
     if (mouse.active) {
       mouse.x += (mouse.targetX - mouse.x) * 0.12;
       mouse.y += (mouse.targetY - mouse.y) * 0.12;
     }
 
-    // 1. Update and draw polyhedra
-    for (let i = 0; i < polyhedra.length; i++) {
-      polyhedra[i].update();
-      polyhedra[i].draw(ctx, mouse);
+    // 1. Draw delicate ambient stardust
+    for (let i = 0; i < stars.length; i++) {
+      stars[i].update(timestamp);
+      stars[i].draw(ctx);
     }
 
-    // 2. Update particles & draw constellation lines
-    const pLen = particles.length;
-    for (let i = 0; i < pLen; i++) {
-      particles[i].update();
-      particles[i].draw(ctx);
-
-      // Particle-to-particle constellation lines
-      for (let j = i + 1; j < pLen; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.hypot(dx, dy);
-
-        if (dist < CONNECTION_DIST) {
-          const alpha = (1 - dist / CONNECTION_DIST) * 0.18;
-          ctx.strokeStyle = `${themeColors.connection}${alpha})`;
-          ctx.lineWidth = 0.8;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.stroke();
-        }
-      }
-
-      // Particle-to-mouse interactive connection
-      if (mouse.active) {
-        const mdx = particles[i].x - mouse.x;
-        const mdy = particles[i].y - mouse.y;
-        const mdist = Math.hypot(mdx, mdy);
-
-        if (mdist < MOUSE_CONNECTION_DIST) {
-          const malpha = (1 - mdist / MOUSE_CONNECTION_DIST) * 0.32;
-          ctx.strokeStyle = `${themeColors.connection}${malpha})`;
-          ctx.lineWidth = 1.0;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(mouse.x, mouse.y);
-          ctx.stroke();
-        }
-      }
+    // 2. Draw distinct 3D polyhedra (each in its own non-overlapping quadrant)
+    for (let i = 0; i < polyhedra.length; i++) {
+      polyhedra[i].update(timestamp);
+      polyhedra[i].draw(ctx, mouse);
     }
 
     animationFrameId = requestAnimationFrame(animate);
   }
 
-  // Initial trigger
+  // Initial setup & start
   resize();
   animationFrameId = requestAnimationFrame(animate);
 })();
