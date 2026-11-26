@@ -431,6 +431,23 @@ body {
 }
 
 /* Subtle background accent glow & developer dot grid */
+.bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.9;
+  transition: opacity 0.4s ease;
+  will-change: transform;
+}
+
+[data-theme="light"] .bg-canvas {
+  opacity: 0.75;
+}
+
 .ambient-glow {
   position: fixed;
   top: 0;
